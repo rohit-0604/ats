@@ -1,0 +1,44 @@
+# ATS v8 Python dependencies
+
+# LLM providers
+openai>=1.30.0
+google-generativeai>=0.7.0
+
+# Orchestration
+langgraph>=0.2.0
+langchain-core>=0.2.0
+
+# Memory
+chromadb>=0.5.0
+sentence-transformers>=3.0.0
+faiss-cpu>=1.8.0
+
+# Browser automation
+playwright>=1.44.0
+
+# PDF extraction
+pdfplumber>=0.11.0
+
+# HTTP
+httpx>=0.27.0
+beautifulsoup4>=4.12.0
+
+# File watching (HITL)
+watchdog>=4.0.0
+
+# Visualisation
+plotly>=5.22.0
+
+# Terminal UI (HITL Phase 3)
+rich>=13.7.0
+questionary>=2.0.0
+
+# Utilities
+pydantic>=2.7.0
+python-dotenv>=1.0.0
+
+# OCR fallback (scanned PDFs) — requires Tesseract system install for fallback
+pdf2image>=1.16.0
+pytesseract>=0.3.10
+
+# pip install langgraph-checkpoint-sqlite --break-system-packages

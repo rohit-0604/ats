@@ -1,0 +1,85 @@
+# Local secrets; only reviewed, nonsecret templates belong in Git.
+.env
+.env.*
+!/.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+/secrets/
+/credentials/
+/.aws/
+.npmrc
+.pypirc
+.netrc
+
+# Dependency installations, interpreter caches, and build products.
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+node_modules/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage/
+*.egg-info/
+dist/
+build/
+
+# ATS runtime data: anchor these so app/memory/ remains source-controlled.
+/memory/
+/cache/
+/output/
+/monitoring/
+# User SRS documents and real target configuration; root templates are retained.
+/input/
+
+# Runtime databases and their journals; review fixture exceptions explicitly.
+*.db
+*.db-*
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.sqlite3-*
+
+# Browser sessions and authentication material.
+.auth/
+storage_state*.json
+storage-state*.json
+auth_state*.json
+cookies*.json
+cookies*.txt
+
+# This directory is the current generator's disposable output, not ATS tests.
+/playwright_project/tests/
+test-results/
+playwright-report/
+blob-report/
+/screenshots/
+/traces/
+/videos/
+# Keep authored tests/fixtures, documentation images, and package manifests.
+
+# Machine-specific tooling, logs, and temporary files.
+/.codex/
+/.agents/*.local.*
+/.vscode/
+/.idea/
+*.code-workspace
+*.log
+logs/
+tmp/
+temp/
+*.tmp
+*.bak
+*.swp
+*.swo
+~$*
+.DS_Store
+Thumbs.db
+Desktop.ini

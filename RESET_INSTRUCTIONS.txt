@@ -1,0 +1,96 @@
+═══════════════════════════════════════════════════════════════
+  ATS v8 — HOW TO RESET AND RE-RUN FROM SCRATCH
+═══════════════════════════════════════════════════════════════
+
+Run the commands below from the project root:
+  C:\Users\rohit\Desktop\ATS\ats\
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  OPTION A — FULL RESET (recommended for fresh target/PDF)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  del cache\checkpoints.db cache\checkpoints.db-shm cache\checkpoints.db-wal 2>nul
+  del cache\requirements_*.json 2>nul
+  del output\* /Q 2>nul
+  del playwright_project\tests\*.spec.ts 2>nul
+  del memory\domain_selectors.json memory\hallucination_list.json 2>nul
+  del memory\run_metrics.json memory\feedback_history.json 2>nul
+  del memory\prompt_versions.json 2>nul
+  rmdir /S /Q memory\chroma_db 2>nul
+
+  Or on bash/PowerShell:
+    rm -f cache/checkpoints.db cache/checkpoints.db-shm cache/checkpoints.db-wal
+    rm -f cache/requirements_*.json
+    rm -rf output/*
+    rm -f playwright_project/tests/*.spec.ts
+    rm -f memory/domain_selectors.json memory/hallucination_list.json
+    rm -f memory/run_metrics.json memory/feedback_history.json memory/prompt_versions.json
+    rm -rf memory/chroma_db
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  OPTION B — PARTIAL RESET (same target URL, re-extract only)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Deletes requirements cache + pipeline state so Agent A re-runs,
+  but KEEPS learned lessons and selector memory across runs.
+
+    rm -f cache/checkpoints.db cache/checkpoints.db-shm cache/checkpoints.db-wal
+    rm -f cache/requirements_*.json
+    rm -rf output/*
+    rm -f playwright_project/tests/*.spec.ts
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  OPTION C — RETRY SAME RUN (re-run Playwright on existing tests)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Only clears the LangGraph checkpoint so the pipeline restarts.
+  Keeps requirements cache + generated spec files + memory intact.
+
+    rm -f cache/checkpoints.db cache/checkpoints.db-shm cache/checkpoints.db-wal
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  FILE REFERENCE — WHAT EACH FILE DOES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  cache/
+  ├── checkpoints.db          LangGraph pipeline state (SQLite).
+  │                           Delete to restart the pipeline from step 1.
+  ├── checkpoints.db-shm      SQLite shared memory file (auto-created).
+  ├── checkpoints.db-wal      SQLite write-ahead log (auto-created).
+  └── requirements_*.json     Cached PDF extraction output (keyed by PDF hash).
+                              Delete to force Agent A to re-extract from PDF.
+
+  output/
+  ├── pw_results_*.json       Raw Playwright JSON reporter output per run.
+  ├── feedback_*_phase*.json  Saved HITL feedback (requirements + test review).
+  └── review_*_phase*.html    Browser-based HITL review pages (read-only).
+
+  memory/
+  ├── chroma_db/              ChromaDB vector store — lessons + repair strategies.
+  │                           Persists across runs. Delete only for full reset.
+  ├── domain_selectors.json   Confirmed CSS selectors per domain+page.
+  │                           Grows across runs — improves codegen accuracy.
+  ├── hallucination_list.json Selectors confirmed to not exist on target site.
+  │                           Prevents future codegen from reusing bad selectors.
+  ├── run_metrics.json        Coverage/pass-rate history per run (for monitoring).
+  ├── feedback_history.json   Full HITL feedback audit trail across all runs.
+  └── prompt_versions.json    Evolved prompt versions (if prompt evolution ran).
+
+  playwright_project/
+  └── tests/*.spec.ts         Generated Playwright TypeScript test files.
+                              Auto-regenerated each run. Safe to delete anytime.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  AFTER RESET — HOW TO RUN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Interactive mode (with browser review UI):
+    python main.py run --url https://example.com --pdf input/requirements.pdf --interactive
+
+  Non-interactive mode (fully automated):
+    python main.py run --url https://example.com --pdf input/requirements.pdf
+
+  Kill any stuck Python processes first (Windows):
+    taskkill /F /IM python.exe
+
+═══════════════════════════════════════════════════════════════

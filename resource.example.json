@@ -1,0 +1,48 @@
+{
+  "_comment": "ATS v8 resource.json — copy to input/resource.json and fill in your app's details.",
+
+  "base_url": "https://your-app.example.com",
+
+  "auth": {
+    "_comment_types": "Supported types: none | form_login | bearer_token | api_key",
+    "type": "form_login",
+
+    "credentials": {
+      "username": "testuser@example.com",
+      "password": "TestPassword123!"
+    },
+
+    "_comment_form_login": "Optional: explicit login URL. If omitted, ATS infers from routes.",
+    "login_url": "/login",
+
+    "_comment_bearer": "For bearer_token type: POST endpoint that returns {access_token: ...}",
+    "token_endpoint": "/api/auth/login",
+
+    "_comment_api_key": "For api_key type: injected as X-API-Key header",
+    "api_key": "your-api-key-here"
+  },
+
+  "_comment_skip": "Routes to exclude from crawling and test generation. Supports * prefix wildcards.",
+  "skip_routes": [
+    "/admin",
+    "/debug",
+    "/_next",
+    "/static",
+    "/favicon.ico",
+    "/sitemap.xml"
+  ],
+
+  "_comment_extra": "Optional: additional Playwright extra_http_headers injected into every request.",
+  "extra_headers": {
+    "X-Test-Mode": "true"
+  },
+
+  "_comment_features": "Optional: override which feature areas to focus on. If omitted, inferred by ATS.",
+  "feature_areas": [
+    "auth",
+    "dashboard",
+    "products",
+    "cart",
+    "checkout"
+  ]
+}
