@@ -4,6 +4,11 @@ This describes implementation inspected on 2026-10-22. Proposed changes belong
 in [DECISIONS](DECISIONS.md), defects in [AUDIT_FINDINGS](AUDIT_FINDINGS.md), and
 environment/validation limits in [CURRENT_STATE](CURRENT_STATE.md).
 
+The 2026-10-23 [six proposed ADRs](adr/README.md) describe the future foundations;
+[M0](M0_VERSIONED_BASELINES.md) is the proposed first offline slice and
+[ROADMAP](ROADMAP.md) preserves the wider product assessment. None of those proposals
+changes the implemented architecture described below.
+
 ## Runtime boundary
 
 ATS is a local Python CLI. It uses direct HTTP/provider SDK calls, Python

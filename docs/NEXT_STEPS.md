@@ -1,6 +1,11 @@
 # Next steps and session handoff
 
-Handoff date: 2026-10-22 (Asia/Calcutta).
+Handoff date: 2026-10-23 (Asia/Calcutta). Audit baseline remains 2026-10-22.
+
+**Exact next step: M0 specification approval and implementation preparation.**
+Read [M0](M0_VERSIONED_BASELINES.md), [six ADRs](adr/README.md) and
+[ROADMAP](ROADMAP.md). All remain PROPOSED. Do not begin M0 implementation until
+explicitly authorized; this session preserved documentation only.
 
 ## Current verified baseline
 
@@ -17,31 +22,35 @@ bugs using isolated probes/read-only SQL. It did not run the full product or
 generated tests. [CURRENT_STATE](CURRENT_STATE.md) records exact validation scope,
 environment versions, historical results, and provenance limits.
 
-Local Git was initialized on `main` under the subsequent user authorization for
-safe Git preparation. No previous local history or matching connected GitHub
-repository was identified. No remote is attached. Read
-[GIT_PREPARATION](GIT_PREPARATION.md) for the source snapshot inventory and the
-pending approval of exact destination, visibility, and files before publishing.
+The architecture handoff began on `main` at initial snapshot `4bc2093`, tracking `origin/main`.
+The user approved private `rohit-0604/ats`; creation and push were completed and
+verified in the publication turn. Local remote configuration was rechecked for this
+handoff; no live remote fetch or publication occurred. The original handoff left its
+documentation changes uncommitted and unpublished. A subsequent explicit request
+authorizes their review and one local documentation commit, with no push. Read
+[GIT_PREPARATION](GIT_PREPARATION.md) for original inventory and publication history.
 
 ## Current authorization and resuming without chat history
 
-The latest authorized phase is safe local Git preparation and an initial commit,
-with exclusions and related handoff documentation. External publication is pending
-separate approval; do not create a GitHub repository, attach a remote, or push.
-No runtime finding has been fixed. Implementation below is a recommendation
-awaiting a new explicit task. Broader AI research remains paused. No
-skills/hooks/MCPs/agents are authorized by this phase.
+The latest authorized phase is review and one local commit of the 15 documentation
+files preserving the architecture assessment, six proposed ADRs and proposed M0.
+Stop after that commit. Git setup is already complete; do not repeat it. Further
+commits/pushes, implementation, installs, model calls, generated execution or
+deployment require a new scoped authorization. No runtime
+finding has been fixed. Broader research remains paused; no skills/hooks/MCPs/agents
+are authorized. Do not infer M0 approval from permission to save its specification.
 
 At the start of the next Codex session:
 
 1. Read [AGENTS.md](../AGENTS.md), then CURRENT_STATE, ARCHITECTURE,
-   AUDIT_FINDINGS, DECISIONS, GIT_PREPARATION, and this file. These files supply the working context;
-   do not depend on previous conversations.
+   AUDIT_FINDINGS, DECISIONS, GIT_PREPARATION, this file, the ADR index and six ADRs,
+   M0_VERSIONED_BASELINES, and ROADMAP. These files supply the working context;
+   no conversation history is required.
 2. Read the new user task and establish its authorized scope. Documentation
    authorization alone does not authorize implementation or dependency installation.
-3. Check current files and Git provenance. If a repository has appeared, inspect
-   status/history before editing and preserve user changes. Do not initialize or
-   connect Git as an assumed setup step.
+3. Check current files and Git status/history before editing; preserve the local
+   handoff and any user changes. Git setup is complete. Do not initialize or
+   reconnect Git as an assumed setup step.
 4. Inspect only source relevant to the approved milestone, rechecking cited lines
    and installed versions. Do not rerun the broader audit or AI technology survey.
 5. Turn the approved scope into acceptance criteria and a bounded change plan.
@@ -60,7 +69,7 @@ environment variables. Do not follow RESET_INSTRUCTIONS.txt for routine setup.
 [DECISIONS](DECISIONS.md) is the decision register. Resolve the choices required by
 the next milestone without prematurely deciding hosting/frameworks:
 
-- Authoritative source repository and supported environment.
+- Supported environment; private source destination is now established.
 - Approved criterion baseline, test identity, and coverage/result definitions.
 - Approval and abstention rules, especially for changed expected behavior.
 - CLI mode effects and terminal/exit-code semantics.
@@ -83,40 +92,30 @@ P0 execution risks remain blockers for real-target operation even if an initial
 offline correctness milestone succeeds. P2 metrics/memory refinements follow
 foundational correctness; their details remain in AUDIT_FINDINGS.
 
-## Recommended first safe implementation milestone
+## Proposed M0 and implementation preparation
 
-**Proposal: trustworthy offline evaluation and execution eligibility.**
+[M0: Versioned Baselines and Review Records](M0_VERSIONED_BASELINES.md) is the
+canonical specification; do not copy its contracts into this handoff. It contains
+scope/non-goals, interfaces, SQLite/canonicalization rules, security invariants,
+acceptance cases, proposed files, sequence, definition of done and open questions.
 
-Use the existing schemas/evaluator boundaries to address a tightly scoped portion
-of F03/F04/F05. This is a preparatory milestone, not authorization to run the local
-generated-code runner or a claim to resolve every P0 issue.
+Resolve the proposed single-operator trust model, whole-baseline approval, mandatory
+legacy re-review, unsupported-item handling, revocation/reactivation semantics and
+precise V1 contracts. Then obtain explicit M0 implementation authorization and prepare
+a bounded offline plan using standard-library tests and existing Pydantic.
+No new dependency is assumed. Approval of a baseline in future product use must not
+be confused with approval to implement M0 now.
 
-Before coding, settle the approved-ID set, execution eligibility semantics, result
-identity representation, and outcomes for missing/unknown/duplicate results. Keep
-the existing graph and agent responsibilities while introducing only the contracts
-needed for this work. If a new test dependency is necessary, include that install
-explicitly in the approved milestone rather than assuming authorization.
+The dependency correction is substantive: durable baseline/review authority comes
+before eligibility/result accounting. Persistence semantics are designed alongside
+identity, not postponed until after effects are connected. Only the narrow baseline/
+review store is in M0; graph integration, execution manifests, worker isolation,
+repair, effect ledgers and checkpoint migration remain later work.
 
-Proposed deliverables:
-
-- A validated input/result manifest with explicit requirement and test IDs.
-- Rejection of unknown generation IDs and unsafe artifact paths before any write.
-- A materialization eligibility gate that excludes rejected or pending tests and
-  rejects ambiguous approval states.
-- Recursive Playwright result parsing with every planned test accounted for.
-- Coverage derived only from the approved baseline; invalid evidence cannot create
-  passing coverage. Missing output is visible as an error/incomplete outcome.
-- Maintained offline regression tests reproducing the corresponding audit probes.
-
-Acceptance evidence must include nested suites, duplicate titles, unknown IDs,
-missing results, runner-level errors, rejected/pending tests, traversal/absolute
-paths, and two passing IDs against a one-requirement baseline. Tests must prove
-the intended semantics, not merely assert that percentages are clamped to 100.
-
-Why first: this has deterministic inputs/outputs, can reuse existing components,
-and can be checked without provider calls or a target application. Its limitation
-is explicit: execution isolation and repair-oracle preservation still require
-subsequent scoped milestones before autonomous operation is trustworthy.
+The older first milestone (offline eligibility/reconciliation, F03/F04/F05) remains
+in [ROADMAP](ROADMAP.md), with detailed contracts in ADR-03. Its priority moved after
+M0; its failure cases and obligations were not removed. M0 alone resolves none of
+the runtime P0 findings and does not authorize real-target execution.
 
 ## Required tests and quality gates
 
@@ -133,7 +132,7 @@ These are proposed gates; they are not installed/configured/passing today.
 | Environment | Correct direct dependencies, tested lock strategy, clean setup and browser provisioning. |
 | Static checks | Agreed Ruff formatting/lint and incremental mypy; generated TypeScript checked separately with tsc --noEmit and lint. |
 | Integration/evals | Owned local app with deterministic data; held-out labeled cases; defect detection, false alarms, fidelity, safety, latency/cost. |
-| CI | Repeat verified local commands and preserve failure evidence; block merging on required checks once an authoritative repo exists. |
+| CI | Repeat verified local commands and preserve failure evidence; introduce required checks only after verifying them. The private remote exists; CI remains unimplemented. |
 
 Do not invent command success or broad coverage thresholds. npm test currently
 fails intentionally; no maintained ATS regression runner/lint/type setup was found.

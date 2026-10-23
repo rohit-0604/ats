@@ -1,6 +1,6 @@
 # Decisions and proposals
 
-Recorded 2026-10-22. Read [CURRENT_STATE](CURRENT_STATE.md) and
+Baseline recorded 2026-10-22; architecture handoff updated 2026-10-23. Read [CURRENT_STATE](CURRENT_STATE.md) and
 [AUDIT_FINDINGS](AUDIT_FINDINGS.md) before using this register. Implemented behavior
 is described in [ARCHITECTURE](ARCHITECTURE.md); proposed work is sequenced in
 [NEXT_STEPS](NEXT_STEPS.md).
@@ -12,13 +12,39 @@ These reflect explicit user direction, not approval of a new runtime architectur
 | ID | Status | Constraint |
 | --- | --- | --- |
 | C01 | ACCEPTED | The completed audit is the factual baseline; preserve evidence/uncertainty distinctions. |
-| C02 | SUPERSEDED IN SCOPE | The initial six-document-only phase is complete. C08 authorizes Git preparation; feature implementation, installs, infrastructure, deployments, skills, hooks, MCP integrations, and agents remain outside scope. |
+| C02 | SUPERSEDED IN SCOPE | The initial six-document-only phase is complete. C08/C09 record completed Git work; C10 defines the current documentation-only task. |
 | C03 | ACCEPTED | Preserve useful current LangGraph functionality; do not describe proposals as implemented. |
 | C04 | ACCEPTED | Do not initialize Git, overwrite history, or connect a remote without approval. |
 | C05 | ACCEPTED | Preserve requirements/assertions; independently assess suggestions; never invent passing verification. |
 | C06 | ACCEPTED | Keep secrets and sensitive environment values out of documentation. |
 | C07 | ACCEPTED | Broader AI technology research is paused. Future work must be explicitly scoped. |
 | C08 | ACCEPTED 2026-10-22 | User authorized root/provenance checks, safe exclusions, local Git initialization if absent, and an initial source/documentation commit. Publication requires separate approval of exact destination, visibility, and inventory. See [GIT_PREPARATION](GIT_PREPARATION.md). |
+| C09 | APPROVED AND COMPLETED 2026-10-23 | User explicitly approved remaining Git setup: private `rohit-0604/ats`, reviewed 51-file initial snapshot. Creation, origin, push and matching SHA/private visibility were verified in that turn. This does not authorize later pushes or public release. |
+| C10 | APPROVED SCOPE 2026-10-23 | User authorized saving ADRs/M0/roadmap and updating/reviewing documentation only. No application implementation, dependency install, provider call, generated execution, deployment or GitHub publication. |
+| C11 | APPROVED SCOPE 2026-10-23 | User subsequently authorized review and one local commit of the 15 architecture/handoff documentation files, with message `docs: preserve ATS architecture decisions and M0 specification`. Stop after the local commit; no push, implementation, history rewrite or deployment is authorized. |
+
+## Foundational ADR register and implementation status
+
+**No foundational runtime implementation is approved by the handoff request.**
+Provisional acceptance of a direction is not acceptance of every schema, security
+assumption, migration or milestone. The ADRs are self-contained proposals; the
+[review index](adr/README.md) preserves criticism of earlier recommendations.
+
+| Record | Status | Relationship to earlier proposals |
+| --- | --- | --- |
+| [ADR-01: versioned baselines/oracle authority](adr/01-versioned-baselines.md) | PROPOSED | Refines D02; authority is distinct from hashes and legacy flags. |
+| [ADR-02: deterministic LangGraph lifecycle](adr/02-deterministic-lifecycle.md) | PROPOSED | Refines D01; policy code rather than a second graph framework. |
+| [ADR-03: artifact identity/approval/results](adr/03-artifact-identity.md) | PROPOSED | Extends D01/D02; approval covers final executable bundle and shared dependencies. |
+| [ADR-04: isolated execution](adr/04-isolated-execution.md) | PROPOSED | Refines D03; worker contract first, technology still undecided. |
+| [ADR-05: diagnosis and safe repair](adr/05-safe-repair.md) | PROPOSED | Refines D02; reviewed hypotheses, no automatic assertion changes. |
+| [ADR-06: persistence/replay/evidence](adr/06-persistence-replay.md) | PROPOSED | Application records plus checkpoints; no exactly-once claim for target effects. |
+| [M0: Versioned Baselines and Review Records](M0_VERSIONED_BASELINES.md) | PROPOSED; NOT IMPLEMENTED | Narrow subset of ADR-01/06; precedes eligibility/reconciliation work. |
+| [Broader roadmap](ROADMAP.md) | PROPOSED | Retains D04-D07 and product/UI/lab/observability/evaluation/security/deployment work. |
+
+The previous first milestone, offline eligibility and result reconciliation, is
+superseded **in ordering**, not discarded. It consumes baseline/review authority
+from M0 and retains its acceptance cases in ROADMAP and ADR-03. Saving the revised
+proposal does not approve M0 implementation.
 
 ## Recommendations awaiting an implementation decision
 
@@ -36,10 +62,13 @@ None of D01-D07 is implemented or authorized by the documentation request.
 
 ## Unresolved decisions
 
-- Which GitHub destination should become authoritative? Local `main` now begins
-  with a workspace snapshot; prior upstream history is still unknown. No matching
-  connected repository was identified. The proposed private destination and
-  inventory need explicit approval before publication.
+- M0 approval prerequisites: designate the local reviewer; approve whole-baseline
+  review and mandatory legacy re-review; decide unsupported-criterion policy and
+  active-baseline revocation/reactivation semantics. Confirm exact V1 constraints
+  and canonicalization before coding. See M0's approval checklist.
+- Git destination is resolved for the private initial snapshot (`rohit-0604/ats`).
+  Prior upstream history remains unknown; public release/licensing and additional
+  publication require their own scope. Git approval is not feature approval.
 - Which requirement types belong in the first product scope? How are unsupported,
   ambiguous, and inferred requirements represented and approved?
 - Who may approve changed expected behavior? What evidence distinguishes a test

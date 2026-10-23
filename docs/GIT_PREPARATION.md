@@ -1,11 +1,24 @@
 # Local Git preparation and publication gate
 
-Prepared 2026-10-22. This records version-control work only. The application,
+Prepared 2026-10-22; publication outcome recorded 2026-10-23. This records version-control work only. The application,
 prompts, dependency manifests, legacy documents, and open findings were preserved.
 Read [AGENTS](../AGENTS.md), [CURRENT_STATE](CURRENT_STATE.md), and
 [NEXT_STEPS](NEXT_STEPS.md) before resuming work.
 
-## Provenance and authorization
+## Completed publication and current boundary
+
+The user subsequently explicitly approved the remaining Git setup. Private repository
+`https://github.com/rohit-0604/ats` was created, connected as `origin`, and the reviewed
+51-file snapshot `4bc20938d87bbeb00512f058d4abb4434aa7ebc4` was pushed to `main`.
+The publication turn verified PRIVATE visibility, matching local/remote SHA, upstream
+`origin/main` and a clean tree. No history rewrite or force-push occurred.
+
+This architecture-handoff pass rechecked local configuration/status only. It does not
+revalidate live visibility or publish its documentation changes. The historical gates
+below explain the original authorization sequence; they are not a request to repeat
+completed setup. Further publication is outside the current documentation-only scope.
+
+## Historical provenance and authorization (2026-10-22)
 
 - Verified root: `C:\Users\rohit\Desktop\ATS\ats`. Git 2.56.0.windows.1 is installed.
 - Before initialization, `git rev-parse --show-toplevel` failed; no Git marker
@@ -163,17 +176,20 @@ requirements.txt
 resource.example.json
 ```
 
-## Proposed destination and safe publication sequence
+## Historical proposed destination and safe publication sequence
 
-PROPOSED, NOT APPROVED: **`rohit-0604/ats`, private**. This is descriptive and
-matches the workspace name; availability must be rechecked. The simpler backup
-is this local source snapshot. A private GitHub copy adds off-machine access and
+At preparation time: PROPOSED, NOT APPROVED: **`rohit-0604/ats`, private**.
+This exact initial publication was later approved and completed as recorded above.
+The following is the retained historical procedure, not pending work. The name
+matched the workspace, and availability was rechecked before creation. The simpler
+backup was the local source snapshot. A private GitHub copy adds off-machine access and
 backup but still uploads project information and commit metadata to a third party.
 Neither option backs up the deliberately excluded local inputs, credentials, or
 runtime evidence. Any separate encrypted data backup needs its own scope.
 
-Stop here until the user explicitly approves the exact owner/name, private
-visibility, and the 51-file inventory above (or its reviewed successor).
+Historical gate (satisfied for the initial snapshot): stop until the user explicitly
+approves the exact owner/name, private visibility, and the 51-file inventory above
+(or its reviewed successor). New publication scope requires its own authorization.
 
 After approval, perform these steps sequentially from the verified root:
 

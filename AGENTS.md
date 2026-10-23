@@ -102,9 +102,16 @@ source verification.
 
 ## Current authorization boundary
 
-The current phase authorizes safe local Git preparation, exclusion rules, a local
-initial commit, and related handoff documentation. External publishing is not
-authorized. Do not start feature work, install dependencies, change infrastructure,
-create skills/hooks/MCP integrations, or spawn agents under this task.
-A subsequent explicit request may authorize a new scoped phase; read NEXT_STEPS
-and the new request before proceeding.
+The current phase (2026-10-23) authorizes documentation-only architecture handoff:
+preserve six PROPOSED ADRs, the proposed M0 specification and roadmap, and reconcile
+status/decision documents. The earlier explicit Git authorization was completed:
+private `rohit-0604/ats`, initial commit `4bc2093`, and `main` tracking `origin/main`.
+That completed publication does not authorize further publishing under this phase.
+Do not implement M0, install dependencies, call model/providers, execute generated
+Playwright, deploy, push, create integrations, or spawn agents under this task.
+A subsequent explicit request authorizes review and one local commit of the 15
+architecture/handoff documentation files. It does not authorize further publication
+or implementation; stop after that local commit.
+Read [M0](docs/M0_VERSIONED_BASELINES.md), [ADRs](docs/adr/README.md), NEXT_STEPS and
+the next explicit user request before proceeding. Provisional architectural agreement
+and documentation approval are not implementation approval.

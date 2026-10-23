@@ -4,6 +4,10 @@ Baseline date: 2026-10-22 (Asia/Calcutta). This records the completed repository
 audit, accepted by the user as the factual baseline. It is not a claim of a
 successful current end-to-end execution.
 
+Handoff update: 2026-10-23. The product/system, UX, SDD, observability and evaluation
+assessment and six-decision deep dive are now preserved as proposals. This update
+changes documentation only; no runtime finding is fixed and no M0 test has run.
+
 ## Read this documentation
 
 - [AGENTS.md](../AGENTS.md): enforceable engineering instructions.
@@ -11,6 +15,9 @@ successful current end-to-end execution.
 - [AUDIT_FINDINGS](AUDIT_FINDINGS.md): evidence, priorities, validation, remedies.
 - [DECISIONS](DECISIONS.md): accepted constraints, proposals, unresolved choices.
 - [NEXT_STEPS](NEXT_STEPS.md): scoped milestone and self-contained session handoff.
+- [ADRs](adr/README.md): six proposed decisions, critique, dependencies and walkthrough.
+- [M0](M0_VERSIONED_BASELINES.md): proposed Versioned Baselines and Review Records specification.
+- [ROADMAP](ROADMAP.md): product, POM, memory, UI, lab, observability, evaluations and deployment.
 
 ## Repository provenance and scope
 
@@ -21,11 +28,19 @@ parent Git marker was found. On 2026-10-22 the user subsequently authorized safe
 local version control preparation. Git was initialized at this exact workspace
 on branch `main` after checking exclusions and provenance; there was no existing
 local history to preserve. The initial commit is a snapshot of this workspace,
-not recovered upstream development history. No remote is configured or approved.
-No matching repository was identified in the connected GitHub account; copies
-outside that account/access scope remain unverified. See
-[GIT_PREPARATION](GIT_PREPARATION.md) for the exact inventory, sensitive-file
-assessment, validation, and approval steps before any GitHub publication.
+not recovered upstream development history. The user subsequently approved publishing
+the reviewed snapshot to private `rohit-0604/ats`. Creation and push completed on
+2026-10-23: `origin` is `https://github.com/rohit-0604/ats.git`, and `main` tracks
+`origin/main`. The publication turn verified private visibility and matching local/
+remote SHA `4bc20938d87bbeb00512f058d4abb4434aa7ebc4`.
+
+This handoff rechecked local Git status/configuration, not live GitHub visibility.
+It began from a clean tree at that commit; the original handoff left its edits local,
+uncommitted and unpublished. A subsequent explicit request authorizes review and one
+local documentation commit, with no push or implementation. No application source
+changed. Earlier upstream copies outside
+known access remain unverified. [GIT_PREPARATION](GIT_PREPARATION.md) preserves the
+original inventory, safety review and completed publication record.
 
 The audit inspected Python source, active prompts, CLI/configuration, generated
 TypeScript, manifests, documentation, stored run artifacts, and read-only SQLite
@@ -65,6 +80,25 @@ this workspace. UNVERIFIED denotes a claim not established by the audit.
 
 Sources and detailed limitations are in [ARCHITECTURE](ARCHITECTURE.md) and
 [AUDIT_FINDINGS](AUDIT_FINDINGS.md).
+
+## Latest assessment and proposed first milestone
+
+The [ADR review](adr/README.md) retains LangGraph but proposes deterministic authority,
+immutable criteria, final-bundle approval, isolated execution, reviewed repair and
+application-owned evidence records alongside checkpoints. All six ADRs are PROPOSED;
+no implementation decision is approved merely by this documentation authorization.
+
+[M0](M0_VERSIONED_BASELINES.md) now precedes the earlier evaluator milestone: import
+legacy requirements as untrusted drafts, freeze versioned baselines, persist explicit
+review records and inspect approval offline. Single-operator trust, whole-baseline
+approval, mandatory legacy re-review and unsupported-item handling await owner approval.
+Field-level schema precision and review/revocation semantics are preparation items.
+The old eligibility/reconciliation proposal remains follow-up work in ROADMAP.
+
+M0 will not integrate with the runtime graph or fix the existing writer, repair,
+runner, parser or approval bypasses. All F01-F17 remain open. No maintained M0 or ATS
+regression suite is introduced by these documents. Next step: M0 specification
+approval and implementation preparation, not unapproved implementation.
 
 ## Environment observed during the audit
 
@@ -109,6 +143,24 @@ performed. No implementation changes or dependency installations were made by
 the audit. Its documentation pass created the six original Markdown files.
 The subsequent Git preparation changes exclusions and handoff documentation only;
 it does not fix runtime findings or establish a successful product execution.
+
+## Architecture handoff verification (2026-10-23)
+
+The documentation pass checked 16 Markdown files (AGENTS and docs), 181 local
+links including source-line bounds, six ADRs with sections A-I, and 17 labeled M0
+acceptance cases. No missing local targets, invalid source-line bounds or unbalanced
+code fences were found. `git diff --check` passed. All changed/new paths were
+documentation; application source, prompts, manifests and the audit register stayed
+unchanged. Manual review reconciled proposal status, milestone order and completed
+Git publication; contracts are linked to their canonical documents rather than
+duplicated in the handoff.
+
+The 27 external reference links were retained from earlier research and were not
+network-checked. Six distinct historical evidence paths resolve locally but are
+deliberately untracked runtime artifacts, so a clean clone cannot inspect them.
+Installed-package source references in ADRs are historical local evidence, not
+portable tracked dependencies. No product acceptance tests, model calls, browser
+execution, dependency installation, deployment, commits or pushes occurred.
 
 ## Historical artifact evidence
 
