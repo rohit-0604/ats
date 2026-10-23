@@ -1,9 +1,11 @@
 # M0 - Versioned Baselines and Review Records
 
-Status: **PROPOSED - awaiting specification approval and implementation authorization**.
+Status: **APPROVED AND IMPLEMENTED - verified offline M0 only**.
 Final proposed specification revision: **M0-SPEC-2026-10-23-v2**. The original
 architecture handoff is preserved; this revision resolves its open M0 details for
-owner review. No M0 application modules, fixtures or regression tests have been created.
+owner review. The user explicitly approved this revision for implementation on 2026-10-23.
+Offline implementation and all 33 acceptance cases are now verified; see
+[M0 verification](M0_VERIFICATION.md) for commands, failures, results and limitations.
 
 This is the authoritative proposed M0 scope. It supersedes the *ordering* of the older
 first milestone (offline eligibility/result reconciliation), which remains necessary
@@ -13,10 +15,10 @@ The [decision register](DECISIONS.md) distinguishes accepted constraints from pr
 
 Read this specification with [exact V1 contracts](M0_CONTRACTS_V1.md) and
 [decision rationale](M0_DECISION_RATIONALE.md). Together they define the approval
-candidate: this file owns scope, acceptance, sequence and approval; the contract file
+scope: this file owns scope, acceptance, sequence and approval; the contract file
 owns field/serialization/command rules; the rationale file owns alternatives, trade-offs,
-failure modes and reconsideration triggers. All three remain PROPOSED. No broader
-architecture research was repeated and none of the six ADRs is automatically approved.
+failure modes and reconsideration triggers. Approval applies only to this M0 revision.
+No broader architecture research was repeated; the six full ADRs remain PROPOSED.
 
 ## Purpose
 
@@ -118,20 +120,20 @@ head/active distinction and transaction rules are in its following sections.
 9. Old approvals and snapshots remain available as history.
 10. The local trust assumption is documented rather than disguised as cryptographic authenticity.
 
-## Likely files
+## Implementation files
 
-These are proposed paths, not files created during this review:
+These files implement the approved scope. The shared file helper avoids a CLI/store
+dependency cycle; two maintained test modules cover all approved cases and regressions.
 
 | Path | Responsibility |
 |---|---|
 | `app/baseline_contracts.py` | Versioned immutable models and canonicalization |
 | `app/core/baseline_review.py` | Import, validation and review rules |
 | `app/core/review_store.py` | SQLite transactions and idempotent review records |
+| `app/core/baseline_files.py` | Shared bounded local-file effects and Windows path policy; avoids store/CLI import cycles |
 | `app/baseline_cli.py` | Offline prepare/review/inspect commands |
-| `tests/test_baseline_contracts.py` | Semantic and identity tests |
-| `tests/test_review_store.py` | Transaction, conflict and recovery tests |
-| `tests/test_baseline_import.py` | Bounded legacy mapping, identity and safe failure tests |
-| `tests/test_baseline_cli.py` | Windows paths, offline effects and command workflow |
+| `tests/test_m0_acceptance.py` | AC-01..33: contracts, import, storage, failure/recovery and CLI |
+| `tests/test_m0_regressions.py` | 15 additional focused boundary and defect regressions |
 | `tests/fixtures/baselines/` | Small synthetic, nonsecret fixtures |
 
 Keep the current `RequirementBundle` and runtime graph unchanged during M0. Update
@@ -140,7 +142,9 @@ status only after separately authorized implementation and verified results.
 
 ## Acceptance tests
 
-All cases below are **PROPOSED / NOT RUN**. Preserve the original AC-01..17 IDs;
+All cases below are **EXECUTED / PASS**, backed by [verification](M0_VERIFICATION.md).
+The test run contains 33 acceptance methods and 15 focused regressions, with no skips.
+Preserve the original AC-01..17 IDs;
 AC-18..33 add verification for the now-explicit rules. Parameterized cases are required
 where multiple inputs appear in one row. Use synthetic nonsecret fixtures and temporary
 directories; assert durable state and output, not only exception names.
@@ -182,13 +186,14 @@ directories; assert durable state and output, not only exception names.
 | M0-AC-33 | Init/project/prepare/edit/validate/freeze/inspect/review/history/revoke sequence | Usable offline flow; explicit expected sequence/digest/request; correct JSON/status/exits; no graph/LLM/browser execution | Offline integration |
 
 
-Use `unittest`, temporary directories and the already-installed Pydantic initially. Proposed verification command:
+Use `unittest`, temporary directories and the already-installed Pydantic. Verified command:
 
 ```powershell
 .\.venv\Scripts\python.exe -B -m unittest discover -s tests -p "test_*.py"
 ```
 
-That command is **proposed, not currently a passing repository gate**.
+That command passed: **48 tests in 14.953 seconds** on the inspected Windows environment.
+It verifies offline M0; it is not an execution-isolation or existing-runtime gate.
 
 ## Incremental sequence
 
@@ -241,31 +246,33 @@ M0 does **not** fix the old writer, unsafe repair, planner bypasses, runner isol
 
 ## Explicit implementation approval checklist
 
-All boxes remain unchecked until explicit owner authorization. Approval applies only to
+The user explicitly authorized this checklist and bounded M0 implementation. Approval applies only to
 revision `M0-SPEC-2026-10-23-v2` and its linked contracts/rationale, not the full roadmap.
 
-- [ ] Designate one trusted local operator; accept attribution without multi-user identity
+- [x] Designate one trusted local operator: the human running the ATS CLI; accept attribution without multi-user identity
   assurance and confirm private local Windows storage under that operator's control.
-- [ ] Approve whole-baseline review and mandatory re-review of all legacy flags, including
+- [x] Approve whole-baseline review and mandatory re-review of all legacy flags, including
   inferred entries; approve unsupported-but-clear criteria and block unresolved/unknown ones.
-- [ ] Approve the exact transition/lineage rules: revoke clears active, head is retained,
+- [x] Approve the exact transition/lineage rules: revoke clears active, head is retained,
   no automatic fallback/direct reactivation, restored content needs a reviewed successor,
   and M0 cannot remove inherited requirements/criteria/evidence.
-- [ ] Approve stable project/source-key UUID identities, strict immutable V1 field contracts,
+- [x] Approve stable project/source-key UUID identities, strict immutable V1 field contracts,
   exact canonical JSON/SHA-256 rules and explicit parent/evidence participation in identity.
-- [ ] Approve SQLite command/sequence/idempotency rules, 5-second lock wait and uncertain
+- [x] Approve SQLite command/sequence/idempotency rules, 5-second lock wait and uncertain
   commit recovery; approve explicit no-overwrite local paths and separate offline CLI.
-- [ ] Approve bounded legacy/native input limits, exact adapter fields, explicit metadata
+- [x] Approve bounded legacy/native input limits, exact adapter fields, explicit metadata
   omission warnings, unknown-field rejection and safe all-or-nothing failures.
-- [ ] Authorize the bounded implementation paths and AC-01..33 offline tests using the
+- [x] Authorize the bounded implementation paths and AC-01..33 offline tests using the
   existing Python/Pydantic plus standard library, with no dependency installation assumed.
-- [ ] Confirm exclusions: no runtime graph/RequirementBundle integration, live provider/
-  browser/generated execution, infrastructure, publication, commit/push or deployment.
-- [ ] Require actual passing named acceptance evidence and accurate handoff updates before
+- [x] Confirm exclusions: no runtime graph/RequirementBundle integration, live provider/
+  browser/generated execution, infrastructure, push or deployment. The implementation
+  request separately authorizes the reviewed local specification and implementation commits.
+- [x] Require actual passing named acceptance evidence and accurate handoff updates before
   declaring M0 complete; no ADR auto-approval or runtime finding closure from specification approval.
 
 ## Next action
 
-Present this final proposal and checklist for explicit implementation approval. The
-contracts, rationale, acceptance matrix and incremental plan are prepared; implementation
-has not begun. The existing unsafe runner and repair path remain unchanged.
+M0 is complete within the approved offline scope. Review the verification record,
+then separately scope the foundation follow-up (lifecycle policy, artifact eligibility
+and result reconciliation). Do not begin that work from M0 approval. The existing
+unsafe runner and repair path remain unchanged.

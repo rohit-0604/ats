@@ -1,0 +1,7 @@
+{
+  "requirements": [
+    {"req_id": "REQ-1", "title": "Guest access", "description": "Guests must not access reports.", "approved": true, "rejected": false, "gap_analysis": true, "section_ref": "3.2", "source_chunk": 0, "human_prompt": "Review the guest role", "confidence": 0.9},
+    {"req_id": "REQ-2", "title": "Administrator access", "description": "Administrators must access reports.", "approved": true, "dependencies": ["REQ-1"]}
+  ],
+  "pass_stats": {"chunks": 1, "pass1_count": 2, "total_time_s": 0.1}
+}

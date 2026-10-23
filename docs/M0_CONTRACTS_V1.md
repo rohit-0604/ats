@@ -1,8 +1,8 @@
 # M0 V1 contracts and command semantics
 
-Status: **PROPOSED - implementation not authorized**. Specification revision:
-`M0-SPEC-2026-10-23-v2`. This is the normative detail for the proposed
-[M0 scope](M0_VERSIONED_BASELINES.md), not an implemented wire format or passing gate.
+Status: **APPROVED FOR M0 - implemented and verified offline**. Specification revision:
+`M0-SPEC-2026-10-23-v2`. These are the normative contracts for the approved
+[M0 scope](M0_VERSIONED_BASELINES.md). See [verification](M0_VERIFICATION.md).
 [Decision rationale](M0_DECISION_RATIONALE.md) explains alternatives and limitations.
 The existing six ADRs remain PROPOSED.
 
@@ -173,8 +173,9 @@ Store the full snapshot as canonical bytes including `digest`. On every load, st
 decode and validate, recompute the digest, verify stored project/parent metadata, and
 compare the stored bytes with the canonical full representation. Fail on mismatch;
 never silently rewrite a damaged row. Snapshot insertion is idempotent only for exactly
-matching canonical bytes. Golden-byte/digest vectors must be committed with tests
-before declaring compatibility; none is claimed to pass in this documentation phase.
+matching canonical bytes. Golden-byte/digest vectors are recorded in the synthetic
+test fixtures and passed offline verification. They establish compatibility only for
+this tested V1 scope.
 
 ## 5. Review lifecycle and lineage
 
@@ -416,5 +417,5 @@ enforce project, lineage and authority rules independently of CLI checks. The tr
 local context is constructed by the command boundary from the project record, not accepted
 as serialized imported data. A separate validator reports approval blockers; `freeze`
 allows pending unresolved content, while `record_review(approve)` rechecks blockers.
-These interfaces refine the earlier generic names without replacing the proposed
+These interfaces refine the earlier generic names without replacing the approved
 modular design. They do not integrate the new authority with the unsafe existing runtime.

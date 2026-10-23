@@ -1,7 +1,9 @@
 # ADR-06 — Persistence, checkpoints, replay and execution evidence — PROPOSED
 
 Status: **PROPOSED**. Preserved 2026-10-23 from the completed architecture decision review.
-No implementation approval is recorded. Provisional agreement with direction does not approve these contracts.
+The full ADR remains PROPOSED. The user subsequently explicitly approved only its
+M0 baseline/review-store subset, now [implemented and verified](../M0_VERIFICATION.md).
+Effect ledgers, checkpoint migration and runtime recovery remain later proposed work.
 
 ATS is currently a local Python/LangGraph CLI that extracts requirements, generates inline
 Playwright tests, executes them locally and attempts repair. The design below is future work.

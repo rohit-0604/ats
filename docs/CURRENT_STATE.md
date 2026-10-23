@@ -4,13 +4,16 @@ Baseline date: 2026-10-22 (Asia/Calcutta). This records the completed repository
 audit, accepted by the user as the factual baseline. It is not a claim of a
 successful current end-to-end execution.
 
-Handoff update: 2026-10-23. The product/system, UX, SDD, observability and evaluation
+Historical architecture handoff update: 2026-10-23. The product/system, UX, SDD, observability and evaluation
 assessment and six-decision deep dive are now preserved as proposals. This update
 changes documentation only; no runtime finding is fixed and no M0 test has run.
 
-M0 specification update: `M0-SPEC-2026-10-23-v2` now includes exact proposed V1
+Historical M0 specification update: `M0-SPEC-2026-10-23-v2` included exact proposed V1
 contracts, 11 decision rationales, 33 acceptance cases and an implementation approval
-checklist. Specification detail is prepared; implementation remains unapproved.
+checklist. It was unapproved at that point. The user subsequently explicitly approved
+M0 implementation; the offline slice is now complete with **48 passing tests**, including
+all AC-01..33 and 15 focused regressions, no skips. See [M0 verification](M0_VERIFICATION.md).
+The existing runtime remains unchanged and all F01-F17 remain open.
 
 ## Read this documentation
 
@@ -64,6 +67,7 @@ this workspace. UNVERIFIED denotes a claim not established by the audit.
 | Capability | Status | Baseline |
 | --- | --- | --- |
 | Python CLI, configuration | CONFIRMED | URL plus local PDF or saved requirements JSON |
+| Offline M0 baseline/review CLI | CONFIRMED, VERIFIED OFFLINE | Strict immutable V1 records, legacy drafts, digest-bound whole-baseline decisions, SQLite history and inspection; no runtime integration |
 | SRS ingestion | PARTIAL | PDF text/tables, empty-document OCR fallback; no upload API/DOCX input |
 | Extraction/validation | PARTIAL | Five passes; heuristic filtering, inferred gaps, unsafe deduplication |
 | LangGraph orchestration | CONFIRMED | Three principal agents plus domain inference and planner calls |
@@ -80,7 +84,7 @@ this workspace. UNVERIFIED denotes a claim not established by the audit.
 | Memory/retrieval | CONFIRMED | ChromaDB and JSON storage; benefit UNVERIFIED |
 | Prompt evolution | MISSING | Configuration/constants without an implemented evolution path |
 | Observability | PARTIAL | Logging, JSONL, static reports/dashboard; misleading quality metrics |
-| ATS tests/evaluation corpus | MISSING | Generated target-site specs are not ATS regression tests |
+| ATS tests/evaluation corpus | PARTIAL | 48 maintained offline M0 tests; no maintained existing-runtime regression/evaluation corpus; generated target-site specs are not ATS regression tests |
 | Platform backend/UI | PARTIAL | CLI, static review pages, local feedback endpoint; no upload service |
 | CI/deployment infrastructure | MISSING | No maintained quality workflow/deployment manifests found |
 
@@ -97,16 +101,16 @@ no implementation decision is approved merely by this documentation authorizatio
 [M0](M0_VERSIONED_BASELINES.md) now precedes the earlier evaluator milestone: import
 legacy requirements as untrusted drafts, freeze versioned baselines, persist explicit
 review records and inspect approval offline. Single-operator trust, whole-baseline
-approval, mandatory legacy re-review and unsupported-item handling await owner approval.
-Exact V1 fields, canonicalization and review/revocation semantics are now specified
-as proposals in the v2 contracts; they still require owner approval.
+approval, mandatory legacy re-review and unsupported-item handling were explicitly approved
+for M0. Exact V1 fields, canonicalization and review/revocation semantics are implemented
+under that bounded approval; the full ADRs still require separate scope decisions.
 The old eligibility/reconciliation proposal remains follow-up work in ROADMAP.
 
 M0 will not integrate with the runtime graph or fix the existing writer, repair,
-runner, parser or approval bypasses. All F01-F17 remain open. No maintained M0 or ATS
-regression suite is introduced by these documents. Next step is explicit approval
-of the bounded v2 specification and its prepared implementation plan. The original
-17 acceptance IDs remain and 16 cases are added; none has been implemented or run.
+runner, parser or approval bypasses. All F01-F17 remain open. No maintained runtime
+regression suite was introduced by the earlier documents. The subsequent M0
+implementation now has a maintained offline suite; all 33 acceptance cases pass. Next
+dependency is the separately scoped foundation follow-up, not automatic M1 execution.
 
 The prior documentation review/local commit completed as `4a59405`; the tree was clean
 at the start of this specification phase. Local `main` and the locally recorded
@@ -124,7 +128,9 @@ private-key pattern matches. The 27 existing external reference URLs were not re
 Application code, prompts, manifests, the audit register, architecture, roadmap and
 six ADRs remained unchanged. No M0 test, install, provider/browser call, new commit,
 push or deployment occurred during this specification phase. The seven documentation
-changes remain unstaged and uncommitted for owner review.
+changes were subsequently reviewed and preserved in `bfbf347` before M0 source work.
+Current completion evidence is in M0_VERIFICATION; the specification-only observations
+above are historical and do not replace the later 48-test result.
 
 ## Environment observed during the audit
 

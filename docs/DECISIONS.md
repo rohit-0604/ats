@@ -23,14 +23,17 @@ These reflect explicit user direction, not approval of a new runtime architectur
 | C10 | APPROVED SCOPE 2026-10-23 | User authorized saving ADRs/M0/roadmap and updating/reviewing documentation only. No application implementation, dependency install, provider call, generated execution, deployment or GitHub publication. |
 | C11 | APPROVED SCOPE 2026-10-23 | User subsequently authorized review and one local commit of the 15 architecture/handoff documentation files, with message `docs: preserve ATS architecture decisions and M0 specification`. Stop after the local commit; no push, implementation, history rewrite or deployment is authorized. |
 | C12 | APPROVED DOCUMENTATION SCOPE 2026-10-23 | After local commit `4a59405`, user requested final proposed M0 contracts, decision rationale, acceptance matrix, incremental plan, risks and explicit implementation approval gate. Relevant source inspection/documentation updates only; no application code, installs, generated execution, deployment or publication. No additional commit is authorized. |
+| C13 | EXPLICITLY APPROVED AND COMPLETED M0 2026-10-23 | User approved M0-SPEC-2026-10-23-v2, M0-D01..11, offline implementation/AC-01..33, the separate seven-file specification commit, and a verified local implementation commit. Reviewer is the human operator running the CLI. No push, dependency install, runtime integration, provider/target/generated execution, deployment or M1. Verification: 48 passing tests, no skips. |
 
 C11's local commit completed as `4a59405ef19f82fbee7c09e2edb3a28cfdf1fcee`.
-The subsequent request does not reopen its Git authorization. Current local refs may
+The intervening specification-only request did not reopen its Git authorization.
+C13 separately authorizes the specification commit `bfbf347` and local implementation
+commit; neither authorizes pushing. Current local refs may
 change independently; do not infer permission to push from tracking configuration.
 
 ## Foundational ADR register and implementation status
 
-**No foundational runtime implementation is approved by the handoff request.**
+**The six full ADRs remain PROPOSED. Only the exact M0 subset is approved and implemented.**
 Provisional acceptance of a direction is not acceptance of every schema, security
 assumption, migration or milestone. The ADRs are self-contained proposals; the
 [review index](adr/README.md) preserves criticism of earlier recommendations.
@@ -43,7 +46,7 @@ assumption, migration or milestone. The ADRs are self-contained proposals; the
 | [ADR-04: isolated execution](adr/04-isolated-execution.md) | PROPOSED | Refines D03; worker contract first, technology still undecided. |
 | [ADR-05: diagnosis and safe repair](adr/05-safe-repair.md) | PROPOSED | Refines D02; reviewed hypotheses, no automatic assertion changes. |
 | [ADR-06: persistence/replay/evidence](adr/06-persistence-replay.md) | PROPOSED | Application records plus checkpoints; no exactly-once claim for target effects. |
-| [M0: Versioned Baselines and Review Records](M0_VERSIONED_BASELINES.md) | PROPOSED; NOT IMPLEMENTED | Narrow subset of ADR-01/06; precedes eligibility/reconciliation work. |
+| [M0: Versioned Baselines and Review Records](M0_VERSIONED_BASELINES.md) | APPROVED AND IMPLEMENTED offline | Narrow subset of ADR-01/06; 33 acceptance cases plus 15 focused regressions pass; no runtime integration. |
 | [Broader roadmap](ROADMAP.md) | PROPOSED | Retains D04-D07 and product/UI/lab/observability/evaluation/security/deployment work. |
 
 The previous first milestone, offline eligibility and result reconciliation, is
@@ -53,9 +56,9 @@ proposal does not approve M0 implementation.
 
 M0 revision `M0-SPEC-2026-10-23-v2` now supplies [exact V1 contracts](M0_CONTRACTS_V1.md),
 [11 proposed decision rationales](M0_DECISION_RATIONALE.md), 33 proposed acceptance
-cases and an implementation checklist. M0-D01..11 are recommendations, not ACCEPTED
-decisions. They retain the offline baseline/review design and settle previously open
-details for owner approval. In particular, no direct reactivation/removal is proposed,
+cases and an implementation checklist. M0-D01..11 were subsequently explicitly ACCEPTED
+within M0 only. They retain the offline baseline/review design. In particular, no direct
+reactivation/removal is permitted,
 and uncertain post-commit acknowledgment is reconciled by the original request ID.
 
 ## Recommendations awaiting an implementation decision
@@ -70,15 +73,15 @@ and uncertain post-commit acknowledgment is reconciled by the original request I
 | D06 | Build a minimal development harness: instructions, specs, offline tests, types/lint, then CI. | Plain repeatable commands before hooks/skills/custom platforms. | Prove commands locally and in a clean environment; add automation only for demonstrated repetition. |
 | D07 | Align direct dependencies and lock a tested runtime/browser baseline (F12). | A constrained requirements file may be simpler than changing package managers; avoid freezing incidental packages. | Clean setup plus import/contract checks; maintain intentional upgrades and compatibility evidence. |
 
-None of D01-D07 is implemented or authorized by the documentation request.
+The original documentation request authorized none of D01-D07. C13 subsequently
+approved only their narrow M0 baseline/review subset. All broader scope remains proposed.
 
 ## Unresolved decisions
 
-- M0 approval prerequisites: designate the local reviewer and approve or amend the
-  now-specified trust, whole-baseline review, legacy re-review, support, lifecycle,
-  identity, canonicalization, storage, import and CLI rules. The exact V1 proposal
-  and 33 acceptance cases are prepared; owner acceptance and implementation authorization
-  remain outstanding. See M0's explicit approval checklist.
+- M0 product decisions are resolved under C13: the human CLI operator is the reviewer;
+  exact v2 trust, review, identity, serialization, storage, import and CLI rules apply.
+  The next dependency is separately scoped lifecycle/artifact/eligibility/result work;
+  M0 approval does not authorize it or close any existing runtime finding.
 - Git destination is resolved for the private initial snapshot (`rohit-0604/ats`).
   Prior upstream history remains unknown; public release/licensing and additional
   publication require their own scope. Git approval is not feature approval.

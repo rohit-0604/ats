@@ -5,6 +5,10 @@ observability, evaluation and SDD assessment. No features, hosting choices, vend
 quality thresholds or budgets below are approved for implementation by this handoff.
 External references record the earlier research; no new research was performed here.
 
+Implementation update: the user subsequently approved `M0-SPEC-2026-10-23-v2`.
+Its offline baseline/review slice is implemented and [verified](M0_VERIFICATION.md).
+All later stages still require their own scoped approval; M0 adds no runtime execution authority.
+
 The [six ADRs](adr/README.md) refine this assessment. They take precedence on foundation
 ordering and safeguards: [M0](M0_VERSIONED_BASELINES.md) establishes baseline/review
 identity first; final executable bundles require approval; durable audit records precede
@@ -342,7 +346,7 @@ not dates, delivery commitments or passing gates.
 
 | Stage | Deliverable | Required exit evidence |
 | --- | --- | --- |
-| M0 | Versioned baselines and review records | Approved specification; offline import/freeze/review/inspect and named regression cases |
+| M0 - COMPLETE offline | Versioned baselines and review records | Approved v2; AC-01..33 plus 15 focused regressions passed; see M0_VERIFICATION |
 | Foundation follow-up | Deterministic lifecycle, bundle manifests, eligibility, safe paths and full result reconciliation | Tested state transitions and synthetic nested/missing/duplicate/unknown result cases |
 | Execution and repair foundation | Isolated worker, effect recovery, oracle-preserving reviewed repair proposals | Boundary denials, crash/cancellation tests and preserved seeded defects |
 | Controlled end-to-end slice | Owned lab, reviewed scenarios, generated tests, controlled execution and evidence | Known-good/defective-build discrimination and recovery evidence |

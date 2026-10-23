@@ -1,7 +1,9 @@
 # ADR-01 — Versioned requirements, acceptance criteria, and oracle authority — PROPOSED
 
 Status: **PROPOSED**. Preserved 2026-10-23 from the completed architecture decision review.
-No implementation approval is recorded. Provisional agreement with direction does not approve these contracts.
+The full ADR remains PROPOSED. The user subsequently explicitly approved only its
+M0 subset; that offline slice is [implemented and verified](../M0_VERIFICATION.md).
+This does not approve broader runtime integration or the complete ADR contracts.
 
 ATS is currently a local Python/LangGraph CLI that extracts requirements, generates inline
 Playwright tests, executes them locally and attempts repair. The design below is future work.
@@ -110,4 +112,6 @@ Interview explanation:
 
 ## Dependencies and open boundaries
 
-ADR-06 supplies transactional review persistence; M0 implements only that narrow part of ADR-01/06. Reviewer authority, whole-baseline granularity and legacy re-review remain product-owner decisions.
+ADR-06 supplies transactional review persistence; M0 implements only that narrow part
+of ADR-01/06. The user resolved reviewer authority, whole-baseline granularity and
+legacy re-review for M0. Broader runtime integration remains proposed.

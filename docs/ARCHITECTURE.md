@@ -7,7 +7,21 @@ environment/validation limits in [CURRENT_STATE](CURRENT_STATE.md).
 The 2026-10-23 [six proposed ADRs](adr/README.md) describe the future foundations;
 [M0](M0_VERSIONED_BASELINES.md) is the proposed first offline slice and
 [ROADMAP](ROADMAP.md) preserves the wider product assessment. None of those proposals
-changes the implemented architecture described below.
+changes the runtime graph described below. M0 was subsequently explicitly approved
+and implemented as a separate offline subsystem; its boundary is described here.
+
+## Offline M0 baseline and review subsystem
+
+`python -B -m app.baseline_cli` provides explicit prepare, validate, freeze, review,
+inspect and history operations. [Contracts](../app/baseline_contracts.py) contain
+immutable V1 records/canonicalization; [baseline review](../app/core/baseline_review.py)
+contains the bounded legacy adapter and approval rules; [review store](../app/core/review_store.py)
+owns SQLite snapshots, sequence checks and append-only decisions. A small
+[file boundary](../app/core/baseline_files.py) is shared by store and CLI.
+
+The runtime graph does not consume this new authority. Existing approval, runner,
+repair, accounting and isolation defects remain open. M0 has no imports from runtime
+configuration/providers and no execution capability. See [verification](M0_VERIFICATION.md).
 
 ## Runtime boundary
 

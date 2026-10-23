@@ -102,16 +102,18 @@ source verification.
 
 ## Current authorization boundary
 
-The current phase (2026-10-23) authorizes documentation-only finalization of the
-proposed M0 contracts, rationale, acceptance matrix, implementation plan and approval
-checklist, plus relevant source inspection. Preserve all six ADRs as PROPOSED and
-stop at the explicit M0 implementation approval gate. The earlier Git setup completed:
-private `rohit-0604/ats`, initial commit `4bc2093`, and `main` tracking `origin/main`.
-That completed publication does not authorize further publishing under this phase.
-Do not implement M0, install dependencies, call model/providers, execute generated
-Playwright, deploy, push, create integrations, or spawn agents under this task.
-The separately authorized documentation review/local commit completed as `4a59405`.
-That authorization is consumed; this specification phase authorizes no further commits.
+The user explicitly approved `M0-SPEC-2026-10-23-v2` for implementation and offline
+verification on 2026-10-23. M0 is now implemented and its 33 acceptance cases plus
+15 focused regressions pass; see [verification](docs/M0_VERIFICATION.md). The reviewer
+is the human operator running the CLI, under the documented single-user trust model.
+The user authorized a separate safe specification commit (`bfbf347`) and a reviewed
+local implementation commit after verification. Stop after M0 completion/local commit.
+Do not begin M1, integrate the new authority into the existing runtime, install new
+dependencies, contact target/model providers, execute generated Playwright, deploy,
+push, create integrations or spawn agents under this task. The six full ADRs remain
+PROPOSED; only the exact M0 subset was approved. Existing P0 runtime defects remain.
+Earlier Git setup completed at private `rohit-0604/ats`; further publication is not
+authorized by this phase. Preserve all existing runtime source and history.
 Read [M0](docs/M0_VERSIONED_BASELINES.md), [ADRs](docs/adr/README.md), NEXT_STEPS and
-the next explicit user request before proceeding. Provisional architectural agreement
-and documentation approval are not implementation approval.
+the next explicit user request before proceeding. Later milestones require their
+own scoped authorization; completed M0 approval is not permission for live execution.

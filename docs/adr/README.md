@@ -5,10 +5,14 @@ review, not approval of implementation. The source-based audit remains in
 [AUDIT_FINDINGS](../AUDIT_FINDINGS.md); implemented architecture is in
 [ARCHITECTURE](../ARCHITECTURE.md). [DECISIONS](../DECISIONS.md) records authorization.
 
+Subsequent explicit approval covers only the narrow M0 subset of ADR-01/06.
+That offline slice is now [implemented and verified](../M0_VERIFICATION.md).
+The six full ADRs remain PROPOSED; runtime integration is not authorized by M0.
+
 The original proposal was challenged and revised, not automatically accepted. Six ADRs
 retain their problem, current flow, realistic failure, alternatives, rationale, migration,
-verification, reconsideration triggers and engineering explanation. No ADR acceptance
-tests have been implemented or run by this handoff.
+verification, reconsideration triggers and engineering explanation. The original handoff
+ran no ADR acceptance tests; subsequent M0 verification covers only its approved subset.
 
 ## ADR register
 

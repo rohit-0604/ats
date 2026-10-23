@@ -1,9 +1,10 @@
-# M0 final proposed decisions and rationale
+# M0 approved decisions and rationale
 
-Status: **PROPOSED - no implementation approval**. Revision
+Status: **APPROVED FOR THE M0 SUBSET - implemented and verified offline**. Revision
 `M0-SPEC-2026-10-23-v2`. Read the [scope and approval gate](M0_VERSIONED_BASELINES.md)
 and [exact V1 contracts](M0_CONTRACTS_V1.md). This completes specification detail;
-it does not approve ADR-01 through ADR-06 or claim their safeguards are implemented.
+it does not approve the full ADR-01 through ADR-06 scope. M0 implementation evidence
+is recorded in [M0 verification](M0_VERIFICATION.md); broader runtime safeguards remain absent.
 
 ## Evidence and comparison with the earlier specification
 
@@ -12,7 +13,7 @@ mandatory legacy re-review, immutable snapshots, separate append-only review rec
 SQLite and existing Pydantic/standard-library tests. Do not introduce event sourcing,
 another agent, an API, signing infrastructure, a broker or a new package manager.
 
-Source inspection for this phase was limited to the legacy contracts/import path,
+Source inspection for the original specification phase was limited to the legacy contracts/import path,
 CLI/configuration import effects, package initializers, exclusions and dependency
 metadata. [Requirement](../app/schemas.py#L95) mixes content with approval booleans;
 [RequirementBundle](../app/schemas.py#L128) has permissive metadata and no criterion
@@ -24,7 +25,9 @@ These support a separate offline entry point, not a graph or extraction rewrite.
 
 Read-only metadata inspection found Python 3.11.9, SQLite 3.45.1 and Pydantic 2.12.5.
 This is an observed local baseline, not a clean-install test or a new dependency pin.
-No product execution, browser/provider call or repeated architecture research occurred.
+No product execution, browser/provider call or repeated architecture research occurred
+during that original specification phase. The later approved M0 offline tests and
+implementation results are recorded separately in M0_VERIFICATION.
 
 The new precision is deliberate: terminal old review states, explicit head versus active
 baseline, stable imported IDs, monotonic identity membership, exact canonical bytes,
@@ -228,7 +231,7 @@ commit but before acknowledgment. M0 must expose uncertainty and replay the same
 
 ## Approval boundary
 
-These are recommended decisions, not inferred owner acceptance. The
+The user explicitly approved these decisions within the exact M0 revision. The
 [approval checklist](M0_VERSIONED_BASELINES.md#explicit-implementation-approval-checklist)
-is the only proposed implementation gate. Even after M0 acceptance, all existing
+records that approval. Even after M0 acceptance, all existing
 runtime findings remain open until separately scoped integration and verification.
