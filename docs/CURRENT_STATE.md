@@ -8,6 +8,10 @@ Handoff update: 2026-10-23. The product/system, UX, SDD, observability and evalu
 assessment and six-decision deep dive are now preserved as proposals. This update
 changes documentation only; no runtime finding is fixed and no M0 test has run.
 
+M0 specification update: `M0-SPEC-2026-10-23-v2` now includes exact proposed V1
+contracts, 11 decision rationales, 33 acceptance cases and an implementation approval
+checklist. Specification detail is prepared; implementation remains unapproved.
+
 ## Read this documentation
 
 - [AGENTS.md](../AGENTS.md): enforceable engineering instructions.
@@ -17,6 +21,8 @@ changes documentation only; no runtime finding is fixed and no M0 test has run.
 - [NEXT_STEPS](NEXT_STEPS.md): scoped milestone and self-contained session handoff.
 - [ADRs](adr/README.md): six proposed decisions, critique, dependencies and walkthrough.
 - [M0](M0_VERSIONED_BASELINES.md): proposed Versioned Baselines and Review Records specification.
+- [M0 V1 contracts](M0_CONTRACTS_V1.md): exact proposed fields, canonical bytes, lifecycle, import, storage and CLI rules.
+- [M0 rationale](M0_DECISION_RATIONALE.md): comparison, alternatives, risks and reconsideration triggers for 11 proposed decisions.
 - [ROADMAP](ROADMAP.md): product, POM, memory, UI, lab, observability, evaluations and deployment.
 
 ## Repository provenance and scope
@@ -92,13 +98,33 @@ no implementation decision is approved merely by this documentation authorizatio
 legacy requirements as untrusted drafts, freeze versioned baselines, persist explicit
 review records and inspect approval offline. Single-operator trust, whole-baseline
 approval, mandatory legacy re-review and unsupported-item handling await owner approval.
-Field-level schema precision and review/revocation semantics are preparation items.
+Exact V1 fields, canonicalization and review/revocation semantics are now specified
+as proposals in the v2 contracts; they still require owner approval.
 The old eligibility/reconciliation proposal remains follow-up work in ROADMAP.
 
 M0 will not integrate with the runtime graph or fix the existing writer, repair,
 runner, parser or approval bypasses. All F01-F17 remain open. No maintained M0 or ATS
-regression suite is introduced by these documents. Next step: M0 specification
-approval and implementation preparation, not unapproved implementation.
+regression suite is introduced by these documents. Next step is explicit approval
+of the bounded v2 specification and its prepared implementation plan. The original
+17 acceptance IDs remain and 16 cases are added; none has been implemented or run.
+
+The prior documentation review/local commit completed as `4a59405`; the tree was clean
+at the start of this specification phase. Local `main` and the locally recorded
+`origin/main` both pointed to that commit when inspected. This phase performed no
+fetch/push or live GitHub verification and does not attribute independent ref changes.
+Read-only metadata inspection confirmed Python 3.11.9, SQLite 3.45.1 and Pydantic 2.12.5;
+it did not validate a clean installation. Only legacy schemas/import behavior, CLI/config
+effects, package initializers and exclusions were inspected for the new specification.
+
+Specification-only validation checked 18 Markdown files, 207 local links and 89
+heading/source-line anchors; all resolved. Code fences, the 33 acceptance IDs, all
+11 decision rationale sections and `git diff --check` passed. A bounded scan of the
+seven changed/new documentation files found no local credential-value or common token/
+private-key pattern matches. The 27 existing external reference URLs were not revisited.
+Application code, prompts, manifests, the audit register, architecture, roadmap and
+six ADRs remained unchanged. No M0 test, install, provider/browser call, new commit,
+push or deployment occurred during this specification phase. The seven documentation
+changes remain unstaged and uncommitted for owner review.
 
 ## Environment observed during the audit
 

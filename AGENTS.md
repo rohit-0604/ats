@@ -102,16 +102,16 @@ source verification.
 
 ## Current authorization boundary
 
-The current phase (2026-10-23) authorizes documentation-only architecture handoff:
-preserve six PROPOSED ADRs, the proposed M0 specification and roadmap, and reconcile
-status/decision documents. The earlier explicit Git authorization was completed:
+The current phase (2026-10-23) authorizes documentation-only finalization of the
+proposed M0 contracts, rationale, acceptance matrix, implementation plan and approval
+checklist, plus relevant source inspection. Preserve all six ADRs as PROPOSED and
+stop at the explicit M0 implementation approval gate. The earlier Git setup completed:
 private `rohit-0604/ats`, initial commit `4bc2093`, and `main` tracking `origin/main`.
 That completed publication does not authorize further publishing under this phase.
 Do not implement M0, install dependencies, call model/providers, execute generated
 Playwright, deploy, push, create integrations, or spawn agents under this task.
-A subsequent explicit request authorizes review and one local commit of the 15
-architecture/handoff documentation files. It does not authorize further publication
-or implementation; stop after that local commit.
+The separately authorized documentation review/local commit completed as `4a59405`.
+That authorization is consumed; this specification phase authorizes no further commits.
 Read [M0](docs/M0_VERSIONED_BASELINES.md), [ADRs](docs/adr/README.md), NEXT_STEPS and
 the next explicit user request before proceeding. Provisional architectural agreement
 and documentation approval are not implementation approval.

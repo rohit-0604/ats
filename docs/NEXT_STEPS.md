@@ -2,10 +2,11 @@
 
 Handoff date: 2026-10-23 (Asia/Calcutta). Audit baseline remains 2026-10-22.
 
-**Exact next step: M0 specification approval and implementation preparation.**
+**Exact next step: explicit approval of M0-SPEC-2026-10-23-v2 for implementation.**
 Read [M0](M0_VERSIONED_BASELINES.md), [six ADRs](adr/README.md) and
 [ROADMAP](ROADMAP.md). All remain PROPOSED. Do not begin M0 implementation until
-explicitly authorized; this session preserved documentation only.
+explicitly authorized. The final proposed contracts, decision rationale, acceptance
+matrix and incremental plan are now prepared; this phase changes documentation only.
 
 ## Current verified baseline
 
@@ -32,11 +33,11 @@ authorizes their review and one local documentation commit, with no push. Read
 
 ## Current authorization and resuming without chat history
 
-The latest authorized phase is review and one local commit of the 15 documentation
-files preserving the architecture assessment, six proposed ADRs and proposed M0.
-Stop after that commit. Git setup is already complete; do not repeat it. Further
-commits/pushes, implementation, installs, model calls, generated execution or
-deployment require a new scoped authorization. No runtime
+The local documentation commit completed as `4a59405`. The latest authorized phase
+finalizes the proposed M0 specification and its implementation approval gate, using
+documentation edits and relevant source inspection only. Stop at that gate. Git setup
+is already complete; do not repeat it. Further commits/pushes, implementation, installs,
+model calls, generated execution or deployment require a new scoped authorization. No runtime
 finding has been fixed. Broader research remains paused; no skills/hooks/MCPs/agents
 are authorized. Do not infer M0 approval from permission to save its specification.
 
@@ -44,7 +45,8 @@ At the start of the next Codex session:
 
 1. Read [AGENTS.md](../AGENTS.md), then CURRENT_STATE, ARCHITECTURE,
    AUDIT_FINDINGS, DECISIONS, GIT_PREPARATION, this file, the ADR index and six ADRs,
-   M0_VERSIONED_BASELINES, and ROADMAP. These files supply the working context;
+   M0_VERSIONED_BASELINES, M0_CONTRACTS_V1, M0_DECISION_RATIONALE, and ROADMAP.
+   These files supply the working context;
    no conversation history is required.
 2. Read the new user task and establish its authorized scope. Documentation
    authorization alone does not authorize implementation or dependency installation.
@@ -99,12 +101,14 @@ canonical specification; do not copy its contracts into this handoff. It contain
 scope/non-goals, interfaces, SQLite/canonicalization rules, security invariants,
 acceptance cases, proposed files, sequence, definition of done and open questions.
 
-Resolve the proposed single-operator trust model, whole-baseline approval, mandatory
-legacy re-review, unsupported-item handling, revocation/reactivation semantics and
-precise V1 contracts. Then obtain explicit M0 implementation authorization and prepare
-a bounded offline plan using standard-library tests and existing Pydantic.
-No new dependency is assumed. Approval of a baseline in future product use must not
-be confused with approval to implement M0 now.
+Review [exact V1 contracts](M0_CONTRACTS_V1.md) and [decision rationale](M0_DECISION_RATIONALE.md).
+They now propose the single-operator trust model, whole-baseline approval, mandatory
+legacy re-review, unsupported/ambiguous handling, head/active review transitions,
+identity/serialization, bounded import, SQLite recovery and Windows/offline commands.
+The implementation plan and 33 acceptance cases are prepared in M0. Obtain explicit
+owner approval or requested amendments before coding. Standard-library tests and existing
+Pydantic suffice for the proposed plan; no install is assumed. Approval of a future
+product baseline is distinct from authorization to implement M0 now.
 
 The dependency correction is substantive: durable baseline/review authority comes
 before eligibility/result accounting. Persistence semantics are designed alongside

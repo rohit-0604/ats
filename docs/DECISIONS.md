@@ -22,6 +22,11 @@ These reflect explicit user direction, not approval of a new runtime architectur
 | C09 | APPROVED AND COMPLETED 2026-10-23 | User explicitly approved remaining Git setup: private `rohit-0604/ats`, reviewed 51-file initial snapshot. Creation, origin, push and matching SHA/private visibility were verified in that turn. This does not authorize later pushes or public release. |
 | C10 | APPROVED SCOPE 2026-10-23 | User authorized saving ADRs/M0/roadmap and updating/reviewing documentation only. No application implementation, dependency install, provider call, generated execution, deployment or GitHub publication. |
 | C11 | APPROVED SCOPE 2026-10-23 | User subsequently authorized review and one local commit of the 15 architecture/handoff documentation files, with message `docs: preserve ATS architecture decisions and M0 specification`. Stop after the local commit; no push, implementation, history rewrite or deployment is authorized. |
+| C12 | APPROVED DOCUMENTATION SCOPE 2026-10-23 | After local commit `4a59405`, user requested final proposed M0 contracts, decision rationale, acceptance matrix, incremental plan, risks and explicit implementation approval gate. Relevant source inspection/documentation updates only; no application code, installs, generated execution, deployment or publication. No additional commit is authorized. |
+
+C11's local commit completed as `4a59405ef19f82fbee7c09e2edb3a28cfdf1fcee`.
+The subsequent request does not reopen its Git authorization. Current local refs may
+change independently; do not infer permission to push from tracking configuration.
 
 ## Foundational ADR register and implementation status
 
@@ -46,6 +51,13 @@ superseded **in ordering**, not discarded. It consumes baseline/review authority
 from M0 and retains its acceptance cases in ROADMAP and ADR-03. Saving the revised
 proposal does not approve M0 implementation.
 
+M0 revision `M0-SPEC-2026-10-23-v2` now supplies [exact V1 contracts](M0_CONTRACTS_V1.md),
+[11 proposed decision rationales](M0_DECISION_RATIONALE.md), 33 proposed acceptance
+cases and an implementation checklist. M0-D01..11 are recommendations, not ACCEPTED
+decisions. They retain the offline baseline/review design and settle previously open
+details for owner approval. In particular, no direct reactivation/removal is proposed,
+and uncertain post-commit acknowledgment is reconciled by the original request ID.
+
 ## Recommendations awaiting an implementation decision
 
 | ID | Proposal and justification | Simpler alternative / trade-off | Validation and maintenance |
@@ -62,10 +74,11 @@ None of D01-D07 is implemented or authorized by the documentation request.
 
 ## Unresolved decisions
 
-- M0 approval prerequisites: designate the local reviewer; approve whole-baseline
-  review and mandatory legacy re-review; decide unsupported-criterion policy and
-  active-baseline revocation/reactivation semantics. Confirm exact V1 constraints
-  and canonicalization before coding. See M0's approval checklist.
+- M0 approval prerequisites: designate the local reviewer and approve or amend the
+  now-specified trust, whole-baseline review, legacy re-review, support, lifecycle,
+  identity, canonicalization, storage, import and CLI rules. The exact V1 proposal
+  and 33 acceptance cases are prepared; owner acceptance and implementation authorization
+  remain outstanding. See M0's explicit approval checklist.
 - Git destination is resolved for the private initial snapshot (`rohit-0604/ats`).
   Prior upstream history remains unknown; public release/licensing and additional
   publication require their own scope. Git approval is not feature approval.
