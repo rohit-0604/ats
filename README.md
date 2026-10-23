@@ -1,8 +1,8 @@
-# ATS v8 — Autonomous Test System
+# ATS — Autonomous Test System
 
 > **Transform PDF requirements into a live, self-repairing Playwright test suite — fully automatically.**
 
-ATS v8 is an agentic AI pipeline that reads a PDF requirements document, crawls a live web application, generates TypeScript Playwright tests, runs them, repairs failures, and learns from every run. It requires zero manual test authoring.
+ATS is an agentic AI pipeline that reads a PDF requirements document, crawls a live web application, generates TypeScript Playwright tests, runs them, repairs failures, and learns from every run. It requires zero manual test authoring.
 
 ---
 
