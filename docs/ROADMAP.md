@@ -5,9 +5,25 @@ observability, evaluation and SDD assessment. No features, hosting choices, vend
 quality thresholds or budgets below are approved for implementation by this handoff.
 External references record the earlier research; no new research was performed here.
 
+Requirements reconciliation: 2026-10-25. [CAPABILITY_REQUIREMENTS](CAPABILITY_REQUIREMENTS.md)
+is the single cross-cutting capability/requirements authority; this roadmap owns delivery
+order and existing workstream specifications, including SC-01. Its stable CAP IDs must
+be checked when scoping milestones. Recording a required product behavior does not
+authorize all deferred capabilities for implementation. The revised M1 proposal is
+`M1-SPEC-2026-10-25-v2`; its offline scope, six decisions and 30 cases are unchanged.
+The user subsequently approved that exact scope with "Go"; it is now
+[implemented and verified offline](M1_VERIFICATION.md), with 78 total M0/M1 tests.
+Later workstreams remain deferred; no execution authority or runtime integration was added.
+
 Implementation update: the user subsequently approved `M0-SPEC-2026-10-23-v2`.
 Its offline baseline/review slice is implemented and [verified](M0_VERIFICATION.md).
 All later stages still require their own scoped approval; M0 adds no runtime execution authority.
+
+Post-M0 sequencing proposal: [foundation analysis](POST_M0_FOUNDATIONS.md) verifies
+the implemented interfaces and splits the previous broad foundation row by dependency.
+[M1 authority-bound scenario plans](M1_AUTHORITY_BOUND_PLANS.md) is the only detailed
+foundation specification. Its exact offline scope is now approved/implemented; all later
+stage boundaries remain proposals requiring separate scope/authorization.
 
 The [six ADRs](adr/README.md) refine this assessment. They take precedence on foundation
 ordering and safeguards: [M0](M0_VERSIONED_BASELINES.md) establishes baseline/review
@@ -164,6 +180,28 @@ Every experience should visibly say **LIVE**, **RECORDED**, or **PLANNED**. Reco
 Start with static data and client-side exploration. Do not accept public arbitrary URLs, SRS uploads, credentials, or executable code. Any later live demo should offer a fixed scenario catalog in the owned lab with disposable state and quotas.
 
 Publication needs a separate review of documents, screenshots, cookies, prompts, metadata, licensing, and target data. A private application report is not automatically suitable for publication.
+
+### SC-01 - Separately trackable public showcase deliverable
+
+Status: **PROPOSED / NOT BUILT / NOT AUTHORIZED FOR PUBLICATION**. Scope: one static
+case-study page plus a client-side evidence explorer using a versioned, sanitized
+recorded bundle. This is distinct from the private professional application UI and
+does not depend on deploying that product. No public target URLs, uploads, credentials,
+model calls or execution endpoints. A synthetic prototype may precede controlled-run
+evidence only if explicitly labeled synthetic/planned; it cannot claim a recorded ATS run.
+
+| Acceptance | Required evidence before declaring SC-01 complete |
+| --- | --- |
+| SC-AC-01 | One navigable requirement -> criterion -> scenario -> artifact -> result/repair-decision story, with unavailable capabilities visibly PLANNED |
+| SC-AC-02 | Every recorded run identifies ATS commit, baseline/plan/bundle identity where available, lab build, dataset version, run date and methodology; no invented benchmark claims |
+| SC-AC-03 | Visible LIVE/RECORDED/PLANNED labels and explicit synthetic-fixture disclosure; no ambiguity about executing a current test |
+| SC-AC-04 | Reviewed export manifest and sanitization/licensing checklist covering prompts, screenshots, metadata, cookies and target content; no secrets/private raw inputs |
+| SC-AC-05 | Keyboard-readable evidence navigation, narrow-screen layout and working local links verified against the prepared static artifact |
+| SC-AC-06 | Inspection demonstrates no route from the showcase to ATS worker/provider/credential services; static artifact and publication destination reviewed separately |
+
+Preparation completion requires the local artifact and SC-AC-01..06 evidence. Public
+release is a second explicit approval/delivery event with a verified destination URL.
+This task only clarifies scope/acceptance; it does not build or publish SC-01.
 
 ## Controlled Test Lab
 
@@ -333,11 +371,59 @@ and lexical/metadata retrieval against semantic/hybrid retrieval on held-out cas
 Automatic prompt or memory promotion is rejected as a proposed design direction:
 propose, evaluate, review, version and retain rollback. This is not an implemented gate.
 
-Retain a bounded model-routing interface with one evaluated default and explicit
-fallbacks respecting data policy. Record the resolved provider/model, failures and
-usage. Additional runtime agents, debate, brokers, graph databases and microservices
+Use an evaluated default and explicit fallbacks as the initial routing baseline;
+the MODEL workstream below retains task-aware adaptive routing as a required product
+capability with comparative adoption gates. Record the resolved provider/model, failures
+and usage; a default/fallback is not evidence that adaptive selection is implemented.
+Additional runtime agents, debate, brokers, graph databases and microservices
 are deferred until equal-budget evaluation or measured workload shows a benefit.
 MCP/skills are development integrations when needed, not mandatory ATS runtime layers.
+
+## MODEL - Adaptive routing workstream
+
+Status: **REQUIREMENTS RECORDED / DELIVERY DEFERRED; NOT IMPLEMENTED OR APPROVED**.
+[CAP-MODEL](CAPABILITY_REQUIREMENTS.md#cap-model---adaptive-model-selection-and-routing)
+owns task-aware suitability, provider compatibility/capability discovery, supported
+reasoning effort, bounded escalation, user policy, privacy/context/quality/latency/cost
+constraints, failure distinctions and abstention. CAP-EXT supplies concrete adapter
+contracts; CAP-OBS/EVAL supply per-attempt evidence and comparative assessment.
+
+Exit evidence is CAP-MODEL.A1..A3: incompatible/denied/exhausted cases dispatch nothing;
+fixed held-out equal-budget comparisons evaluate default/fallback against task-aware
+selection/escalation; every attempt has versioned policy/config/usage provenance.
+Quality/latency/cost thresholds require owner review of baseline measurements, not
+price-based model rankings. No provider router is chosen; defer live routing until M4
+budget/reservation and data-policy boundaries exist. M1 adds no routing code or API.
+
+## PORT - Tested deployment portability workstream
+
+Status: **REQUIREMENTS RECORDED / DELIVERY DEFERRED; NO PORTABILITY CLAIM**.
+[CAP-PORT](CAPABILITY_REQUIREMENTS.md#cap-port---cloud-and-infrastructure-portability)
+owns the supported deployment profiles and storage/artifact/model/worker/telemetry seams,
+externalized configuration, reproducibility, secrets, migration and platform limitations.
+M0's local Windows contract remains unchanged. Name supported targets at PORT approval;
+no cloud, Kubernetes, microservice split or portable worker implementation is mandated.
+
+Exit evidence is CAP-PORT.A1..A2: reproducible named profiles run common contract/security
+fixtures; a portability claim needs at least two tested profiles and an explicit
+limitations matrix. Synthetic migration/rollback preserves digests, approvals, history,
+artifacts, access and event correlation. CAP-EXT/DATA/RECOVERY/EXEC are dependencies;
+defer extra profiles until a real hosting/migration need and adequate execution boundary
+exist. This is a deployment/operations deliverable, not an M1 cloud-adapter requirement.
+
+## Capability ownership across existing workstreams
+
+The register's [delivery map](CAPABILITY_REQUIREMENTS.md#coverage-inventory-and-delivery-map)
+is the canonical CAP-to-workstream mapping. Existing professional UI is CAP-HITL;
+observability is CAP-OBS; evaluations CAP-EVAL; controlled lab CAP-LAB; safe repair
+CAP-DIAG; POM CAP-POM; source-aware workflow expansion CAP-WORKFLOW; measured context/
+cache/retrieval improvements CAP-EFFICIENCY. SC-01 remains CAP-SHOWCASE and retains its
+independent scope/SC-AC-01..06 and separate release approval above.
+
+CAP-EXEC, CAP-RECOVERY and CAP-DATA give explicit ownership to previously scattered
+authorization/isolation, crash/cancellation/replay and data-lifecycle requirements.
+CAP-EXT supplies versioned adapter compatibility only as real integrations are scoped.
+These entries neither create additional frameworks nor move future work into M1.
 
 ## Dependency-aware delivery order
 
@@ -347,21 +433,41 @@ not dates, delivery commitments or passing gates.
 | Stage | Deliverable | Required exit evidence |
 | --- | --- | --- |
 | M0 - COMPLETE offline | Versioned baselines and review records | Approved v2; AC-01..33 plus 15 focused regressions passed; see M0_VERIFICATION |
-| Foundation follow-up | Deterministic lifecycle, bundle manifests, eligibility, safe paths and full result reconciliation | Tested state transitions and synthetic nested/missing/duplicate/unknown result cases |
-| Execution and repair foundation | Isolated worker, effect recovery, oracle-preserving reviewed repair proposals | Boundary denials, crash/cancellation tests and preserved seeded defects |
+| M1 - COMPLETE offline | [Authority-bound scenario plans](M1_AUTHORITY_BOUND_PLANS.md): read-only M0 adapter, stable scenarios and complete criterion disposition | All 30 M1 cases and 48 unchanged M0 tests passed; see M1_VERIFICATION; no plan/code/execution authority granted |
+| M2 - PROPOSED boundary | Final executable bundle manifests, logical test/configuration identity, review and static eligibility | Exact final bytes/closure; stale/rejected review denial; inert path/materialization/crash tests; shared minimum attempt envelope |
+| M3 - PROPOSED boundary | Complete offline result reconciliation, after M2 | Nested/retry/unknown/missing/duplicate/runner-error fixtures; exact planned set and truthful criterion accounting |
+| M4 - PROPOSED boundary | Deterministic lifecycle, finite budgets and durable effect reservations, using M2 identities and agreed result vocabulary | Fake-dispatch transition/mode/budget tests; duplicate/crash/cancellation/uncertain-effect recovery; no actual runtime dispatch |
+| M5 - PROPOSED boundary | Worker isolation and combined execution-readiness review | Independent secret/filesystem/egress/process denials, trusted evidence, crash/cancellation/cleanup and owned lab fixtures; separate execution approval |
+| Safe repair workstream | Oracle-preserving reviewed hypotheses and new artifact revisions, after controlled evidence | Real seeded defects remain detectable; uncertain causes abstain; no automatic oracle changes |
 | Controlled end-to-end slice | Owned lab, reviewed scenarios, generated tests, controlled execution and evidence | Known-good/defective-build discrimination and recovery evidence |
 | Maintainable POM generation | Multi-file components, fixtures and explicit assertions | Type/import checks, independent specs and shared-locator maintenance |
 | Private professional UI | Revision review, run/evidence explorer, repair comparison | Task-based usability, accessibility and authorization checks |
-| Safe public showcase | Sanitized recorded case studies and evaluation methodology | Separate publication/privacy/licensing review and clear LIVE/RECORDED/PLANNED labels |
+| MODEL - Adaptive routing | CAP-MODEL with CAP-EXT/OBS/EVAL and M4 limits; deferred beyond M1 | CAP-MODEL.A1..A3; task-aware fixed-benchmark comparison, bounded escalation/abstention and full attempt accounting |
+| PORT - Tested portability | CAP-PORT within deployment/operations; deferred beyond M1 | CAP-PORT.A1..A2; named-profile build/contract/security checks and identity-preserving migration/rollback |
+| SC-01 - Safe public showcase | Separate static case study and evidence explorer | SC-AC-01..06 above; preparation and public release tracked separately |
 | Production MVP | Access controls, operations, backups, retention, quotas and support scope | Operational drills and explicitly approved quality gates |
 | Expansion | More targets, source understanding, retrieval and concurrency | Measured benefit, isolation and reliability evidence |
 
 The former first milestone, trustworthy offline execution eligibility and result
-reconciliation, is retained in the foundation follow-up stage. Its required cases are
+reconciliation, is retained across M2/M3. Its required cases are
 nested suites, retries, duplicate titles, unknown IDs, missing results, runner errors,
 rejected/pending/stale approvals, Windows/POSIX paths, multiple scenarios and two unknown
 passing IDs against a one-criterion baseline. Clamping percentages is not a valid fix.
 See ADR-03 for the complete artifact and evidence semantics.
+
+[POST_M0_FOUNDATIONS](POST_M0_FOUNDATIONS.md) explains each milestone's WHAT/WHY/HOW,
+alternatives, modules, invariants, evidence and remaining unsafe behavior. M3 and M4 can
+be developed separately after their shared identity/outcome contracts are agreed; stage
+numbers do not require combining them or permitting effects. Worker/lab design can also
+be separately scoped. Full lifecycle enforcement is paired with durable reservations,
+not deferred until after real effects. The combined M2/M3/M4/M5 gate still precedes
+any separately authorized generated-code run.
+
+Professional UI, Controlled Test Lab, POM generation, observability/model telemetry,
+model/agent evaluations, safe repair, deployment/operations and SC-01 remain explicit
+workstreams in their sections and delivery rows. No workstream is dropped by the smaller
+M1 scope. Telemetry and evaluation retain independent evidence/quality gates; neither
+becomes an approval authority or an unspecified replacement for the showcase.
 
 After separately scoped approval, lab requirements/seed definitions and benchmark
 annotation can proceed alongside offline contract work; UX prototypes can use synthetic

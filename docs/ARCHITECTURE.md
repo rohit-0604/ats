@@ -23,6 +23,24 @@ The runtime graph does not consume this new authority. Existing approval, runner
 repair, accounting and isolation defects remain open. M0 has no imports from runtime
 configuration/providers and no execution capability. See [verification](M0_VERIFICATION.md).
 
+## Offline M1 authority-bound scenario plans
+
+The separately approved `M1-SPEC-2026-10-25-v2` is implemented and
+[verified offline](M1_VERIFICATION.md). `python -B -m app.plan_cli` provides bounded
+scenario-id, validate, freeze and assess operations. [Plan contracts](../app/plan_contracts.py)
+own immutable V1 records, deterministic scenario keys, plan-specific canonicalization
+and safe errors. [Pure policy](../app/core/plan_policy.py) validates complete criterion
+dispositions and derives readiness; [the service](../app/core/plan_service.py) consumes
+one public `ReviewStore.inspect` observation per command. The CLI reuses existing M0
+bounded file/exclusive export helpers. No new database or approval write exists.
+
+Plans bind exact baseline/criterion identity and retain unsupported/unplanned scope.
+Freeze publishes proposals, including blocked content; assess rereads effective M0
+authority. Both `plan_approved` and `execution_authorized` are always false. A coherent
+read can become stale immediately. Scenario text is not a second oracle or proof of
+semantic fidelity. No M0 schema/API/canonical bytes or legacy runtime source changed.
+The full offline suite now has 78 tests: 48 unchanged M0 plus 30 M1 acceptance cases.
+
 ## Runtime boundary
 
 ATS is a local Python CLI. It uses direct HTTP/provider SDK calls, Python

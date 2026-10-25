@@ -4,6 +4,8 @@
 
 Read [CURRENT_STATE](docs/CURRENT_STATE.md), [ARCHITECTURE](docs/ARCHITECTURE.md),
 and the relevant [AUDIT_FINDINGS](docs/AUDIT_FINDINGS.md) before changing code.
+Check the [capability requirements register](docs/CAPABILITY_REQUIREMENTS.md) and
+[ROADMAP](docs/ROADMAP.md) for affected product requirements and intentional deferrals.
 Read [DECISIONS](docs/DECISIONS.md) for proposals and unresolved choices;
 [NEXT_STEPS](docs/NEXT_STEPS.md) is the session handoff and implementation entry point.
 Update these documents when verified behavior or decisions change.
@@ -102,18 +104,49 @@ source verification.
 
 ## Current authorization boundary
 
+The latest request (2026-10-25), "Finalize M1, Commit and Prepare Fresh-Session
+Handoff", authorizes final diff/safety review, the complete offline M0+M1 suite,
+necessary handoff corrections and one reviewed local M1 implementation commit if
+verification passes. It supersedes the earlier no-commit boundary for this commit
+only. Stop after verifying the commit and Git state. No push, M2, runtime integration,
+agents, installs, providers, generated execution, publication or deployment is authorized.
+
+The user subsequently said "Go" in response to the scoped M1 v2 implementation step
+on 2026-10-25. This explicitly authorizes implementing `M1-SPEC-2026-10-25-v2` and
+verifying M1-AC-01..30 offline, preserving M0 and the legacy runtime. It supersedes
+the documentation-only implementation gate below for this exact M1 scope. Stop after
+verified M1 completion and documentation. That implementation request alone authorized
+no local commit, M2, agents, installs,
+providers, generated execution, publication or deployment is authorized.
+
+The earlier request (2026-10-25) authorized documentation-only preservation of product
+capabilities, explicit adaptive-routing/tested-portability workstreams and resolution
+of the M1 v1 review blockers. That revision is `M1-SPEC-2026-10-25-v2`;
+M1 scope, M1-D01..06 and M1-AC-01..30 remain unchanged. See the
+[capability register](docs/CAPABILITY_REQUIREMENTS.md),
+[foundation sequence](docs/POST_M0_FOUNDATIONS.md) and
+[M1 specification](docs/M1_AUTHORITY_BOUND_PLANS.md). Its implementation gate was
+subsequently satisfied by the scoped "Go" above; that documentation request alone did
+not authorize application changes, implementation, new
+dependencies, providers, generated execution, publication, deployment or agents.
+Do not infer a new local commit authorization from the completed M0 phase below.
+
 The user explicitly approved `M0-SPEC-2026-10-23-v2` for implementation and offline
 verification on 2026-10-23. M0 is now implemented and its 33 acceptance cases plus
 15 focused regressions pass; see [verification](docs/M0_VERIFICATION.md). The reviewer
 is the human operator running the CLI, under the documented single-user trust model.
 The user authorized a separate safe specification commit (`bfbf347`) and a reviewed
-local implementation commit after verification. Stop after M0 completion/local commit.
-Do not begin M1, integrate the new authority into the existing runtime, install new
+local implementation commit after verification, completed as `d17974a`. That phase
+ended at M0 completion/local commit; the current M1 finalization scope is above.
+Do not begin M2, integrate the new authority into the existing runtime, install new
 dependencies, contact target/model providers, execute generated Playwright, deploy,
 push, create integrations or spawn agents under this task. The six full ADRs remain
-PROPOSED; only the exact M0 subset was approved. Existing P0 runtime defects remain.
+PROPOSED; only the exact M0 and M1 milestone scopes were approved. Existing P0 runtime defects remain.
 Earlier Git setup completed at private `rohit-0604/ats`; further publication is not
 authorized by this phase. Preserve all existing runtime source and history.
 Read [M0](docs/M0_VERSIONED_BASELINES.md), [ADRs](docs/adr/README.md), NEXT_STEPS and
 the next explicit user request before proceeding. Later milestones require their
 own scoped authorization; completed M0 approval is not permission for live execution.
+
+
+Before designing or implementing a milestone, check the capability requirements register and roadmap for affected future capabilities. Preserve necessary contracts and extension points, but do not implement deferred functionality without authorization. Record intentional deferrals, trade-offs and compatibility implications in the milestone decision record.

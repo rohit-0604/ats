@@ -1,0 +1,113 @@
+{
+  "baseline_draft": {
+    "schema_version": 1,
+    "project_id": "00000000-0000-4000-8000-000000000001",
+    "parent_digest": null,
+    "requirements": [
+      {
+        "requirement_id": "00000000-0000-4000-8000-000000000002",
+        "title": "Feature cards",
+        "description": "Guests see exactly four cards.",
+        "source_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ],
+        "dependency_ids": [],
+        "legacy": null
+      }
+    ],
+    "criteria": [
+      {
+        "criterion_id": "00000000-0000-4000-8000-000000000003",
+        "requirement_id": "00000000-0000-4000-8000-000000000002",
+        "preconditions": [
+          "Guest session"
+        ],
+        "action": "Open the home page",
+        "expected_outcome": "Exactly four cards are visible.",
+        "origin": "human_authored",
+        "clarity": "specified",
+        "unresolved_reason": null,
+        "automation_support": "supported",
+        "support_reason": null,
+        "source_ids": [
+          "00000000-0000-4000-8000-000000000004"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "evidence_id": "00000000-0000-4000-8000-000000000004",
+        "kind": "human_decision",
+        "reference": "decision:synthetic-1",
+        "content_digest": null,
+        "excerpt": "The synthetic fixture requires exactly four cards."
+      }
+    ]
+  },
+  "plan_draft": {
+    "schema_version": 1,
+    "project_id": "00000000-0000-4000-8000-000000000001",
+    "baseline_digest": "sha256:736affd0f5e30a06f99081908a44f7f87158a1d6358b2763763d40a91472aef6",
+    "scenarios": [
+      {
+        "scenario_id": "43b80714-983b-58bc-b5af-c32101de9c14",
+        "criterion_id": "00000000-0000-4000-8000-000000000003",
+        "scenario_key": "guest",
+        "title": "Guest cards",
+        "preconditions": [
+          "Guest caf\u00e9",
+          "  Preserve spacing"
+        ],
+        "steps": [
+          "Open the page",
+          "Observe four cards"
+        ]
+      },
+      {
+        "scenario_id": "18b5c61d-2fd6-521b-9e16-62e997a799e6",
+        "criterion_id": "00000000-0000-4000-8000-000000000003",
+        "scenario_key": "boundary",
+        "title": "Guest cards",
+        "preconditions": [
+          "Guest caf\u00e9",
+          "  Preserve spacing"
+        ],
+        "steps": [
+          "Open the page",
+          "Observe four cards"
+        ]
+      }
+    ],
+    "dispositions": [
+      {
+        "criterion_id": "00000000-0000-4000-8000-000000000003",
+        "status": "planned",
+        "reason": null
+      }
+    ]
+  },
+  "scenario_vectors": [
+    {
+      "project": "00000000-0000-4000-8000-000000000001",
+      "criterion": "00000000-0000-4000-8000-000000000003",
+      "key": "guest",
+      "id": "43b80714-983b-58bc-b5af-c32101de9c14"
+    },
+    {
+      "project": "00000000-0000-4000-8000-000000000005",
+      "criterion": "00000000-0000-4000-8000-000000000003",
+      "key": "guest",
+      "id": "d1fcaff3-484e-5181-8d99-242697c463da"
+    },
+    {
+      "project": "00000000-0000-4000-8000-000000000001",
+      "criterion": "00000000-0000-4000-8000-000000000006",
+      "key": "guest",
+      "id": "bd0b6fe5-7d90-5693-b77d-7084e5875fee"
+    }
+  ],
+  "digest": "sha256:eeda701ac7ab0c83d7ae3db0c0ca78939c1ccd4abb6a101ed14b3d39c6ce57b0",
+  "canonical": "{\"baseline_digest\":\"sha256:736affd0f5e30a06f99081908a44f7f87158a1d6358b2763763d40a91472aef6\",\"digest\":\"sha256:eeda701ac7ab0c83d7ae3db0c0ca78939c1ccd4abb6a101ed14b3d39c6ce57b0\",\"dispositions\":[{\"criterion_id\":\"00000000-0000-4000-8000-000000000003\",\"reason\":null,\"status\":\"planned\"}],\"project_id\":\"00000000-0000-4000-8000-000000000001\",\"scenarios\":[{\"criterion_id\":\"00000000-0000-4000-8000-000000000003\",\"preconditions\":[\"Guest caf\u00e9\",\"  Preserve spacing\"],\"scenario_id\":\"18b5c61d-2fd6-521b-9e16-62e997a799e6\",\"scenario_key\":\"boundary\",\"steps\":[\"Open the page\",\"Observe four cards\"],\"title\":\"Guest cards\"},{\"criterion_id\":\"00000000-0000-4000-8000-000000000003\",\"preconditions\":[\"Guest caf\u00e9\",\"  Preserve spacing\"],\"scenario_id\":\"43b80714-983b-58bc-b5af-c32101de9c14\",\"scenario_key\":\"guest\",\"steps\":[\"Open the page\",\"Observe four cards\"],\"title\":\"Guest cards\"}],\"schema_version\":1}",
+  "m0_schema_sha256": "6bacc958578a3909de68bec95152d5915395181604d25910c4244dc9ffb94f04",
+  "m0_snapshot_canonical": "{\"criteria\":[{\"action\":\"Open the home page\",\"automation_support\":\"supported\",\"clarity\":\"specified\",\"criterion_id\":\"00000000-0000-4000-8000-000000000003\",\"expected_outcome\":\"Exactly four cards are visible.\",\"origin\":\"human_authored\",\"preconditions\":[\"Guest session\"],\"requirement_id\":\"00000000-0000-4000-8000-000000000002\",\"source_ids\":[\"00000000-0000-4000-8000-000000000004\"],\"support_reason\":null,\"unresolved_reason\":null}],\"digest\":\"sha256:736affd0f5e30a06f99081908a44f7f87158a1d6358b2763763d40a91472aef6\",\"parent_digest\":null,\"project_id\":\"00000000-0000-4000-8000-000000000001\",\"requirements\":[{\"dependency_ids\":[],\"description\":\"Guests see exactly four cards.\",\"legacy\":null,\"requirement_id\":\"00000000-0000-4000-8000-000000000002\",\"source_ids\":[\"00000000-0000-4000-8000-000000000004\"],\"title\":\"Feature cards\"}],\"schema_version\":1,\"sources\":[{\"content_digest\":null,\"evidence_id\":\"00000000-0000-4000-8000-000000000004\",\"excerpt\":\"The synthetic fixture requires exactly four cards.\",\"kind\":\"human_decision\",\"reference\":\"decision:synthetic-1\"}]}"
+}

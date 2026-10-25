@@ -4,6 +4,18 @@ Baseline date: 2026-10-22 (Asia/Calcutta). This records the completed repository
 audit, accepted by the user as the factual baseline. It is not a claim of a
 successful current end-to-end execution.
 
+Current offline implementation update, 2026-10-25: the user explicitly approved M1 v2
+with "Go". **M1 is implemented and verified: the finalization rerun passed 78 tests in 30.575 seconds with
+zero failures/errors/skips (48 unchanged M0 plus 30 M1 acceptance families).** See
+[M1_VERIFICATION](M1_VERIFICATION.md). It adds a separate authority-bound plan CLI,
+immutable scenario/plan identities, complete criterion dispositions and read-only M0
+admission. It grants no plan/execution approval and has no legacy runtime integration.
+All F01-F17 remain open; M2 and later capabilities are not authorized. The subsequent
+finalization request permits one reviewed local M1 commit and necessary handoff updates
+(C17), with no push. [NEXT_STEPS](NEXT_STEPS.md#git-and-authorization) records its exact
+subject, parent and hash-recovery command; verify history/status before retrying a commit.
+The earlier specification-only paragraphs below are historical.
+
 Historical architecture handoff update: 2026-10-23. The product/system, UX, SDD, observability and evaluation
 assessment and six-decision deep dive are now preserved as proposals. This update
 changes documentation only; no runtime finding is fixed and no M0 test has run.
@@ -15,7 +27,27 @@ M0 implementation; the offline slice is now complete with **48 passing tests**, 
 all AC-01..33 and 15 focused regressions, no skips. See [M0 verification](M0_VERIFICATION.md).
 The existing runtime remains unchanged and all F01-F17 remain open.
 
+Historical post-M0 foundation assessment, 2026-10-23: started with a clean tree at implementation
+commit `d17974a9ac17f209ed110a86b11c504e2cc3bc49`; local `origin/main` matched, with
+no live remote query. Actual M0 interfaces and relevant runtime dependencies were read.
+The existing offline command was rerun: **48 tests passed in 14.280 seconds, no failures,
+errors or skips**. [Foundation analysis](POST_M0_FOUNDATIONS.md) records evidence and
+recommends [M1 authority-bound scenario plans](M1_AUTHORITY_BOUND_PLANS.md) before final
+bundle contracts, result reconciliation and lifecycle/effect enforcement. At that point
+M1 was PROPOSED with 30 unimplemented/unexecuted acceptance families. That phase changed
+documentation only and stopped at implementation approval; no runtime defect was closed.
+
 ## Read this documentation
+
+Historical 2026-10-25 documentation reconciliation: [CAPABILITY_REQUIREMENTS](CAPABILITY_REQUIREMENTS.md)
+now preserves broader product requirements and accurate implementation status in one
+register. ROADMAP explicitly tracks deferred MODEL adaptive-routing and PORT tested
+deployment-portability deliverables. The revised proposed M1 is
+`M1-SPEC-2026-10-25-v2`: documentation blockers resolved, six decisions and 30 offline
+acceptance cases unchanged; GO recommendation awaits explicit implementation approval.
+SC-01 remains separately scoped. No application source, M0 contract, dependency, full
+ADR status or runtime behavior changed; no tests/providers/generated code were executed
+by this reconciliation. Prior M0 pass counts above remain historical evidence.
 
 - [AGENTS.md](../AGENTS.md): enforceable engineering instructions.
 - [ARCHITECTURE](ARCHITECTURE.md): implemented components and data flow.
@@ -23,9 +55,13 @@ The existing runtime remains unchanged and all F01-F17 remain open.
 - [DECISIONS](DECISIONS.md): accepted constraints, proposals, unresolved choices.
 - [NEXT_STEPS](NEXT_STEPS.md): scoped milestone and self-contained session handoff.
 - [ADRs](adr/README.md): six proposed decisions, critique, dependencies and walkthrough.
-- [M0](M0_VERSIONED_BASELINES.md): proposed Versioned Baselines and Review Records specification.
-- [M0 V1 contracts](M0_CONTRACTS_V1.md): exact proposed fields, canonical bytes, lifecycle, import, storage and CLI rules.
-- [M0 rationale](M0_DECISION_RATIONALE.md): comparison, alternatives, risks and reconsideration triggers for 11 proposed decisions.
+- [M0](M0_VERSIONED_BASELINES.md): approved and implemented offline baseline/review specification.
+- [M0 V1 contracts](M0_CONTRACTS_V1.md): approved fields, canonical bytes, lifecycle, import, storage and CLI rules.
+- [M0 rationale](M0_DECISION_RATIONALE.md): alternatives, risks and reconsideration triggers for the 11 decisions approved within M0.
+- [Post-M0 foundation sequence](POST_M0_FOUNDATIONS.md): verified interfaces, dependencies and proposed milestone boundaries.
+- [M1 specification](M1_AUTHORITY_BOUND_PLANS.md): approved and implemented offline planning contracts and completed authorization gate.
+- [M1 verification](M1_VERIFICATION.md): current implemented scope, acceptance outcomes, failure fixes and residual risks; supersedes the earlier M1 proposal-only status.
+- [Capability requirements](CAPABILITY_REQUIREMENTS.md): cross-cutting requirements, current evidence, delivery mapping, adoption/deferral criteria and future acceptance obligations.
 - [ROADMAP](ROADMAP.md): product, POM, memory, UI, lab, observability, evaluations and deployment.
 
 ## Repository provenance and scope
@@ -68,6 +104,7 @@ this workspace. UNVERIFIED denotes a claim not established by the audit.
 | --- | --- | --- |
 | Python CLI, configuration | CONFIRMED | URL plus local PDF or saved requirements JSON |
 | Offline M0 baseline/review CLI | CONFIRMED, VERIFIED OFFLINE | Strict immutable V1 records, legacy drafts, digest-bound whole-baseline decisions, SQLite history and inspection; no runtime integration |
+| Offline M1 authority-bound plan CLI | CONFIRMED, VERIFIED OFFLINE | Complete criterion dispositions, stable scenarios, immutable plan exports and current authority observations; no plan/execution approval or runtime integration |
 | SRS ingestion | PARTIAL | PDF text/tables, empty-document OCR fallback; no upload API/DOCX input |
 | Extraction/validation | PARTIAL | Five passes; heuristic filtering, inferred gaps, unsafe deduplication |
 | LangGraph orchestration | CONFIRMED | Three principal agents plus domain inference and planner calls |
@@ -84,14 +121,14 @@ this workspace. UNVERIFIED denotes a claim not established by the audit.
 | Memory/retrieval | CONFIRMED | ChromaDB and JSON storage; benefit UNVERIFIED |
 | Prompt evolution | MISSING | Configuration/constants without an implemented evolution path |
 | Observability | PARTIAL | Logging, JSONL, static reports/dashboard; misleading quality metrics |
-| ATS tests/evaluation corpus | PARTIAL | 48 maintained offline M0 tests; no maintained existing-runtime regression/evaluation corpus; generated target-site specs are not ATS regression tests |
+| ATS tests/evaluation corpus | PARTIAL | 78 maintained offline M0/M1 tests; no maintained existing-runtime regression/evaluation corpus; generated target-site specs are not ATS regression tests |
 | Platform backend/UI | PARTIAL | CLI, static review pages, local feedback endpoint; no upload service |
 | CI/deployment infrastructure | MISSING | No maintained quality workflow/deployment manifests found |
 
 Sources and detailed limitations are in [ARCHITECTURE](ARCHITECTURE.md) and
 [AUDIT_FINDINGS](AUDIT_FINDINGS.md).
 
-## Latest assessment and proposed first milestone
+## Historical architecture and M0 specification assessment
 
 The [ADR review](adr/README.md) retains LangGraph but proposes deterministic authority,
 immutable criteria, final-bundle approval, isolated execution, reviewed repair and
