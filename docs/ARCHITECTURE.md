@@ -1,5 +1,30 @@
 # Existing architecture
 
+## Offline M2 artifact packages
+
+The approved [M2 v2](M2_ARTIFACT_PACKAGES.md) is implemented and
+[verified offline](M2_VERIFICATION.md). `python -B -m app.artifact_cli` exposes help,
+version, test-id, validate, freeze and assess. New artifact contracts own strict frozen
+manifest/package records, context-limited bounded JSON/base64 decoding, exact raw-byte
+integrity, conservative logical paths, canonical identity and test UUIDs. Pure artifact
+policy validates complete scenario dispositions, explicit configuration memberships and
+criterion-bound assertion byte ranges. The small service takes exactly one public M0
+inspection and composes M1 policy from it. The CLI reuses unchanged M0 single-file helpers.
+
+Packages retain candidate bytes inside one inert JSON export; nothing is unpacked,
+compiled, loaded or run. Assertion ranges are declared review locations, not proof of
+semantics. Closure stays unverified and package/execution authority stays false. No
+artifact database or runtime integration exists. M0/M1 source, interfaces and canonical
+rules are unchanged. The full suite has 116 offline tests; F01-F17 remain open.
+
+Historical architecture/specification notes follow.
+
+Post-M1 note, 2026-10-25: [M2 artifact packages](M2_ARTIFACT_PACKAGES.md) is a
+proposed offline extension, not implemented architecture. It consumes existing M0/M1
+interfaces without changing them. Durable review, execution closure, reconciliation,
+reservations and isolation remain later boundaries. The current full offline regression
+rerun passed 78 tests; no existing runtime finding was closed.
+
 This describes implementation inspected on 2026-10-22. Proposed changes belong
 in [DECISIONS](DECISIONS.md), defects in [AUDIT_FINDINGS](AUDIT_FINDINGS.md), and
 environment/validation limits in [CURRENT_STATE](CURRENT_STATE.md).

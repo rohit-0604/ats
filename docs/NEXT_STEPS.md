@@ -1,5 +1,62 @@
 # Next steps and session handoff
 
+## Current handoff: M2 complete; stop after local checkpoint
+
+The user approved `M2-SPEC-2026-10-25-v2`, M2-D01..07, V1 contracts and all 26
+acceptance families, with the explicitly corrected M2-specific decoder and the original
+limits. M2 is implemented and verified offline; read [M2_VERIFICATION](M2_VERIFICATION.md)
+for exact commands, counts, failures/fixes, local usage and residual risks. The full suite
+has 116 passing tests, zero failures/errors/skips. M0/M1 and all legacy runtime source,
+prompts and dependency manifests are unchanged. Earlier specification-only stops below
+are historical and superseded for this exact C19 scope.
+
+M2 provides immutable inert packages, explicit scenario/test/configuration identity,
+exact byte checks and a fresh non-authorizing assessment. Its CLI is
+`python -B -m app.artifact_cli`; no provider/config/code loading or generated execution.
+A complete candidate remains unapproved, closure-unverified and unauthorized to execute.
+
+The authorized local checkpoint subject is
+`feat: implement offline M2 artifact packages and mapping assessment`, parent
+`58c1faef6fb6b96e126e67afa73e6c3af2cce41f`. It includes the reviewed preexisting M2
+documentation changes. Recover completed state before retrying an interrupted commit:
+
+```powershell
+git log -1 --format="%H %s" --grep="^feat: implement offline M2 artifact packages and mapping assessment$"
+git status --short --branch
+git diff --cached --stat
+git rev-list --left-right --count origin/main...HEAD
+```
+
+After checkpoint completion expect a clean worktree/index, local main two commits ahead
+of the locally recorded M0 origin/main, with no fetch or live remote query. The exact
+checkpoint hash is reported after commit creation, not embedded in its own contents.
+**Stop after verification, documentation and this one checkpoint.** No next milestone,
+agents, installs, providers, crawling, TypeScript compilation, generated execution,
+publication, deployment or push is authorized. M2-R durable review, M3 reconciliation,
+M4 lifecycle/reservations and M5 isolation each need new scoped approval. All CAP and
+SC-01 requirements remain preserved in the capability register and roadmap.
+
+## Current task and stop point: M2 specification approval
+
+The 2026-10-25 post-M1 request authorizes documentation-only dependency analysis and
+M2 specification (C18), superseding the earlier stop-before-specification instruction
+below. Read [M2-SPEC-2026-10-25-v1](M2_ARTIFACT_PACKAGES.md) for all ten deliverables,
+M2-D01..07, M2-AC-01..26 and the explicit implementation gate. Recommendation: immutable
+artifact packages/mappings now; durable review in separately scoped M2-R; results,
+policy/reservations and isolated execution remain M3/M4/M5. The split is PROPOSED.
+M1 plans are proposals, not approved plans. M2 execution authority stays literal false.
+
+Verified starting HEAD: `58c1faef6fb6b96e126e67afa73e6c3af2cce41f`, clean tree/index,
+local main ahead 1/behind 0 of local origin/main; no remote query. Existing full offline
+suite rerun: **78 passed in 28.819 seconds, zero failures/errors/skips**. M0/M1 source,
+tests, schemas and legacy runtime are unchanged. This task leaves documentation edits
+uncommitted. No further commit authorization survives from completed M1 finalization.
+
+**Stop at the specification approval gate.** Implementation, M2-R, agents, installs,
+providers, crawling, generated execution, publication, push and deployment are not
+allowed. Earlier handoff sections below record completed M1 work and historical gates;
+this section and C18 govern the present task.
+
 Updated 2026-10-25 (Asia/Calcutta). Audit baseline remains 2026-10-22.
 
 **M1 is complete and verified offline. Stop after the authorized local commit and handoff.**

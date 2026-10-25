@@ -1,5 +1,20 @@
 # Post-M0 foundation sequence
 
+M2 completion update, 2026-10-25: the exact [M2 v2](M2_ARTIFACT_PACKAGES.md) package/
+mapping slice is now approved, implemented and [verified offline](M2_VERIFICATION.md).
+The decoder correction is separate from unchanged M0/M1. Durable review remains M2-R;
+M3/M4/M5 remain proposed. Historical broader M2 text below does not override the completed
+slice or authorize any later effects. All full ADRs remain PROPOSED.
+
+Post-M1 refinement, 2026-10-25: the historical sequence below is now refined by
+[M2-SPEC-2026-10-25-v1](M2_ARTIFACT_PACKAGES.md). Its proposed smallest next slice is
+immutable artifact packages/mappings and non-authorizing assessment. Durable plan/bundle
+review moves to separately specified M2-R; actual closure/materialization validation
+remains under M5 isolation. M3 result and M4 policy/reservation boundaries remain.
+The earlier broad M2 descriptions/diagram below are historical proposals; use the new
+specification and current ROADMAP for the recommended scope. Neither M2 nor M2-R is
+implemented or approved.
+
 Date: 2026-10-23 (Asia/Calcutta). Status: **PROPOSED; documentation only**.
 The first post-M0 implementation scope is [M1](M1_AUTHORITY_BOUND_PLANS.md), revision
 `M1-SPEC-2026-10-25-v2`. No milestone here authorizes generated execution, provider

@@ -1,5 +1,16 @@
 # Foundational architecture decision review
 
+M2 completion, 2026-10-25: the exact v2 artifact-package/mapping subset is now
+approved and [verified offline](../M2_VERIFICATION.md), alongside M0/M1. This supplies
+immutable byte subjects and declared mappings only. Whole-bundle review, result
+reconciliation, effects and isolated execution remain separately scoped; no full ADR
+status changed.
+
+2026-10-25 post-M1 dependency specification: [M2 artifact packages](../M2_ARTIFACT_PACKAGES.md)
+refines the earlier broad artifact milestone into byte identity/mappings now and durable
+review in later M2-R. ADR-03's whole-bundle review, reconciliation and ADR-04 isolation
+requirements remain mandatory later. All six full ADRs retain PROPOSED status.
+
 Status: **PROPOSED**, preserved 2026-10-23. This is a documentation handoff of the completed
 review, not approval of implementation. The source-based audit remains in
 [AUDIT_FINDINGS](../AUDIT_FINDINGS.md); implemented architecture is in

@@ -104,6 +104,34 @@ source verification.
 
 ## Current authorization boundary
 
+The user explicitly approved M2-SPEC-2026-10-25-v2, including the narrow M2-specific
+payload decoder correction, M2-D01..07 and M2-AC-01..26, and resumed implementation.
+Implement/verify only immutable inert artifact packages and mapping assessment; preserve
+M0/M1 and the legacy runtime. After all checks pass, review/stage only M2-related files
+and create one local checkpoint commit. No push, agents, installs, providers, crawling,
+generated execution, compilation, M2-R/M3/M4/M5, publication or deployment. Stop after
+verification, documentation and the reviewed local checkpoint. This supersedes the
+historical specification-only boundary below for this exact M2 scope.
+
+M2 implementation is complete and verified offline: 116 tests passed in 66.165 seconds,
+zero failures/errors/skips. See [M2 verification](docs/M2_VERIFICATION.md). The approved
+local checkpoint includes the reviewed M2 code/tests and preexisting M2 documentation.
+After that checkpoint, no further commit or milestone is authorized by this request.
+
+Historical authorization follows:
+
+The latest request (2026-10-25), "ATS - Post-M1 Architecture Dependency and M2
+Specification", authorizes offline inspection/verification and documentation-only M2
+specification. See [M2](docs/M2_ARTIFACT_PACKAGES.md), revision
+`M2-SPEC-2026-10-25-v1`, and C18. M2-D01..07 and M2-AC-01..26 are PROPOSED;
+implementation is not approved. The proposed split into M2 artifact packages and later
+M2-R durable review does not grant either implementation scope. Stop at the specification
+approval gate. No M2 implementation, agents, installs, providers, crawling, generated
+execution, commits, push, publication or deployment. This supersedes the earlier ban
+on beginning M2 specification only; completed M1 commit authorization is exhausted.
+
+Historical completed M1 authorization follows:
+
 The latest request (2026-10-25), "Finalize M1, Commit and Prepare Fresh-Session
 Handoff", authorizes final diff/safety review, the complete offline M0+M1 suite,
 necessary handoff corrections and one reviewed local M1 implementation commit if

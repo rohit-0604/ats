@@ -1,5 +1,27 @@
 # Current state
 
+Current M2 implementation update, 2026-10-25: the user explicitly approved
+`M2-SPEC-2026-10-25-v2`, including the narrow payload-decoder correction, and offline
+implementation/local checkpoint (C19). **M2 is implemented and verified offline:**
+116 tests passed (48 unchanged M0, 30 unchanged M1, 26 M2 acceptance families and
+12 additional boundary regressions), with zero failures/errors/skips. See
+[M2_VERIFICATION](M2_VERIFICATION.md) for exact results, defects corrected and limits.
+It adds inert canonical packages, exact byte integrity, explicit mappings and fresh
+non-authorizing assessment. M0/M1, dependency manifests, prompts and legacy runtime
+remain unchanged. Durable review and all execution remain deferred; all F01-F17 remain
+open. The earlier specification-only status below is historical. Stop after the reviewed
+local checkpoint; no later milestone or push is authorized.
+
+Current post-M1 specification update, 2026-10-25: clean starting tree at
+`58c1faef6fb6b96e126e67afa73e6c3af2cce41f`; current offline regression rerun passed
+**78 tests in 28.819 seconds, no failures/errors/skips**. The documentation-only
+[M2 proposal](M2_ARTIFACT_PACKAGES.md) recommends immutable inert artifact packages,
+explicit mappings and non-authorizing assessment, with durable review split into
+later M2-R. Neither is implemented or approved. C18 authorizes specification only;
+all F01-F17 remain open. No remote query or runtime execution occurred. Historical
+M1-finalization and earlier approval boundaries below are superseded only for this
+new documentation task.
+
 Baseline date: 2026-10-22 (Asia/Calcutta). This records the completed repository
 audit, accepted by the user as the factual baseline. It is not a claim of a
 successful current end-to-end execution.
@@ -105,6 +127,7 @@ this workspace. UNVERIFIED denotes a claim not established by the audit.
 | Python CLI, configuration | CONFIRMED | URL plus local PDF or saved requirements JSON |
 | Offline M0 baseline/review CLI | CONFIRMED, VERIFIED OFFLINE | Strict immutable V1 records, legacy drafts, digest-bound whole-baseline decisions, SQLite history and inspection; no runtime integration |
 | Offline M1 authority-bound plan CLI | CONFIRMED, VERIFIED OFFLINE | Complete criterion dispositions, stable scenarios, immutable plan exports and current authority observations; no plan/execution approval or runtime integration |
+| Offline M2 artifact CLI | CONFIRMED, VERIFIED OFFLINE | Immutable inert byte packages, scenario/test/configuration mappings and current authority assessment; no package approval, materialization or execution |
 | SRS ingestion | PARTIAL | PDF text/tables, empty-document OCR fallback; no upload API/DOCX input |
 | Extraction/validation | PARTIAL | Five passes; heuristic filtering, inferred gaps, unsafe deduplication |
 | LangGraph orchestration | CONFIRMED | Three principal agents plus domain inference and planner calls |
@@ -121,7 +144,7 @@ this workspace. UNVERIFIED denotes a claim not established by the audit.
 | Memory/retrieval | CONFIRMED | ChromaDB and JSON storage; benefit UNVERIFIED |
 | Prompt evolution | MISSING | Configuration/constants without an implemented evolution path |
 | Observability | PARTIAL | Logging, JSONL, static reports/dashboard; misleading quality metrics |
-| ATS tests/evaluation corpus | PARTIAL | 78 maintained offline M0/M1 tests; no maintained existing-runtime regression/evaluation corpus; generated target-site specs are not ATS regression tests |
+| ATS tests/evaluation corpus | PARTIAL | 116 maintained offline M0/M1/M2 tests; no maintained existing-runtime regression/evaluation corpus; generated target-site specs are not ATS regression tests |
 | Platform backend/UI | PARTIAL | CLI, static review pages, local feedback endpoint; no upload service |
 | CI/deployment infrastructure | MISSING | No maintained quality workflow/deployment manifests found |
 

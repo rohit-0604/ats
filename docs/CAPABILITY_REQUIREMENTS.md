@@ -1,5 +1,21 @@
 # ATS capability requirements register
 
+Current M2 evidence, 2026-10-25: the user approved the narrow v2 package/mapping
+slice and decoder correction. [M2 verification](M2_VERIFICATION.md) records 116 passing
+offline tests (78 unchanged M0/M1 plus 38 M2), no failures/errors/skips. Immutable byte
+packages and explicit planned mappings now exist; durable plan/bundle review stays M2-R.
+No other CAP acceptance obligation, professional UI, source-aware workflow, public
+showcase, MODEL/OBS/EVAL/LAB/PORT workstream or execution gate is removed or claimed
+implemented. The historical delivery clarification below remains the rationale.
+
+Post-M1 delivery clarification, 2026-10-25: [M2](M2_ARTIFACT_PACKAGES.md) proposes
+immutable artifact packages and explicit mappings; M2-R separately owns durable
+plan/bundle review previously grouped under M2 in the inventory below. M2-R must precede
+M4 dispatch authority. M5 owns actual closure/materialization validation under isolation.
+The specification maps every CAP ID to preserved contracts and intentional deferrals;
+all acceptance obligations below remain unchanged. No deferred capability is implemented
+or approved by this refinement.
+
 Revision: **CAP-REG-2026-10-25-v1**. Status: **USER-REQUESTED PRODUCT REQUIREMENTS
 RECORDED; DELIVERY DEFERRED UNLESS SEPARATELY AUTHORIZED**. Acceptance/evaluation
 criteria below are required future evidence, **not executed checks or benchmark results**.
@@ -12,7 +28,7 @@ milestone specifications own exact contracts. Do not copy those contracts here.
 The 2026-10-25 request preserves these product requirements; it does not authorize
 implementing every capability now. Proposed delivery boundaries, adapter technologies,
 supported targets, thresholds and vendor choices still require scoped decisions.
-All six [ADRs](adr/README.md) remain PROPOSED beyond the exact approved M0/M1 scopes.
+All six [ADRs](adr/README.md) remain PROPOSED beyond the exact approved M0/M1/M2 scopes.
 [M0 contracts](M0_CONTRACTS_V1.md) and [verification](M0_VERIFICATION.md) remain authoritative
 for implemented baseline/review behavior; no new approval lifecycle is defined here.
 
@@ -47,9 +63,9 @@ deferred model, source, UI, worker or cloud integrations in this register.
 | CAP-DIAG | Documented, taxonomy/report criteria partial | Error heuristics and unsafe repair; no dependable adjudication | Safe repair after controlled evidence; ADR-05 |
 | CAP-WORKFLOW | Partial: source/API modes deferred | M0 authority and M1 offline planning verified; legacy black-box runtime unsafe | M2-M5 foundations, then source-aware expansion |
 | CAP-EFFICIENCY | Partial and scattered | Retries/cache/memory/async helpers; benefits and full limits unverified | M4 plus measured efficiency/retrieval work |
-| CAP-HITL | Documented UI direction, runtime guarantees partial | M0 explicit reviews verified; legacy feedback unsafe; professional UI absent | M2 review contracts, then private UI |
+| CAP-HITL | Documented UI direction, runtime guarantees partial | M0 reviews and M2 review subjects verified; legacy feedback unsafe; professional UI absent | M2-R durable review contracts, then private UI |
 | CAP-OBS | Documented proposed schema | Local JSONL/logs/dashboard; incomplete attempt accounting | OBS workstream after shared IDs; M4/M5 effects |
-| CAP-EVAL | Documented evaluation plan | 78 offline M0/M1 unit/contracts verified; maintained runtime/model corpus absent | EVAL plus CAP-LAB; before adaptive promotion |
+| CAP-EVAL | Documented evaluation plan | 116 offline M0/M1/M2 unit/contracts verified; maintained runtime/model corpus absent | EVAL plus CAP-LAB; before adaptive promotion |
 | CAP-PORT | Missing as tested deliverable | Local Windows M0 verified; deployment portability unverified | PORT workstream and deployment/operations |
 | CAP-EXT | Partial boundaries; no versioned extension acceptance | Concrete provider modules; general safe extension boundary absent | Contract-driven adapters as integrations are authorized |
 | CAP-SHOWCASE | SC-01 already explicit | Not built or published by this work | Independent SC-01; canonical SC-AC-01..06 in ROADMAP |

@@ -1,0 +1,294 @@
+{
+  "plan_draft": {
+    "schema_version": 1,
+    "project_id": "00000000-0000-4000-8000-000000000001",
+    "baseline_digest": "sha256:736affd0f5e30a06f99081908a44f7f87158a1d6358b2763763d40a91472aef6",
+    "scenarios": [
+      {
+        "scenario_id": "43b80714-983b-58bc-b5af-c32101de9c14",
+        "criterion_id": "00000000-0000-4000-8000-000000000003",
+        "scenario_key": "guest",
+        "title": "Guest cards",
+        "preconditions": [
+          "Guest café",
+          "  Preserve spacing"
+        ],
+        "steps": [
+          "Open the page",
+          "Observe four cards"
+        ]
+      },
+      {
+        "scenario_id": "18b5c61d-2fd6-521b-9e16-62e997a799e6",
+        "criterion_id": "00000000-0000-4000-8000-000000000003",
+        "scenario_key": "boundary",
+        "title": "Guest cards",
+        "preconditions": [
+          "Guest café",
+          "  Preserve spacing"
+        ],
+        "steps": [
+          "Open the page",
+          "Observe four cards"
+        ]
+      }
+    ],
+    "dispositions": [
+      {
+        "criterion_id": "00000000-0000-4000-8000-000000000003",
+        "status": "planned",
+        "reason": null
+      }
+    ]
+  },
+  "candidate": {
+    "schema_version": 1,
+    "manifest": {
+      "schema_version": 1,
+      "project_id": "00000000-0000-4000-8000-000000000001",
+      "baseline_digest": "sha256:736affd0f5e30a06f99081908a44f7f87158a1d6358b2763763d40a91472aef6",
+      "plan_digest": "sha256:eeda701ac7ab0c83d7ae3db0c0ca78939c1ccd4abb6a101ed14b3d39c6ce57b0",
+      "files": [
+        {
+          "path": "config.ts",
+          "role": "config",
+          "size_bytes": 16,
+          "digest": "sha256:e88004adda65633a8478ab4ab15b35e1cd96bc7d760c403a7e6ad0893594bae0"
+        },
+        {
+          "path": "data.bin",
+          "role": "data",
+          "size_bytes": 5,
+          "digest": "sha256:6171db06a1c89b1ff8ab77e479d5df976ccd88a7b63567b4b18f413649e12ff3"
+        },
+        {
+          "path": "fixture.ts",
+          "role": "fixture",
+          "size_bytes": 21,
+          "digest": "sha256:50e9958f7d0681e2c8abffad5463b40c9e8f6574a1965aac0d27d6c2d28385ba"
+        },
+        {
+          "path": "helper.ts",
+          "role": "helper",
+          "size_bytes": 20,
+          "digest": "sha256:ef57cd5d6ccf21f5d25148d86d95723b5252ce763afb3d11ba972366469b93ad"
+        },
+        {
+          "path": "package-lock.json",
+          "role": "dependency_lock",
+          "size_bytes": 3,
+          "digest": "sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+        },
+        {
+          "path": "runtime.json",
+          "role": "runtime_descriptor",
+          "size_bytes": 24,
+          "digest": "sha256:17add70e9e7489373a7993f24ad6cccabbee67f325b098df8d8a179423336c4b"
+        },
+        {
+          "path": "suite.spec.ts",
+          "role": "spec",
+          "size_bytes": 51,
+          "digest": "sha256:dba40375435e7173bf94b72a678a317d0f2ce30efdfd7d174454150f458c2641"
+        }
+      ],
+      "configurations": [
+        {
+          "configuration_key": "chromium",
+          "config_path": "config.ts",
+          "project_name": "Synthetic project",
+          "runtime_descriptor_path": "runtime.json",
+          "dependency_lock_path": "package-lock.json"
+        }
+      ],
+      "tests": [
+        {
+          "test_id": "c9c2210a-07c5-5081-80ab-5f923e6243a5",
+          "scenario_id": "43b80714-983b-58bc-b5af-c32101de9c14",
+          "test_key": "main",
+          "spec_path": "suite.spec.ts",
+          "configuration_keys": [
+            "chromium"
+          ],
+          "assertions": [
+            {
+              "path": "suite.spec.ts",
+              "start_byte": 0,
+              "end_byte": 10,
+              "criterion_id": "00000000-0000-4000-8000-000000000003"
+            }
+          ]
+        }
+      ],
+      "scenario_dispositions": [
+        {
+          "scenario_id": "18b5c61d-2fd6-521b-9e16-62e997a799e6",
+          "status": "unbuilt",
+          "reason": "Not built yet."
+        },
+        {
+          "scenario_id": "43b80714-983b-58bc-b5af-c32101de9c14",
+          "status": "mapped",
+          "reason": null
+        }
+      ]
+    },
+    "payloads": [
+      {
+        "path": "config.ts",
+        "content_base64": "Ly8gaW5lcnQgY29uZmlnCg=="
+      },
+      {
+        "path": "data.bin",
+        "content_base64": "AP+ADQo="
+      },
+      {
+        "path": "fixture.ts",
+        "content_base64": "Ly8gc3ludGhldGljIGZpeHR1cmUK"
+      },
+      {
+        "path": "helper.ts",
+        "content_base64": "Ly8gc3ludGhldGljIGhlbHBlcgo="
+      },
+      {
+        "path": "package-lock.json",
+        "content_base64": "e30K"
+      },
+      {
+        "path": "runtime.json",
+        "content_base64": "eyJwcm9maWxlIjoic3ludGhldGljIn0K"
+      },
+      {
+        "path": "suite.spec.ts",
+        "content_base64": "Ly8gaW5lcnQgc3ludGhldGljOiBleHBlY3QoY2FyZHMpLnRvSGF2ZUNvdW50KDQpOw0K"
+      }
+    ]
+  },
+  "package": {
+    "schema_version": 1,
+    "manifest": {
+      "schema_version": 1,
+      "project_id": "00000000-0000-4000-8000-000000000001",
+      "baseline_digest": "sha256:736affd0f5e30a06f99081908a44f7f87158a1d6358b2763763d40a91472aef6",
+      "plan_digest": "sha256:eeda701ac7ab0c83d7ae3db0c0ca78939c1ccd4abb6a101ed14b3d39c6ce57b0",
+      "files": [
+        {
+          "path": "config.ts",
+          "role": "config",
+          "size_bytes": 16,
+          "digest": "sha256:e88004adda65633a8478ab4ab15b35e1cd96bc7d760c403a7e6ad0893594bae0"
+        },
+        {
+          "path": "data.bin",
+          "role": "data",
+          "size_bytes": 5,
+          "digest": "sha256:6171db06a1c89b1ff8ab77e479d5df976ccd88a7b63567b4b18f413649e12ff3"
+        },
+        {
+          "path": "fixture.ts",
+          "role": "fixture",
+          "size_bytes": 21,
+          "digest": "sha256:50e9958f7d0681e2c8abffad5463b40c9e8f6574a1965aac0d27d6c2d28385ba"
+        },
+        {
+          "path": "helper.ts",
+          "role": "helper",
+          "size_bytes": 20,
+          "digest": "sha256:ef57cd5d6ccf21f5d25148d86d95723b5252ce763afb3d11ba972366469b93ad"
+        },
+        {
+          "path": "package-lock.json",
+          "role": "dependency_lock",
+          "size_bytes": 3,
+          "digest": "sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+        },
+        {
+          "path": "runtime.json",
+          "role": "runtime_descriptor",
+          "size_bytes": 24,
+          "digest": "sha256:17add70e9e7489373a7993f24ad6cccabbee67f325b098df8d8a179423336c4b"
+        },
+        {
+          "path": "suite.spec.ts",
+          "role": "spec",
+          "size_bytes": 51,
+          "digest": "sha256:dba40375435e7173bf94b72a678a317d0f2ce30efdfd7d174454150f458c2641"
+        }
+      ],
+      "configurations": [
+        {
+          "configuration_key": "chromium",
+          "config_path": "config.ts",
+          "project_name": "Synthetic project",
+          "runtime_descriptor_path": "runtime.json",
+          "dependency_lock_path": "package-lock.json"
+        }
+      ],
+      "tests": [
+        {
+          "test_id": "c9c2210a-07c5-5081-80ab-5f923e6243a5",
+          "scenario_id": "43b80714-983b-58bc-b5af-c32101de9c14",
+          "test_key": "main",
+          "spec_path": "suite.spec.ts",
+          "configuration_keys": [
+            "chromium"
+          ],
+          "assertions": [
+            {
+              "path": "suite.spec.ts",
+              "start_byte": 0,
+              "end_byte": 10,
+              "criterion_id": "00000000-0000-4000-8000-000000000003"
+            }
+          ]
+        }
+      ],
+      "scenario_dispositions": [
+        {
+          "scenario_id": "18b5c61d-2fd6-521b-9e16-62e997a799e6",
+          "status": "unbuilt",
+          "reason": "Not built yet."
+        },
+        {
+          "scenario_id": "43b80714-983b-58bc-b5af-c32101de9c14",
+          "status": "mapped",
+          "reason": null
+        }
+      ]
+    },
+    "payloads": [
+      {
+        "path": "config.ts",
+        "content_base64": "Ly8gaW5lcnQgY29uZmlnCg=="
+      },
+      {
+        "path": "data.bin",
+        "content_base64": "AP+ADQo="
+      },
+      {
+        "path": "fixture.ts",
+        "content_base64": "Ly8gc3ludGhldGljIGZpeHR1cmUK"
+      },
+      {
+        "path": "helper.ts",
+        "content_base64": "Ly8gc3ludGhldGljIGhlbHBlcgo="
+      },
+      {
+        "path": "package-lock.json",
+        "content_base64": "e30K"
+      },
+      {
+        "path": "runtime.json",
+        "content_base64": "eyJwcm9maWxlIjoic3ludGhldGljIn0K"
+      },
+      {
+        "path": "suite.spec.ts",
+        "content_base64": "Ly8gaW5lcnQgc3ludGhldGljOiBleHBlY3QoY2FyZHMpLnRvSGF2ZUNvdW50KDQpOw0K"
+      }
+    ],
+    "digest": "sha256:71fd16e424aaac6ecbf49e62cab6dc424feb1e7ce97d0a7771c2cf68e110c59d"
+  },
+  "canonical_manifest": "{\"baseline_digest\":\"sha256:736affd0f5e30a06f99081908a44f7f87158a1d6358b2763763d40a91472aef6\",\"configurations\":[{\"config_path\":\"config.ts\",\"configuration_key\":\"chromium\",\"dependency_lock_path\":\"package-lock.json\",\"project_name\":\"Synthetic project\",\"runtime_descriptor_path\":\"runtime.json\"}],\"files\":[{\"digest\":\"sha256:e88004adda65633a8478ab4ab15b35e1cd96bc7d760c403a7e6ad0893594bae0\",\"path\":\"config.ts\",\"role\":\"config\",\"size_bytes\":16},{\"digest\":\"sha256:6171db06a1c89b1ff8ab77e479d5df976ccd88a7b63567b4b18f413649e12ff3\",\"path\":\"data.bin\",\"role\":\"data\",\"size_bytes\":5},{\"digest\":\"sha256:50e9958f7d0681e2c8abffad5463b40c9e8f6574a1965aac0d27d6c2d28385ba\",\"path\":\"fixture.ts\",\"role\":\"fixture\",\"size_bytes\":21},{\"digest\":\"sha256:ef57cd5d6ccf21f5d25148d86d95723b5252ce763afb3d11ba972366469b93ad\",\"path\":\"helper.ts\",\"role\":\"helper\",\"size_bytes\":20},{\"digest\":\"sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356\",\"path\":\"package-lock.json\",\"role\":\"dependency_lock\",\"size_bytes\":3},{\"digest\":\"sha256:17add70e9e7489373a7993f24ad6cccabbee67f325b098df8d8a179423336c4b\",\"path\":\"runtime.json\",\"role\":\"runtime_descriptor\",\"size_bytes\":24},{\"digest\":\"sha256:dba40375435e7173bf94b72a678a317d0f2ce30efdfd7d174454150f458c2641\",\"path\":\"suite.spec.ts\",\"role\":\"spec\",\"size_bytes\":51}],\"plan_digest\":\"sha256:eeda701ac7ab0c83d7ae3db0c0ca78939c1ccd4abb6a101ed14b3d39c6ce57b0\",\"project_id\":\"00000000-0000-4000-8000-000000000001\",\"scenario_dispositions\":[{\"reason\":\"Not built yet.\",\"scenario_id\":\"18b5c61d-2fd6-521b-9e16-62e997a799e6\",\"status\":\"unbuilt\"},{\"reason\":null,\"scenario_id\":\"43b80714-983b-58bc-b5af-c32101de9c14\",\"status\":\"mapped\"}],\"schema_version\":1,\"tests\":[{\"assertions\":[{\"criterion_id\":\"00000000-0000-4000-8000-000000000003\",\"end_byte\":10,\"path\":\"suite.spec.ts\",\"start_byte\":0}],\"configuration_keys\":[\"chromium\"],\"scenario_id\":\"43b80714-983b-58bc-b5af-c32101de9c14\",\"spec_path\":\"suite.spec.ts\",\"test_id\":\"c9c2210a-07c5-5081-80ab-5f923e6243a5\",\"test_key\":\"main\"}]}",
+  "canonical_package": "{\"digest\":\"sha256:71fd16e424aaac6ecbf49e62cab6dc424feb1e7ce97d0a7771c2cf68e110c59d\",\"manifest\":{\"baseline_digest\":\"sha256:736affd0f5e30a06f99081908a44f7f87158a1d6358b2763763d40a91472aef6\",\"configurations\":[{\"config_path\":\"config.ts\",\"configuration_key\":\"chromium\",\"dependency_lock_path\":\"package-lock.json\",\"project_name\":\"Synthetic project\",\"runtime_descriptor_path\":\"runtime.json\"}],\"files\":[{\"digest\":\"sha256:e88004adda65633a8478ab4ab15b35e1cd96bc7d760c403a7e6ad0893594bae0\",\"path\":\"config.ts\",\"role\":\"config\",\"size_bytes\":16},{\"digest\":\"sha256:6171db06a1c89b1ff8ab77e479d5df976ccd88a7b63567b4b18f413649e12ff3\",\"path\":\"data.bin\",\"role\":\"data\",\"size_bytes\":5},{\"digest\":\"sha256:50e9958f7d0681e2c8abffad5463b40c9e8f6574a1965aac0d27d6c2d28385ba\",\"path\":\"fixture.ts\",\"role\":\"fixture\",\"size_bytes\":21},{\"digest\":\"sha256:ef57cd5d6ccf21f5d25148d86d95723b5252ce763afb3d11ba972366469b93ad\",\"path\":\"helper.ts\",\"role\":\"helper\",\"size_bytes\":20},{\"digest\":\"sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356\",\"path\":\"package-lock.json\",\"role\":\"dependency_lock\",\"size_bytes\":3},{\"digest\":\"sha256:17add70e9e7489373a7993f24ad6cccabbee67f325b098df8d8a179423336c4b\",\"path\":\"runtime.json\",\"role\":\"runtime_descriptor\",\"size_bytes\":24},{\"digest\":\"sha256:dba40375435e7173bf94b72a678a317d0f2ce30efdfd7d174454150f458c2641\",\"path\":\"suite.spec.ts\",\"role\":\"spec\",\"size_bytes\":51}],\"plan_digest\":\"sha256:eeda701ac7ab0c83d7ae3db0c0ca78939c1ccd4abb6a101ed14b3d39c6ce57b0\",\"project_id\":\"00000000-0000-4000-8000-000000000001\",\"scenario_dispositions\":[{\"reason\":\"Not built yet.\",\"scenario_id\":\"18b5c61d-2fd6-521b-9e16-62e997a799e6\",\"status\":\"unbuilt\"},{\"reason\":null,\"scenario_id\":\"43b80714-983b-58bc-b5af-c32101de9c14\",\"status\":\"mapped\"}],\"schema_version\":1,\"tests\":[{\"assertions\":[{\"criterion_id\":\"00000000-0000-4000-8000-000000000003\",\"end_byte\":10,\"path\":\"suite.spec.ts\",\"start_byte\":0}],\"configuration_keys\":[\"chromium\"],\"scenario_id\":\"43b80714-983b-58bc-b5af-c32101de9c14\",\"spec_path\":\"suite.spec.ts\",\"test_id\":\"c9c2210a-07c5-5081-80ab-5f923e6243a5\",\"test_key\":\"main\"}]},\"payloads\":[{\"content_base64\":\"Ly8gaW5lcnQgY29uZmlnCg==\",\"path\":\"config.ts\"},{\"content_base64\":\"AP+ADQo=\",\"path\":\"data.bin\"},{\"content_base64\":\"Ly8gc3ludGhldGljIGZpeHR1cmUK\",\"path\":\"fixture.ts\"},{\"content_base64\":\"Ly8gc3ludGhldGljIGhlbHBlcgo=\",\"path\":\"helper.ts\"},{\"content_base64\":\"e30K\",\"path\":\"package-lock.json\"},{\"content_base64\":\"eyJwcm9maWxlIjoic3ludGhldGljIn0K\",\"path\":\"runtime.json\"},{\"content_base64\":\"Ly8gaW5lcnQgc3ludGhldGljOiBleHBlY3QoY2FyZHMpLnRvSGF2ZUNvdW50KDQpOw0K\",\"path\":\"suite.spec.ts\"}],\"schema_version\":1}",
+  "test_id": "c9c2210a-07c5-5081-80ab-5f923e6243a5"
+}

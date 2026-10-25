@@ -28,6 +28,8 @@ These reflect explicit user direction, not approval of a new runtime architectur
 | C15 | APPROVED DOCUMENTATION SCOPE 2026-10-25 | User requested one authoritative capability register, preservation of broader product requirements, explicit tested-portability/adaptive-routing workstreams and a new proposed M1 revision resolving the two review blockers. M1 scope/decisions/cases stay unchanged. Documentation only; no implementation, install, generated execution, providers, publication, commit, push or deployment. Stop at M1 approval. |
 | C16 | EXPLICITLY APPROVED AND COMPLETED M1 2026-10-25 | User said "Go" to implement M1-SPEC-2026-10-25-v2 and verify M1-AC-01..30 offline, preserving M0 and the existing runtime. M1-D01..06 and single-operator/non-authorizing readiness apply. All 78 tests passed: 48 unchanged M0 plus 30 M1, no skips. See M1_VERIFICATION. No local commit, M2, dependencies, agents, providers, generated execution, publication or deployment authorized. Stop after completion and records. |
 | C17 | APPROVED M1 FINALIZATION SCOPE 2026-10-25 | User separately authorized exact diff/safety review, full offline suite, necessary handoff corrections and one reviewed local M1 implementation commit if verification passes. The finalization rerun passed 78 tests in 30.575 seconds, zero failures/errors/skips. Supersedes C16's no-commit limit for this single commit only. No push, history rewrite, M2, architecture changes, installs, providers, generated execution, publication or deployment. Stop after verified commit and handoff. |
+| C18 | APPROVED DOCUMENTATION SCOPE ONLY 2026-10-25 | Post-M1 Architecture Dependency and M2 Specification: inspect actual contracts/Git, verify offline, prepare M2 specification and stop at implementation approval. No code implementation, installs, providers, crawling, generated execution, commits, push, publication or deployment. [M2 proposal](M2_ARTIFACT_PACKAGES.md) narrows M2 to immutable packages/mappings and non-authorizing assessment, deferring durable review to M2-R; M2-D01..07 and AC-01..26 remain PROPOSED. Current unchanged offline suite: 78 passed in 28.819 seconds, no failures/errors/skips. |
+| C19 | APPROVED AND COMPLETED M2 OFFLINE IMPLEMENTATION; LOCAL CHECKPOINT 2026-10-25 | User approved M2 v1 decisions/contracts/AC-01..26 and offline implementation plus reviewed local checkpoint. Preflight stopped on the existing decoder string-cap contradiction before application coding. User then explicitly approved M2-SPEC-2026-10-25-v2: context-limited base64 decoding with unchanged M0/M1, original limits and explicit boundary tests. M2 is now implemented: final full rerun 116 passed in 66.165 seconds, zero failures/errors/skips; see M2_VERIFICATION. Preserve prior documentation edits and create only the reviewed local checkpoint. No agents, installs, providers, crawling, generated execution/compilation, later milestones, publication, deployment or push. |
 
 C11's local commit completed as `4a59405ef19f82fbee7c09e2edb3a28cfdf1fcee`.
 The intervening specification-only request did not reopen its Git authorization.
@@ -37,7 +39,7 @@ change independently; do not infer permission to push from tracking configuratio
 
 ## Foundational ADR register and implementation status
 
-**The six full ADRs remain PROPOSED. Only the exact M0 and M1 milestone scopes are approved and implemented offline.**
+**The six full ADRs remain PROPOSED. Only the exact M0, M1 and M2 milestone scopes are approved and implemented offline.**
 Provisional acceptance of a direction is not acceptance of every schema, security
 assumption, migration or milestone. The ADRs are self-contained proposals; the
 [review index](adr/README.md) preserves criticism of earlier recommendations.
@@ -125,7 +127,7 @@ decisions remain at their delivery gates; Git publication needs separate approva
 - M0 product decisions are resolved under C13: the human CLI operator is the reviewer;
   exact v2 trust, review, identity, serialization, storage, import and CLI rules apply.
   M1 authority-bound scenario planning is now approved/implemented under C16. M2 bundle/
-  review specification is the next proposed boundary and needs a new scoped request. Later lifecycle,
+  review specification was authorized by C18; C19 subsequently approved the exact M2 v2 package slice, now implemented/verified. M2-R remains unapproved. Later lifecycle,
   artifacts, eligibility, results and worker controls remain separately scoped.
   M0 approval does not authorize them or close any existing runtime finding.
 - Git destination is resolved for the private initial snapshot (`rohit-0604/ats`).
