@@ -2,15 +2,18 @@
 
 ## Current scope and stop point
 
-C22 authorizes documentation refactoring and read-only verification only. Stop after
-this refactor; no commits, agents, installations, provider calls, generated execution,
-product changes or architecture research. Existing C20/C21 documentation edits remain
-local and uncommitted. See [current status](CURRENT_STATE.md),
-[task-specific index](README.md) and [authorization record](DECISIONS.md#accepted-constraints).
+C23 requests implementation and local progress commits. The completed C20-C22 reviews
+and refactor are saved in `569d839`. [M2-R v1](M2R_DURABLE_REVIEW.md) now defines proposed
+contracts, eight decisions and 30 offline acceptance families. The user explicitly approved
+that exact v1 and all decisions/acceptance for offline implementation/tests and local commits.
+Implement, verify and checkpoint only offline
+M2-R. No providers, agents, installs, generated execution, later milestones or push.
+See [current status](CURRENT_STATE.md), [index](README.md) and
+[authorization](DECISIONS.md#accepted-constraints).
 
-M0/M1/M2 are complete offline. M2-R specification is recommended, not started or
-implicitly authorized. The C21 compatibility verdict found no demonstrated blocker;
-execution/product readiness remains unproven. Do not reopen completed V1 contracts.
+M0/M1/M2 are complete offline. M2-R v1 is approved for implementation, not yet implemented. The
+original bounded recommendation below remains its scope reference; execution/product
+readiness is unproven. Do not reopen completed V1 contracts.
 
 ## Next bounded specification - unchanged recommendation
 

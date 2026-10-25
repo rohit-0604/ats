@@ -110,13 +110,15 @@
 
 ## Current authorization boundary
 
-The latest request is **Documentation Architecture and Context Efficiency Refactor**
-(C22, 2026-10-25): semantics-preserving documentation changes and read-only verification.
-Preserve uncommitted edits, M0/M1/M2 contracts/results, all CAP/acceptance/finding IDs,
-ADR/decision statuses, security boundaries and the recommended M2-R specification task.
-No product/source/test/dependency changes, agents, installs, provider/model calls,
-live auth/crawl, generated compilation/execution, commits, push, publication or deployment.
-No new architecture research or M2-R work. Stop after this documentation refactor.
+The latest request (C23, 2026-10-25) asks to move to implementation and commit/save
+progress. Reviewed local progress checkpoints are authorized; the C20-C22 documentation
+checkpoint is `569d839`. The next intended implementation is offline M2-R. The user explicitly approved
+[M2R-SPEC-2026-10-25-v1](docs/M2R_DURABLE_REVIEW.md), M2R-D01..08 and M2R-AC-01..30
+for offline implementation/tests and reviewed local commits. The contract agreement
+prerequisite is satisfied. Implement/test only that bounded M2-R scope and create local
+checkpoints. Preserve M0/M1/M2 and legacy source. No agents, new dependencies, providers,
+auth/crawl, generated compilation/execution, M3/M4/M5, push, publication or deployment.
+Stop after verified M2-R completion and its reviewed local implementation checkpoint.
 
 Authorization history remains in [DECISIONS](docs/DECISIONS.md#accepted-constraints);
 [older instructions](docs/history/CONTEXT_BEFORE_2026-10-25.md#agents-current-authorization-boundary)

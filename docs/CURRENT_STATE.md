@@ -9,9 +9,12 @@ Verification counts below are recorded milestone evidence, **not new runs**.
 | M1 - authority-bound scenario plans | [78 passed, 30.575 s](M1_VERIFICATION.md) | Includes unchanged M0; immutable proposals, no plan/execution approval |
 | M2 - inert artifact packages/mappings | [116 passed, 66.165 s](M2_VERIFICATION.md) | Includes M0/M1 + 26 M2 acceptance families + 12 boundary regressions; closure unverified |
 
-Local baseline HEAD is `b94d76da1a09d6b3df220965c1c7f14884ca394c`.
-Check live local Git status before work; C20/C21 documentation edits were already
-uncommitted when C22 began. No new commit or remote query is part of this refactor.
+Last implementation checkpoint is `b94d76da1a09d6b3df220965c1c7f14884ca394c`.
+C20-C22 reviews/refactor are saved in local documentation checkpoint `569d839`.
+C23 requests implementation/local commits; [M2-R v1](M2R_DURABLE_REVIEW.md),
+its eight decisions and 30 acceptance families are now explicitly approved for offline
+implementation/tests and reviewed local commits. M2-R is not implemented and no new
+application test result is claimed. Inspect local Git state; no push is authorized.
 
 The separate legacy Python/LangGraph CLI implements PDF/JSON extraction, discovery,
 authentication, inline TypeScript/Playwright execution and attempted repair. It does
