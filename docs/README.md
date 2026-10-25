@@ -19,7 +19,7 @@ and tests before changing behavior; old observations are not substitutes for ver
 | Baseline/oracle authority | [M0 specification](M0_VERSIONED_BASELINES.md), [exact V1 contracts](M0_CONTRACTS_V1.md), [M0 decisions/trade-offs](M0_DECISION_RATIONALE.md) |
 | Scenario planning | [M1 specification/contracts](M1_AUTHORITY_BOUND_PLANS.md); M0 interfaces it consumes |
 | Artifact bytes/mapping | [M2 specification/contracts](M2_ARTIFACT_PACKAGES.md); relevant M0/M1 subjects |
-| M2-R approved implementation | [M2-R v1 contracts and acceptance](M2R_DURABLE_REVIEW.md), [original bounded task](NEXT_STEPS.md#next-bounded-specification---unchanged-recommendation), relevant M0/M1/M2 contracts, CAP-HITL/EXEC/RECOVERY and ADR-03/06; C23 explicitly approves v1, D01..08 and AC-01..30 for offline implementation/tests and local commits |
+| M2-R implemented review subsystem | [M2-R v1 contracts and acceptance](M2R_DURABLE_REVIEW.md), [completed scope](NEXT_STEPS.md#next-bounded-specification---unchanged-recommendation), relevant M0/M1/M2 contracts, CAP-HITL/EXEC/RECOVERY and ADR-03/06; [M2-R verification](M2R_VERIFICATION.md) records 156 passing offline tests; no runtime execution integration |
 | Runtime architecture / source boundaries | [Runtime boundary](ARCHITECTURE.md#runtime-boundary), [graph](ARCHITECTURE.md#graph-and-state), relevant offline subsystem section; inspect affected source/tests |
 | Compatibility / fitness gates | [Framework constraints](ARCHITECTURE.md#framework-and-language-compatibility), [provider constraints](ARCHITECTURE.md#model-and-provider-interoperability), [coherence](ARCHITECTURE.md#integration-coherence-blockers-and-reconsideration), [ATS-FIT matrix](ARCHITECTURE.md#versioned-architecture-fitness-and-assurance-matrix) |
 | Findings and remedies | [F01-F17](AUDIT_FINDINGS.md); read relevant finding details and evidence labels, not just severity summaries |
@@ -48,7 +48,7 @@ establish only the behavior and environment actually checked.
 ## Level 3 - historical evidence
 
 - [M0 verification](M0_VERIFICATION.md), [M1 verification](M1_VERIFICATION.md),
-  [M2 verification](M2_VERIFICATION.md): unchanged results, commands, failures and limits;
+  [M2 verification](M2_VERIFICATION.md), [M2-R verification](M2R_VERIFICATION.md): results, commands, failures and limits;
   load applicable evidence when assessing or changing the corresponding milestone.
 - [Pre-refactor context archive](history/CONTEXT_BEFORE_2026-10-25.md): complete earlier
   AGENTS/NEXT_STEPS/CURRENT_STATE and ROADMAP preamble, including superseded handoffs,

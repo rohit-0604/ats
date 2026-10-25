@@ -3,8 +3,9 @@
 ## Consolidated assurance review - 2026-10-25
 
 Revision **ATS-ARCH-ASSURANCE-2026-10-25-v1**, documentation-only under C21.
-This section is the current architecture assessment; older dated observations below
-remain historical. It complements [domain review](DOMAIN_WORKFLOWS_REVIEW.md),
+This section records the C21 assessment; C23 subsequently implemented the offline
+M2-R review subsystem described below. Older dated observations remain historical.
+It complements [domain review](DOMAIN_WORKFLOWS_REVIEW.md),
 [capability requirements](CAPABILITY_REQUIREMENTS.md) and the six proposed ADRs,
 without replacing milestone specifications. No additional assurance document is needed:
 this document can own the cross-cutting matrix, while verification records own results.
@@ -240,6 +241,29 @@ unchanged at the M2 checkpoint, the index is empty, and documentation remains lo
 and uncommitted. No live remote query, dependency install, application test execution,
 provider/model invocation, generated compilation/execution or deployment was performed.
 Official documentation was accessed read-only; it does not qualify ATS adapters.
+
+## Offline M2-R plan and whole-package review
+
+The explicitly approved [M2-R v1](M2R_DURABLE_REVIEW.md) is implemented and
+[verified offline](M2R_VERIFICATION.md): 157 tests pass, including all 116 unchanged
+M0/M1/M2 tests and 41 M2-R methods. A separate `python -B -m app.review_cli` provides
+explicit init/register/review/inspect/history/assess/export commands. New strict
+review contracts, a small service and a single-project SQLite store preserve exact
+canonical plan/package bytes and append-only operator decisions. M0 schemas and all
+existing source/interfaces remain unchanged; no legacy runtime integration was added.
+
+New effective-review envelopes consume a fresh public M0 inspection, unchanged M1/M2
+structural policy and exact baseline/parent approval-decision tokens. Reapproval cannot
+revive an old package review. Request replay acknowledges a historical decision only.
+Read-only queries cannot recover hot journals; explicit review/registration may recover
+only the identified M2-R store. Header/schema/record checks reject foreign/WAL/corrupt
+stores. These controls assume a trusted local operator and cooperative filesystem.
+
+M0 and M2-R observations are not jointly atomic; assessments can immediately become
+stale. M1/M2 authority fields stay false, new closure status stays unverified and all
+execution authorization stays false. M3 results, M4 admission/recovery, M5 isolation,
+independent code review and system-effectiveness proof remain open. F01-F17 are not
+closed by this separate offline subsystem. No new runtime agents or dependencies exist.
 
 ## Offline M2 artifact packages
 

@@ -112,11 +112,12 @@
 
 The latest request (C23, 2026-10-25) asks to move to implementation and commit/save
 progress. Reviewed local progress checkpoints are authorized; the C20-C22 documentation
-checkpoint is `569d839`. The next intended implementation is offline M2-R. The user explicitly approved
+checkpoint is `569d839`. The user explicitly approved offline M2-R:
 [M2R-SPEC-2026-10-25-v1](docs/M2R_DURABLE_REVIEW.md), M2R-D01..08 and M2R-AC-01..30
-for offline implementation/tests and reviewed local commits. The contract agreement
-prerequisite is satisfied. Implement/test only that bounded M2-R scope and create local
-checkpoints. Preserve M0/M1/M2 and legacy source. No agents, new dependencies, providers,
+for offline implementation/tests and reviewed local commits. M2-R is now implemented
+and verified: 157 offline tests pass; see [verification](docs/M2R_VERIFICATION.md).
+Save only the reviewed M2-R implementation checkpoint, then stop. Preserve M0/M1/M2
+and legacy source. No agents, new dependencies, providers,
 auth/crawl, generated compilation/execution, M3/M4/M5, push, publication or deployment.
 Stop after verified M2-R completion and its reviewed local implementation checkpoint.
 

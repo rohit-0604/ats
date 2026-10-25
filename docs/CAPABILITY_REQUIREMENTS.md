@@ -1,5 +1,11 @@
 # ATS capability requirements register
 
+C23 implementation status, 2026-10-25: [M2-R verification](M2R_VERIFICATION.md)
+records 157 passing offline tests (116 unchanged M0-M2 plus 41 M2-R methods). Exact
+local plan/package custody, separate durable decisions and fresh effective review now
+exist. Execution stays denied; all CAP obligations/version v3 remain unchanged. Dated
+review/status notes below are historical; no runtime effectiveness is implied.
+
 Architecture assurance update, 2026-10-25 (C21): **CAP-REG-2026-10-25-v3** adds
 CAP-FRAMEWORK and CAP-MODEL.A4/A5, preserving every V2 requirement/acceptance ID
 and SC-01. [Architecture assurance](ARCHITECTURE.md#consolidated-assurance-review---2026-10-25)
@@ -75,16 +81,16 @@ deferred model, source, UI, worker or cloud integrations in this register.
 | CAP-DIAG | Documented, taxonomy/report criteria partial | Error heuristics and unsafe repair; no dependable adjudication | Safe repair after controlled evidence; ADR-05 |
 | CAP-WORKFLOW | Partial: source/API modes deferred | M0 authority and M1 offline planning verified; legacy black-box runtime unsafe | M2-M5 foundations, then source-aware expansion |
 | CAP-EFFICIENCY | Partial and scattered | Retries/cache/memory/async helpers; benefits and full limits unverified | M4 plus measured efficiency/retrieval work |
-| CAP-HITL | Documented UI direction, runtime guarantees partial | M0 reviews and M2 review subjects verified; legacy feedback unsafe; professional UI absent | M2-R durable review contracts, then private UI |
+| CAP-HITL | Documented UI direction, runtime guarantees partial | M0 and M2-R explicit offline reviews verified; legacy feedback unsafe; professional UI absent | M4 durable runtime state, then private UI |
 | CAP-OBS | Documented proposed schema | Local JSONL/logs/dashboard; incomplete attempt accounting | OBS workstream after shared IDs; M4/M5 effects |
-| CAP-EVAL | Documented evaluation plan | 116 offline M0/M1/M2 unit/contracts verified; maintained runtime/model corpus absent | EVAL plus CAP-LAB; before adaptive promotion |
+| CAP-EVAL | Documented evaluation plan | 157 offline M0/M1/M2/M2-R unit/contracts verified; maintained runtime/model corpus absent | EVAL plus CAP-LAB; before adaptive promotion |
 | CAP-PORT | Missing as tested deliverable | Local Windows M0 verified; deployment portability unverified | PORT workstream and deployment/operations |
 | CAP-EXT | Partial boundaries; no versioned extension acceptance | Concrete provider modules; general safe extension boundary absent | Contract-driven adapters as integrations are authorized |
 | CAP-SHOWCASE | SC-01 already explicit | Not built or published by this work | Independent SC-01; canonical SC-AC-01..06 in ROADMAP |
 | CAP-LAB | Documented target/defect direction | Owned reproducible lab/ground truth not verified | Lab fixtures before controlled end-to-end/evaluations |
 | CAP-POM | Documented, no dedicated CAP owner | Inline TS generator exists; POM absent | Maintainable POM after M2 and controlled evidence |
 | CAP-EXEC | Scattered security gates; no CAP owner | Legacy host execution unsafe; no approved isolation | M2/M4/M5 and explicit target authorization; ADR-04 |
-| CAP-RECOVERY | ADR-06, incomplete operational requirements | M0 review recovery verified; runtime effect recovery unverified | M4 reservations, M5 cancellation, operations |
+| CAP-RECOVERY | ADR-06, incomplete operational requirements | M0/M2-R review recovery verified; runtime effect recovery unverified | M4 reservations, M5 cancellation, operations |
 | CAP-DATA | Scattered privacy/operations requirements | Bounded M0 files; shared legacy stores; retention/access incomplete | Data governance and operations before hosted access |
 | CAP-AUTHENV | Partial auth/scope requirements; environment/role/session lifecycle incomplete | Form/token/API-key and single-context discovery plumbing; source-confirmed auth/access classification and execution mismatches | AUTHENV profile/identity/discovery requirements; CAP-EXEC/RECOVERY/DATA and controlled lab |
 | CAP-MANUAL | Manual case/review/import/selection lifecycle materially incomplete | M0 revisions, M1 scenario proposals and M2 mappings are reusable; no independent reviewed manual-case lifecycle | MANUAL design/review/export first; versioned selection/impact extension separately scoped |
@@ -235,9 +241,9 @@ records direct SDK vs compatible API vs optional gateway alternatives and curren
   retries/resume only where backend semantics support them. Provide accessible responsive UI.
 - **Invariants:** no fabricated completion percentage, timeout approval or hidden default
   approval. Completion is not proof of requirement satisfaction. Stale feedback is rejected.
-- **Current evidence:** M0 explicit reviews are verified; legacy review defaults/feedback
+- **Current evidence:** M0 and M2-R explicit offline reviews are verified; legacy review defaults/feedback
   are unsafe (F04/F11); [professional UI](ROADMAP.md#professional-ui-and-ux) is proposed.
-- **Delivery/dependencies:** M2-R plan/bundle review design and M4 durable state/recovery,
+- **Delivery/dependencies:** completed M2-R offline reviews and future M4 durable state/recovery,
   then private professional UI; M1 has a separate offline CLI and grants no plan approval.
 - **Decision/trade-off:** CLI/polling first vs streaming/full UI; adopt UI for demonstrated
   review tasks, defer unsupported backend controls, reject cosmetic status disconnected
@@ -498,7 +504,7 @@ effect recovery and data governance from disappearing between other workstreams.
   worker cancellation; backups/restores and inspectable versioned workflow state.
 - **Invariants:** checkpoint/lease expiry is not proof an effect stopped; uncertain target
   mutations cannot auto-repeat. Do not promise exactly-once browser effects.
-- **Current evidence:** M0 same-request review/transaction recovery is verified;
+- **Current evidence:** M0/M2-R same-request review/transaction recovery is verified;
   [legacy resume](../app/core/react_controller.py#L771) and application effect recovery are
   unverified. [ADR-06](adr/06-persistence-replay.md) owns the design, beyond M0 still proposed.
 - **Delivery/dependencies:** M4 reservations/fake effects, M5 cancellation, then operations;

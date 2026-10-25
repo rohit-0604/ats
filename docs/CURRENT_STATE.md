@@ -8,13 +8,13 @@ Verification counts below are recorded milestone evidence, **not new runs**.
 | M0 - versioned baselines/reviews | [48 passed, 14.953 s](M0_VERIFICATION.md) | 33 acceptance cases + 15 regressions; single-operator digest-bound authority |
 | M1 - authority-bound scenario plans | [78 passed, 30.575 s](M1_VERIFICATION.md) | Includes unchanged M0; immutable proposals, no plan/execution approval |
 | M2 - inert artifact packages/mappings | [116 passed, 66.165 s](M2_VERIFICATION.md) | Includes M0/M1 + 26 M2 acceptance families + 12 boundary regressions; closure unverified |
+| M2-R - durable plan/package review | [157 passed, 85.484 s](M2R_VERIFICATION.md) | Includes unchanged M0-M2 + 41 M2-R methods; explicit local review, no execution authority |
 
-Last implementation checkpoint is `b94d76da1a09d6b3df220965c1c7f14884ca394c`.
+M0-M2 implementation checkpoint is `b94d76da1a09d6b3df220965c1c7f14884ca394c`.
 C20-C22 reviews/refactor are saved in local documentation checkpoint `569d839`.
-C23 requests implementation/local commits; [M2-R v1](M2R_DURABLE_REVIEW.md),
-its eight decisions and 30 acceptance families are now explicitly approved for offline
-implementation/tests and reviewed local commits. M2-R is not implemented and no new
-application test result is claimed. Inspect local Git state; no push is authorized.
+C23 approved [M2-R v1](M2R_DURABLE_REVIEW.md), now implemented and verified offline.
+The approved specification checkpoint is `2cd0537`; the reviewed implementation checkpoint
+saves this verified state. Inspect local Git for its exact hash. No push is authorized.
 
 The separate legacy Python/LangGraph CLI implements PDF/JSON extraction, discovery,
 authentication, inline TypeScript/Playwright execution and attempted repair. It does
@@ -28,8 +28,8 @@ manual/auth/environment/coverage, source-aware workflow, HITL/UI, OBS/EVAL/LAB a
 SC-01 requirements. These future obligations do not authorize implementation. Full ADRs
 remain PROPOSED beyond their exact approved milestone subsets. The
 [architecture assessment](ARCHITECTURE.md#consolidated-assurance-review---2026-10-25)
-found no demonstrated blocker to a separate M2-R specification. Safe execution still
-requires M2-R/M3/M4/M5 and explicit target/effect/isolation authorization and evidence.
+preceded this offline M2-R implementation. Safe execution still requires M3/M4/M5
+and explicit target/effect/isolation authorization and evidence; M2-R review is not dispatch.
 
 The current task and unchanged next recommendation are in [NEXT_STEPS](NEXT_STEPS.md).
 Use the [documentation index](README.md) for exact contracts, requirements and findings.

@@ -2,49 +2,34 @@
 
 ## Current scope and stop point
 
-C23 requests implementation and local progress commits. The completed C20-C22 reviews
-and refactor are saved in `569d839`. [M2-R v1](M2R_DURABLE_REVIEW.md) now defines proposed
-contracts, eight decisions and 30 offline acceptance families. The user explicitly approved
-that exact v1 and all decisions/acceptance for offline implementation/tests and local commits.
-Implement, verify and checkpoint only offline
-M2-R. No providers, agents, installs, generated execution, later milestones or push.
-See [current status](CURRENT_STATE.md), [index](README.md) and
-[authorization](DECISIONS.md#accepted-constraints).
+C23 approved M2R-SPEC-2026-10-25-v1, M2R-D01..08 and M2R-AC-01..30 for offline
+implementation/tests and reviewed local commits. **M2-R is implemented and verified:
+157 tests passed in 85.484 seconds, no failures/errors/skips.** Read the
+[verification record](M2R_VERIFICATION.md) for fixes, actual interfaces and limitations.
+All 66 preexisting non-documentation files remain unchanged. M0/M1/M2 retain their
+exact contracts; closure remains unverified and execution_authorized remains false.
 
-M0/M1/M2 are complete offline. M2-R v1 is approved for implementation, not yet implemented. The
-original bounded recommendation below remains its scope reference; execution/product
-readiness is unproven. Do not reopen completed V1 contracts.
+Progress is saved in `569d839` (reviews/refactor) and `2cd0537` (approved M2-R spec).
+The final implementation checkpoint subject is
+`feat: implement offline M2-R durable plan and package reviews`. Verify its hash and
+Git status before retrying any interrupted commit; its hash cannot be embedded in itself.
+Stop after this verified local checkpoint. No push, provider/target/generated execution,
+installation, agents, M3/M4/M5 implementation, publication or deployment is authorized.
 
-## Next bounded specification - unchanged recommendation
+## Next action
 
-**Exact next bounded task recommendation (not started or automatically authorized):**
-prepare an offline specification titled **M2-R - Durable Plan and Whole-Package Review**.
-On a new scoped request:
+No further milestone is authorized. The existing roadmap's next proposed boundary is
+M3 offline result reconciliation; its bounded specification needs a new scoped request.
+Do not implement it or integrate M2-R with the unsafe legacy runtime automatically.
+Use the [index](README.md) to load task-specific authorities and [current status](CURRENT_STATE.md)
+for the concise verified baseline. All F01-F17 remain open in the legacy runtime.
 
-1. Read current V1 contracts, M2 verification, domain compatibility constraints and
-   applicable FIT gates. Establish acceptance IDs and scope before any implementation.
-2. Specify separate exact plan and whole-package review subjects, project/parent digest
-   binding, trusted local single-operator decisions, append-only history/revocation,
-   idempotent command identity, transaction/crash/lost-acknowledgment behavior and
-   handling of imported/forged/stale review claims. Compare a focused review store with
-   reusing M0 persistence helpers without changing M0 schemas or canonical bytes.
-3. Define a new effective-review assessment using fresh M0 state plus plan/package
-   decisions and policy version. State baseline/plan/package supersession/revocation
-   effects, snapshot consistency and cross-store read/race limits. It grants no dispatch
-   permission; atomic dispatch/revocation and budget reservations belong to M4.
-4. Initially cover fully mapped packages. Specify malformed/mismatched subjects, review
-   independence, revoked/stale parents, duplicate/conflicting decisions, crash/replay,
-   lost acknowledgment, exact bytes and preserved V1 non-authorizing assessments as
-   offline acceptance families. Include review rendering/input safety and trust limits.
-5. Record M3/M4/M5 consumption/compatibility, assumptions, alternatives, applicable
-   FIT-01/02/03/06/07/08/13 evidence plans and unresolved choices; stop at specification
-   review/implementation approval. Do not implement or commit under specification scope.
+<a id="next-bounded-specification---unchanged-recommendation"></a>
+## Completed M2-R specification scope
 
-Explicit non-goals: manual-case lifecycle, subset/impact contracts, auth/environment
-services, coverage engine, framework profiles/IR/runner adapters, model routing/gateways,
-UI/telemetry platform, workers, live execution or changes to completed M0/M1/M2.
-These retain their own CAP IDs, dependencies and measurable future acceptance. MANUAL-first
-remains an explicit product-priority alternative, not an implicit scope change.
+The [approved v1](M2R_DURABLE_REVIEW.md) owns exact contracts/acceptance. The original
+[bounded recommendation](history/CONTEXT_BEFORE_2026-10-25.md#next-current-stop-point-consolidated-architecture-assurance-review)
+is preserved as historical provenance; it is completed, not an instruction to restart M2-R.
 
 ## Historical handoffs
 

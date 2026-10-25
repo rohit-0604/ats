@@ -4,13 +4,14 @@
 workstream trade-offs and SC-01 acceptance; [CAP requirements](CAPABILITY_REQUIREMENTS.md)
 own cross-cutting obligations, [CURRENT_STATE](CURRENT_STATE.md) owns current verified
 status and [DECISIONS](DECISIONS.md) owns choices/authorization. No workstream or vendor
-is approved merely by being listed. M0/M1/M2 are complete offline; the unchanged next
-recommendation is the bounded [M2-R specification](NEXT_STEPS.md#next-bounded-specification---unchanged-recommendation).
+is approved merely by being listed. M0/M1/M2 and the M2-R review subsystem are complete
+offline; see [M2-R verification](M2R_VERIFICATION.md).
+The next proposed boundary is M3 reconciliation specification, requiring a new scoped request.
 
 Load the relevant section through the [documentation index](README.md#level-2---task-specific-authorities).
 The [prior preamble](history/CONTEXT_BEFORE_2026-10-25.md#roadmap-product-and-engineering-roadmap)
-preserves dated research, review/status and sequencing provenance; detailed workstreams
-below are unchanged. Earlier research URLs do not imply a new research or execution cycle.
+preserves dated research, review/status and sequencing provenance; detailed workstream
+obligations remain below. Earlier research URLs do not imply a new research/execution cycle.
 
 ## Product definition and missing requirements
 
@@ -459,7 +460,7 @@ not dates, delivery commitments or passing gates.
 | M0 - COMPLETE offline | Versioned baselines and review records | Approved v2; AC-01..33 plus 15 focused regressions passed; see M0_VERIFICATION |
 | M1 - COMPLETE offline | [Authority-bound scenario plans](M1_AUTHORITY_BOUND_PLANS.md): read-only M0 adapter, stable scenarios and complete criterion disposition | All 30 M1 cases and 48 unchanged M0 tests passed; see M1_VERIFICATION; no plan/code/execution authority granted |
 | M2 - COMPLETE offline | [Immutable artifact packages and mappings](M2_ARTIFACT_PACKAGES.md), M2-SPEC-2026-10-25-v2; non-authorizing assessment | [M2 verification](M2_VERIFICATION.md): M2-AC-01..26 plus 12 boundary regressions and all 78 unchanged M0/M1 tests pass; closure unverified and execution always denied |
-| M2-R - APPROVED OFFLINE IMPLEMENTATION | [Approved v1](M2R_DURABLE_REVIEW.md): offline durable plan/whole-package review; C23 requests implementation/local checkpoints | M2R-D01..08 / M2R-AC-01..30 explicitly approved; verify exact subjects, trusted operator, revocation/idempotency/crash/fresh-review evidence; no execution/manual/subset expansion |
+| M2-R - COMPLETE offline | [Approved v1](M2R_DURABLE_REVIEW.md): durable plan/whole-package review, implemented under C23 | [157 passing offline tests](M2R_VERIFICATION.md), including 41 M2-R methods; exact custody, separate reviews, stale-parent denial, idempotency/crash/fresh observations; execution remains denied |
 | M3 - PROPOSED boundary | Complete offline result reconciliation, after M2 | Nested/retry/unknown/missing/duplicate/runner-error fixtures; exact planned set and truthful criterion accounting |
 | M4 - PROPOSED boundary | Deterministic lifecycle, finite budgets and durable effect reservations, using M2 identities, M2-R reviews and agreed M3 result vocabulary | Fake-dispatch transition/mode/budget tests; duplicate/crash/cancellation/uncertain-effect recovery; no actual runtime dispatch |
 | M5 - PROPOSED boundary | Worker isolation, actual closure/discovery/materialization validation and combined execution-readiness review | Independent secret/filesystem/egress/process denials, trusted evidence, crash/cancellation/cleanup and owned lab fixtures; separate execution approval |

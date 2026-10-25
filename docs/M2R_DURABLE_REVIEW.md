@@ -1,10 +1,11 @@
 # M2-R - Durable Plan and Whole-Package Review
 
-Revision **M2R-SPEC-2026-10-25-v1**. Status: **EXPLICITLY APPROVED FOR OFFLINE IMPLEMENTATION;
-NOT YET IMPLEMENTED**. Under C23 the user approved this exact v1, M2R-D01..08 and
+Revision **M2R-SPEC-2026-10-25-v1**. Status: **APPROVED AND IMPLEMENTED OFFLINE;
+157 TESTS VERIFIED**. Under C23 the user approved this exact v1, M2R-D01..08 and
 M2R-AC-01..30, including offline tests and reviewed local commits. The
 [engineering agreement prerequisite](../AGENTS.md#independent-engineering-judgment)
-is satisfied. No provider/target/generated execution or push is authorized.
+is satisfied. No provider/target/generated execution or push is authorized. See
+[M2-R verification](M2R_VERIFICATION.md) for actual results, fixes and limitations.
 
 ## Scope and preserved contracts
 
