@@ -193,6 +193,15 @@ routes. Resource extra_headers/feature_areas examples are not fully wired throug
 explicit auth failure state, and a shared execution fixture using secret references.
 Test each auth mode against an owned local fixture, including failed login.
 
+Focused domain follow-up, 2026-10-25: source inspection also confirms that
+[crawl auth classification](../app/core/route_crawler.py#L338) subtracts guest homepage
+links from candidate routes; this cannot prove either protection or correct authorization.
+[Selector extraction](../app/core/route_crawler.py#L219) then applies the same supplied
+auth context to pages irrespective of the label. Role/tenant/environment identity and
+session freshness are not established by those labels. See [domain review](DOMAIN_WORKFLOWS_REVIEW.md)
+for the preserved partial functionality and proposed requirements. This adds source
+context to F09; no authenticated target was exercised and no finding is closed.
+
 ### F10 - Crawling lacks consistent destination and skip enforcement
 
 **Status: SOURCE; unauthorized access was not exercised.**

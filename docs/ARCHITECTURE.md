@@ -1,5 +1,246 @@
 # Existing architecture
 
+## Consolidated assurance review - 2026-10-25
+
+Revision **ATS-ARCH-ASSURANCE-2026-10-25-v1**, documentation-only under C21.
+This section is the current architecture assessment; older dated observations below
+remain historical. It complements [domain review](DOMAIN_WORKFLOWS_REVIEW.md),
+[capability requirements](CAPABILITY_REQUIREMENTS.md) and the six proposed ADRs,
+without replacing milestone specifications. No additional assurance document is needed:
+this document can own the cross-cutting matrix, while verification records own results.
+The reported 116 offline tests are prior evidence, not a new run or a product benchmark.
+
+### Architecture classification and agent boundaries
+
+ATS is a modular Python CLI with an LLM-directed LangGraph workflow and a separate,
+deterministic offline authority/lineage subsystem. It is not yet an integrated safe
+testing product. The runtime delegates extraction, generation and repair to specialized
+functions using models; the planner chooses named actions. Calling these agents is
+reasonable, but does not imply autonomous peers, independently trusted adjudicators,
+or a general model tool-calling protocol. Browser/HTTP/filesystem tools are invoked
+through application functions; current provider calls expose text completions.
+
+| Boundary | Source evidence and classification | Assurance implication |
+| --- | --- | --- |
+| Orchestration | [build_graph / planner](../app/core/react_controller.py): 14 nodes, fixed infer/auth/crawl startup, conditional middle, SQLite checkpointer; IMPLEMENTED, defective guards/mode/finalization (F07/F08/F13) | Preserve LangGraph; deterministic admission/lifecycle belongs in M4, not prompts |
+| Domain contracts/services | [M0 review](../app/core/review_store.py), [M1 policy](../app/core/plan_policy.py), [M2 service](../app/core/artifact_service.py): separate pure policy and small I/O boundaries; VERIFIED OFFLINE in milestone records | Stable baseline -> criterion -> scenario/plan -> test/package/configuration lineage; still disconnected from runtime |
+| Human authority | M0 explicit digest-bound single-operator decisions VERIFIED OFFLINE; M1/M2 assessments remain non-authorizing; legacy [HITL](../app/hitl/hitl_manager.py) defective (F04/F11) | M2-R adds separate review records; importing approved flags or a ready assessment cannot grant authority |
+| Context/retrieval/memory | [agent memory](../app/memory/agent_memory.py), extraction FAISS, generator prompt/context helpers IMPLEMENTED; benefit/freshness/isolation UNVERIFIED (F15/F16) | Retrieval is untrusted evidence; CAP-EFFICIENCY/EVAL own freshness and held-out comparisons, not additional agents |
+| Execution/effect recovery | Legacy [evaluator](../app/core/evaluator_engine.py) executes on host; graph resume exists, safe effect recovery/isolation NOT IMPLEMENTED | M4 reservations and M5 isolation are prerequisites; a checkpoint cannot establish exactly-once target effects |
+| Diagnosis/repair | [repair agent](../app/agents/repair_agent.py) and active prompts IMPLEMENTED BUT DEFECTIVE (F01); causal diagnosis/defect retention UNVERIFIED | Evidence-backed hypotheses and reviewed revisions remain CAP-DIAG; green rewritten tests are not successful repair evidence |
+| Telemetry/evaluation | [telemetry](../app/core/telemetry.py) JSONL and quality/learning heuristics PARTIAL; maintained model/agent/defect corpus absent | CAP-OBS/EVAL/LAB own complete attempts, trustworthy evidence and effectiveness; unit counts cannot substitute |
+
+Extraction/generation/repair boundaries correspond to different inputs and validation
+needs. Keeping them as modules is justified; separate processes or more agents are not
+currently justified. Compare simple deterministic services plus one permitted-action
+planner with extra agent coordination only when equal-budget held-out evidence shows
+better defect sensitivity or authoring effort without safety loss. No new agents were
+used or proposed as authorities in this review.
+Official [LangGraph interrupt guidance](https://docs.langchain.com/oss/python/langgraph/interrupts)
+also requires idempotent side effects before interruption because nodes restart on resume;
+this supports retaining the separate effect-recovery boundary rather than trusting replay.
+
+### Framework and language compatibility
+
+Playwright and Selenium are browser automation libraries; Playwright Test, pytest and
+JUnit are test frameworks/runners; TypeScript, Python and Java are languages. Chromium,
+Firefox and WebKit are browser engines. POM is a test-design/maintenance pattern and
+does not select an engine, language or runner. The [Playwright language guidance](https://playwright.dev/docs/languages)
+supports different bindings and recommends the pytest plugin for Python. The
+[Selenium POM guidance](https://www.selenium.dev/documentation/test_practices/encouraged/page_object_models/)
+keeps business assertions in tests; retain explicit criterion assertions and small
+page/component helpers rather than a universal base-page hierarchy.
+
+| Candidate profile (future versioned support claim) | Required implementation/evidence | Present ATS status |
+| --- | --- | --- |
+| Playwright + TypeScript + Playwright Test | Node/package lock, browser/runtime versions, typed imports, explicit test/config IDs, reporter/retry semantics | Legacy inline generator, Node runner and config exist; reliable reconciliation/isolation absent |
+| Playwright + Python + pytest/pytest-playwright | Python dependency lock, plugin/fixture versions, sync/async choice, collection IDs and parameterization mapping, browser provisioning | Python Playwright used for discovery/auth only; no Python test-generation/runner adapter |
+| Selenium + Java + JUnit | JDK plus selected Maven/Gradle/toolchain/locks, Selenium/driver/browser versions, JUnit discovery and dynamic/parameterized invocation identity | No generator/build/runner/result adapter found |
+| Selenium + Python + pytest | Selenium/driver/browser/Python/plugin locks, explicit fixtures, collection/invocation mapping | No generator/runner/result adapter found |
+| API/non-browser testing | Justified target/transport and oracle, target credentials/policy, runtime/dependencies, discovery/outcome/evidence adapter without browser assumptions | Deferred CAP-WORKFLOW/FRAMEWORK; observed browser requests are not an API contract |
+
+Recommended extension: an explicit versioned framework profile, capability checks and
+small generation/discovery/result/isolated-runner adapters sharing domain IDs. Profile
+identity must bind engine/library, runner, language, toolchain and reporter versions,
+supported features and dependency/environment provenance; it must participate in future
+review/evidence identity, not be an unhashed runtime switch. Start with a curated profile
+and existing Playwright TS output; qualify each additional profile with common and
+profile-specific tests. No universal test IR or plugin registry is needed. A universal
+IR adds semantics/compiler obligations before demonstrating equivalent assertions across
+two profiles; reconsider only if measured adapter duplication justifies it.
+
+**M2 constraints, not demonstrated breakage:** [artifact contracts](../app/artifact_contracts.py)
+store arbitrary byte payloads and generic spec/helper/fixture/config/lock/runtime roles;
+there is no extension restriction to TS. `project_name` is a required string, not a
+verified Playwright object; future adapters need an explicit mapping. Each configuration
+requires concrete config/runtime/lock files, and each test needs nonempty assertion byte
+ranges with exact criterion identity. These declarations can describe other languages,
+but do not prove syntax, semantic checks, import closure or installed dependency identity.
+For Java, a build descriptor such as pom.xml is not by itself a complete resolved
+dependency lock; qualify the selected build tool and an immutable resolved inventory.
+Dynamic/generated assertions, JUnit invocations and pytest parameterization need explicit
+future mapping; do not assign trusted ATS identities from display names alone.
+
+Limits are 1 MiB/file, 4 MiB total, 256 files, 64 configurations and 5,000 tests;
+path policy rejects non-ASCII/reserved/colliding paths. They may constrain large fixtures,
+vendor trees, binary runtimes or Java outputs. Keep large installed toolchains outside
+V1 candidate payloads under future immutable worker-environment identity; authorize a
+versioned extension if a real package cannot be represented, rather than relaxing V1.
+M2 has no explicit framework-profile field and forbids unknown fields. Its runtime
+descriptor can hold reviewed bytes, but their meaning is not validated. Future profile
+schema/validation and exact package/profile/environment binding require a separate
+compatibility decision (versioned envelope/sidecar vs V2); no implicit V1 field addition.
+Single-scenario test identity and criterion-bound assertion references do not model every
+possible multi-criterion/dynamic test. Preserve unsupported cases and defer generalization.
+
+Discovery, config loading, pytest plugins, Java build plugins and dependency installation
+may execute code. The [pytest plugin documentation](https://docs.pytest.org/en/stable/how-to/writing_plugins.html)
+documents loading local plugins. All such operations belong behind the M5 boundary,
+including collection-only commands. Neither POM generation nor a manifest is isolation.
+CAP-FRAMEWORK fills a real gap: CAP-EXT defines adapter discipline, CAP-POM structure,
+and CAP-WORKFLOW modes, but none previously owned supported language/runner profiles.
+
+### Model and provider interoperability
+
+Source inspected: all six files under `app/llm/` plus router and configuration
+declarations. Installed metadata reads (no imports) found OpenAI SDK 2.26.0,
+google-genai 1.67.0, LangGraph 1.1.1, Python Playwright 1.58.0 and Pydantic 2.12.5;
+the Node manifest declares `@playwright/test` ^1.58.2. Installed state is not a clean
+installation result or a newly verified compatibility matrix.
+
+| Finding | Evidence / consequence |
+| --- | --- |
+| Managed/hosted inference is hardwired | [router](../app/llm/router.py) dispatches Groq, Gemini, OpenRouter, Cerebras and Mistral with configured tier chains. These names do not establish model availability, ownership, license, price or quality |
+| Local generation/self-hosting absent | [huggingface](../app/llm/huggingface.py) loads MiniLM embeddings lazily; it may download weights. It is not a local generative deployment or proof of air-gapped operation |
+| Text-only common result loses provenance | Four OpenAI-SDK adapters return content strings; [Gemini](../app/llm/gemini.py) separately converts roles/text. Usage, finish/truncation/refusal, request ID and actual served deployment/model are not a common returned record |
+| Structured output is not uniform | Router passes response_format to compatible adapters but drops it for Gemini. Passing JSON format through an SDK does not prove schema enforcement. Callers must validate bounded output and classify invalid content separately |
+| Tools/streaming/effort not exposed | Current callable signatures lack tool definitions/results, stream lifecycle or reasoning-effort negotiation. OpenRouter strips think blocks; that does not implement portable reasoning control |
+| Retry bounds incomplete | Router has finite loops and process-global availability, classifies errors by text and returns first transport-success text. SDK retries compose with router retries: installed OpenAI `_constants.py` sets DEFAULT_MAX_RETRIES=2 and adapters do not override it. There is no cross-layer attempt/token/cost/deadline reservation or quality-triggered escalation contract |
+| Reproducibility gap | [requirements](../requirements.txt) lists google-generativeai while source imports google.genai; lower bounds and an installed environment do not prove direct dependencies or reproducible setup (F12) |
+
+Distinguish model identity (weights/revision, fine-tune, quantization where known) from
+deployment identity (operator/provider, endpoint/region, served alias/revision, API and
+server version, privacy policy). The same open-weight model may run locally, on a
+self-hosted server, or via a hosted provider; the capability/privacy/cost envelope differs.
+Managed APIs and hosted open weights use the same admission principles. Local inference
+still consumes compute/time, may have licensing/hardware constraints and is not inherently
+private if model downloads, logging or remote endpoints remain enabled.
+
+Official [vLLM serving documentation](https://docs.vllm.ai/en/latest/serving/openai_compatible_server/)
+describes compatible endpoints with model/template-dependent behavior and unsupported
+parameters. [Ollama compatibility](https://docs.ollama.com/api/openai-compatibility)
+also defines a supported subset and model-specific effort behavior. Inference: an
+OpenAI-compatible transport can reduce adapter code but cannot establish semantic
+equivalence, tool correctness, JSON-schema fidelity or portable effort levels.
+
+| Alternative | Trade-off / recommendation |
+| --- | --- |
+| Direct SDK adapters behind an ATS-owned boundary | Least migration from current code; explicit native options and errors, more adapter maintenance. Preferred starting point with a curated versioned capability catalog and deterministic task policy |
+| Compatible inference API adapter | Reuses transport for local/self-hosted/hosted deployments; qualify exact server/model/template/options, preserve unsupported/ignored-option behavior and actual deployment provenance |
+| Optional gateway/router library or service | Can consolidate integrations/load balancing/retries; adds dependency/operations, data custody and hidden routing/retry concerns. [LiteLLM routing](https://docs.litellm.ai/docs/proxy/load_balancing) and [fallback documentation](https://docs.litellm.ai/docs/proxy/reliability) demonstrate these features, not ATS compatibility or necessity |
+
+Retain CAP-MODEL ownership; no vendor mandate. Future request/result contracts should
+carry task, catalog/policy/prompt versions, required schema/tools/stream/effort/context,
+privacy/destination policy, deadline and reservation; return requested and actual model/
+deployment (unknown explicitly), validation/refusal/finish state, per-attempt usage and
+latency/cost provenance. Keep secrets in handles and redact payloads. Abort unsupported
+requirements before calls; never silently drop a required option. A stream needs bounded
+accumulation, partial/error/cancel states and usage-unknown recovery. Provider failure,
+invalid schema, task-quality failure and policy refusal need separate outcomes; a retry
+or stronger model cannot rewrite the approved oracle. Contract fixtures precede live
+qualification. Benchmark default/fallback vs task-aware/escalation under equal approved
+budgets and held-out labels; promotion thresholds need reviewed evidence. Quality remains
+unknown until evaluated. CAP-MODEL.A4..A5 below make these interoperability gaps explicit.
+
+### Integration coherence, blockers and reconsideration
+
+| Boundary | Coherent responsibility / required future integration evidence |
+| --- | --- |
+| M0 -> M1 -> M2 | Exact project/baseline/plan/scenario/test/package identities; one public M0 observation composed with pure policy. Existing real-store tests in [M2 boundaries](../tests/test_m2_artifact_boundaries.py) exercise trace chain, revocation and no authority. This is partial integration proof, not runtime effectiveness |
+| M2 -> M2-R | Separate exact plan and whole-package review decisions/history; baseline revocation/supersession and parent-plan changes invalidate effective eligibility. Never mutate frozen M1/M2 assessments to true |
+| M2-R -> M3 | Results bind exact reviewed package and configuration/attempt; reports do not create approval. Trusted worker provenance remains M5; a synthetic or forged reporter pass is not real execution evidence |
+| M3 -> M4 | Agree result/attempt/retry vocabulary before lifecycle integration. M4 owns deterministic admission, global budgets, dispatch/revocation linearization, idempotent reservations and uncertain-effect recovery |
+| M4 -> M5 | Supervisor validates closure/materialized bytes/profile/environment and authority at the agreed dispatch point; cancellation/leases cannot prove a target mutation was undone. No fallback to unsafe host runner |
+| Product layer | Manual cases can reference baseline criteria outside automation-supported M1; subset automation needs a separate selection contract. AUTHENV/COVERAGE/MODEL/UI and source-aware work remain independent owners |
+
+**Verdict:** no source-demonstrated incompatibility blocks beginning the bounded M2-R
+specification. M0/M1/M2 are a coherent identity/authority foundation for later testing,
+not yet a complete product path validated by execution. M2-R must specify a separate
+effective-review result that consumes unchanged non-authorizing assessments, exact
+subjects and fresh M0 authority. It need not solve framework execution compatibility.
+If a real review use case cannot identify its exact plan/package without changing V1,
+pause that case for an explicit compatibility decision; none was found in this review.
+
+Actual blockers to **trusted execution/product claims**, rather than to M2-R specification:
+missing durable reviews, reliable reconciliation, finite shared budgets/effect recovery,
+closure/discovery validation, enforceable isolation/target authorization, clean installation,
+and seeded-defect evidence. Additional frameworks/providers, a universal IR, more agents,
+UI, cloud hosting and adaptive routing are deferred improvements, not reasons to reopen M2.
+Reconsider existing ADR directions only on measured SQLite contention/multi-user trust
+needs, unrepresentable real packages, reporter identity loss, failed isolation guarantees
+or validated quality gains. No full ADR status changes here.
+
+Required eventual end-to-end evidence: synthetic approved baseline -> exact plan/package
+-> separate reviews -> changed/revoked review denial -> fake reservation/dispatch/retry
+recovery -> trusted isolated collection/execution -> exact result set -> truthful coverage
+and diagnosis. Include nested/parameterized/duplicate/missing/foreign/expected-failure
+reports, tampered shared helpers, stale identities/profiles, lost acknowledgment,
+crash/cancellation and cross-project denials. An owned paired good/seeded-defect lab must
+show genuine defects retained after attempted repair, plus false alarms/abstention and
+uncertainty. Offline fixtures come first; actual execution needs separate authorization.
+
+### Versioned architecture fitness and assurance matrix
+
+Matrix **ATS-FIT-2026-10-25-v1**. Owners are milestone/workstream responsibilities,
+not assigned people. PARTIAL means relevant evidence exists; OPEN means required proof
+is absent. Neither means production readiness. Each milestone must name applicable gates,
+their reproducible evidence and intentional deferrals; no gate passes on code existence.
+
+| Gate | Existing evidence / status | Missing proof and completion condition | Owner / dependencies |
+| --- | --- | --- | --- |
+| FIT-01 Traceability | PARTIAL: CAP register, milestone AC matrices, real-store M0-M2 trace tests | Map scoped CAP/AC -> contract -> tests -> verification; demonstrate runtime evidence resolves exact approved revisions with no orphan/foreign IDs | Every milestone; M2-R/M3/M4/M5 integration |
+| FIT-02 Contract invariants | PARTIAL: golden/canonical/path/byte/authority tests, historical 116 pass | Rerun affected offline regression suite when implementing; version changes explicitly; future review/reservation/parser tests retain V1 golden bytes and literal-false fields | M2-R then each contract owner |
+| FIT-03 Independent code review | OPEN: prior diff reviews documented, independent review attestation absent | Reviewer independent of implementation inspects semantic/security changes, records findings and resolved/unresolved disposition; same-author self-review cannot satisfy this claim | Each implementation milestone; release owner |
+| FIT-04 Dependencies/clean install | OPEN: local working venv, lower-bound requirements and Node lock; F12 open | Reproduce named clean environment from intentional direct dependencies/locks, SDK imports and browser/toolchain provisioning; record exact versions and failures, no inherited venv assumption | Development harness / PORT; before runtime qualification |
+| FIT-05 CI/lint/format/types | PARTIAL: offline unit command recorded; no verified maintained lint/type/CI gates; npm test scaffold | Establish scoped verified commands and required CI checks, intentional type/lint backlog, reproducible successful artifacts; do not invent passing gates | Development harness; incremental scope before production |
+| FIT-06 Threat model/security | PARTIAL: F01-F17 and ADR-04/06 identify threats; controls not integrated | Document trust/assets/data flows and test prompt injection, secret/filesystem/network/process/tenant denials and review/dispatch races; mandatory denials pass on actual boundary | M2-R review trust; M4/M5, AUTHENV/DATA |
+| FIT-07 Negative/adversarial tests | PARTIAL: bounded decoding, forged authority, crash/path/malformed fixtures in M0-M2 | Preserve failure assertions; add malicious profiles/results/model content, stale reviews, duplicate effects and uncertain recovery; no hidden skip/weakening | Each milestone; CAP-EXT/EVAL |
+| FIT-08 Cross-module integration | PARTIAL: M1/M2 use real M0 store; runtime disconnected | Prove full exact-revision chain, revocation at dispatch, persistence/export/restart compatibility and all result dispositions with fakes then separately authorized worker | M2-R/M3/M4/M5 combined gate |
+| FIT-09 Model/agent quality | OPEN: fixed tiers and heuristics are not held-out evaluations | Version corpus/prompts/catalog/policy; measure extraction/design/oracle fidelity, forbidden effects, abstention, latency/tokens/cost and uncertainty against simple baseline | MODEL/EVAL/OBS/LAB; M4 budgets |
+| FIT-10 Genuine defect detection | OPEN: no maintained paired good/seeded-defect benchmark | Report defect recall, false positives, eligible repair correctness and retained real defects after repair on held-out owned builds; reviewed thresholds before claim | CAP-DIAG/EVAL/LAB after M5 |
+| FIT-11 Operations/recovery | PARTIAL: M0 crash/review tests; runtime effects/telemetry incomplete | Crash/reservation/cancel/uncertain-mutation drills, complete attempt usage including failures, bounded outputs/redaction and backup/restore/retention evidence | M4/M5/OBS/RECOVERY/DATA |
+| FIT-12 Portability | OPEN: Windows offline evidence only | Meet CAP-PORT.A1/A2 on at least two named profiles with equivalent authority/security/identity, migration and rollback; no universal cloud claim | PORT after supported runtime/worker contracts |
+| FIT-13 Documentation accuracy | PARTIAL: dated milestone records and scope gates; historical sections retained | Validate current links/anchors/inventory, separate old observations from current claims and source vs runtime evidence; update register/roadmap/decisions/handoff | Every change; this documentation pass |
+| FIT-14 Professional UX | OPEN: legacy review HTML/CLI, no professional product usability evidence | CAP-HITL representative review/manual/selection/challenge/resume tasks, truthful durable state, permission/stale-action tests and ROADMAP WCAG 2.2 AA checks | Private UI after authoritative services; SC-01 separate |
+
+Fitness gates preserve all CAP workstreams, including MANUAL, AUTHENV, COVERAGE,
+FRAMEWORK/POM, MODEL, DIAG, black-box/source-aware WORKFLOW, HITL, OBS/EVAL/LAB,
+PORT and SC-01. Detailed acceptance stays in the register and roadmap. Confidence is
+high in static interface findings and unchanged V1 compatibility; medium in future
+profile/model boundaries until representative packages and contract fixtures exist.
+No live inference, clean install, application execution, quality benchmark or independent
+review was performed here. The next bounded task is specified in [NEXT_STEPS](NEXT_STEPS.md).
+
+### Documentation-only verification - C21
+
+Read-only Python standard-library inspection of all nine changed/new Markdown paths
+resolved **352 local links and 152 source/heading anchors**, with balanced code fences
+and no replacement characters. `git diff --check` passed. SHA-256 comparison against
+the pre-edit inventory found all **66 tracked non-documentation files unchanged**;
+all **15 tracked milestone/ADR specifications and verification documents** in the
+protected inventory also remained unchanged. Existing AUDIT_FINDINGS edits and the
+untracked DOMAIN_WORKFLOWS_REVIEW were retained; no edits were made to either file.
+Seven documents received C21 additions; the other two paths are preexisting C20 work.
+Existing domain CAP/acceptance IDs and SC-01 remain present; FRAMEWORK A1..A4,
+MODEL A4/A5, AA-D01..05 and FIT-01..14 are the new identifiers.
+
+A bounded common credential-token/private-key-pattern scan of these Markdown files
+found no matches; it is not a general proof of absence of sensitive free text. HEAD is
+unchanged at the M2 checkpoint, the index is empty, and documentation remains local
+and uncommitted. No live remote query, dependency install, application test execution,
+provider/model invocation, generated compilation/execution or deployment was performed.
+Official documentation was accessed read-only; it does not qualify ATS adapters.
+
 ## Offline M2 artifact packages
 
 The approved [M2 v2](M2_ARTIFACT_PACKAGES.md) is implemented and

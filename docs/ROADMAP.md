@@ -1,35 +1,16 @@
 # Product and engineering roadmap
 
-Status: **PROPOSED**, preserved 2026-10-23 from the completed product/system, UX,
-observability, evaluation and SDD assessment. No features, hosting choices, vendors,
-quality thresholds or budgets below are approved for implementation by this handoff.
-External references record the earlier research; no new research was performed here.
+**PROPOSED delivery unless separately authorized.** This document owns sequencing,
+workstream trade-offs and SC-01 acceptance; [CAP requirements](CAPABILITY_REQUIREMENTS.md)
+own cross-cutting obligations, [CURRENT_STATE](CURRENT_STATE.md) owns current verified
+status and [DECISIONS](DECISIONS.md) owns choices/authorization. No workstream or vendor
+is approved merely by being listed. M0/M1/M2 are complete offline; the unchanged next
+recommendation is the bounded [M2-R specification](NEXT_STEPS.md#next-bounded-specification---unchanged-recommendation).
 
-Requirements reconciliation: 2026-10-25. [CAPABILITY_REQUIREMENTS](CAPABILITY_REQUIREMENTS.md)
-is the single cross-cutting capability/requirements authority; this roadmap owns delivery
-order and existing workstream specifications, including SC-01. Its stable CAP IDs must
-be checked when scoping milestones. Recording a required product behavior does not
-authorize all deferred capabilities for implementation. The revised M1 proposal is
-`M1-SPEC-2026-10-25-v2`; its offline scope, six decisions and 30 cases are unchanged.
-The user subsequently approved that exact scope with "Go"; it is now
-[implemented and verified offline](M1_VERIFICATION.md), with 78 total M0/M1 tests.
-Later workstreams remain deferred; no execution authority or runtime integration was added.
-
-Implementation update: the user subsequently approved `M0-SPEC-2026-10-23-v2`.
-Its offline baseline/review slice is implemented and [verified](M0_VERIFICATION.md).
-All later stages still require their own scoped approval; M0 adds no runtime execution authority.
-
-Post-M0 sequencing proposal: [foundation analysis](POST_M0_FOUNDATIONS.md) verifies
-the implemented interfaces and splits the previous broad foundation row by dependency.
-[M1 authority-bound scenario plans](M1_AUTHORITY_BOUND_PLANS.md) is the only detailed
-foundation specification. Its exact offline scope is now approved/implemented; all later
-stage boundaries remain proposals requiring separate scope/authorization.
-
-The [six ADRs](adr/README.md) refine this assessment. They take precedence on foundation
-ordering and safeguards: [M0](M0_VERSIONED_BASELINES.md) establishes baseline/review
-identity first; final executable bundles require approval; durable audit records precede
-trace tooling; reviewed repairs precede automation. Installed capabilities remain in
-[ARCHITECTURE](ARCHITECTURE.md), defects in [AUDIT_FINDINGS](AUDIT_FINDINGS.md).
+Load the relevant section through the [documentation index](README.md#level-2---task-specific-authorities).
+The [prior preamble](history/CONTEXT_BEFORE_2026-10-25.md#roadmap-product-and-engineering-roadmap)
+preserves dated research, review/status and sequencing provenance; detailed workstreams
+below are unchanged. Earlier research URLs do not imply a new research or execution cycle.
 
 ## Product definition and missing requirements
 
@@ -37,17 +18,17 @@ The strongest initial user hypothesis is a **QA engineer or developer testing an
 
 The primary job is:
 
-> Turn documented behavior into reviewable automated checks, then explain which checks ran, what evidence they produced, and what remains uncertain.
+> Turn documented behavior into reviewable scenarios and manual test cases, optionally automate an explicitly selected scope, then explain what was designed/executed, what evidence exists, and what remains uncertain.
 
 The value proposition needs measurement: less authoring and diagnosis effort **without reducing defect detection or assertion fidelity**.
 
 Recommend an initial product with:
 
-- One operator, explicit projects, one active execution worker.
+- One operator and explicit projects; manual design/review/export can ship independently of a later explicitly authorized execution worker.
 - Text-based PDFs and versioned requirement JSON; unsupported or ambiguous content remains visible.
 - Desktop Chromium testing of owned web applications with controlled test data.
 - Explicitly supported guest and form-login flows, expanded only through fixtures and tests.
-- Reviewed criteria and scenario plans; generated TypeScript/POM artifacts.
+- Reviewed business criteria, scenario plans and manual cases as distinct subjects; optional selected TypeScript/POM automation with separate artifact review.
 - Evidence-backed results and human-reviewed repair proposals.
 - CLI access first, followed by a private UI using the same application services.
 
@@ -66,6 +47,27 @@ Proposed non-functional acceptance criteria should include:
 - Performance targets are measured on a named workload; no unsupported availability or latency claims.
 
 These define product reliability more usefully than an aggregate “AI quality” score.
+
+## Domain workflows and test-design delivery
+
+[CAP-AUTHENV](CAPABILITY_REQUIREMENTS.md#cap-authenv---authentication-aware-discovery-and-environment-identity)
+owns environment/identity/session/discovery/challenge requirements;
+[CAP-MANUAL](CAPABILITY_REQUIREMENTS.md#cap-manual---manual-cases-incremental-design-and-selective-automation)
+owns cases/import/export/manual execution/incremental selection;
+[CAP-COVERAGE](CAPABILITY_REQUIREMENTS.md#cap-coverage---test-design-methods-and-truthful-coverage)
+owns finite design obligations and versioned denominators. Detailed decisions, methods,
+metric policy and A-F journeys live in [the domain review](DOMAIN_WORKFLOWS_REVIEW.md),
+not duplicated wire specifications. All are deferred pending their own scoped designs.
+
+A manual-design journey must stop after review/export with no mandatory auth, crawling,
+provider, code generation or execution. Existing scenario prose can inform a draft,
+but M1 is automation-constrained and is not reviewed manual-case authority. Cases for
+manually testable automation-unsupported criteria need a later compatible contract.
+Selective automation requires an explicit versioned selection/impact policy while
+retaining full project coverage/gaps; M2's unbuilt-scenario blocker remains unchanged.
+Environment names never authorize target/IdP access or mutations; distinguish real
+profile/account/tenant/data/reset/secret/budget restrictions before protected integration.
+Authorized OTP/MFA/CAPTCHA test modes or human checkpoints are distinct from bypass.
 
 ## Product architecture and the three system boundaries
 
@@ -142,7 +144,9 @@ Organize navigation around projects and evidence, rather than agent names.
 | Area | Primary content |
 |---|---|
 | Project setup | Target scope, environment, credentials references, data/provider policy, budgets |
-| Requirements and plans | Source-to-criterion comparison, ambiguities, unsupported items, scenarios, approvals |
+| Requirements and plans | Source-to-criterion comparison, ambiguities, unsupported items, scenarios, separate baseline/plan decisions |
+| Manual cases and selection | Setup/data/actions/expected checks, case review/diffs/import/export, explicit automation selection and unchanged full-project gaps |
+| Environment and role discovery | Profile/tenant/account references, mutation/reset scope, redacted role observations, auth/challenge expiry; no secrets in general logs |
 | Code | POM/component/fixture/spec explorer, validation findings, revision diff, traceability |
 | Runs | Status, stage timeline, tests, logs, model calls, browser evidence, costs, cancellation |
 | Findings and repairs | Expected versus observed behavior, classification evidence, original/repaired diff, approval |
@@ -388,12 +392,32 @@ reasoning effort, bounded escalation, user policy, privacy/context/quality/laten
 constraints, failure distinctions and abstention. CAP-EXT supplies concrete adapter
 contracts; CAP-OBS/EVAL supply per-attempt evidence and comparative assessment.
 
-Exit evidence is CAP-MODEL.A1..A3: incompatible/denied/exhausted cases dispatch nothing;
+Exit evidence is CAP-MODEL.A1..A5: incompatible/denied/exhausted cases dispatch nothing;
 fixed held-out equal-budget comparisons evaluate default/fallback against task-aware
 selection/escalation; every attempt has versioned policy/config/usage provenance.
+Deployment-class/capability fixtures distinguish model from serving identity; composed
+SDK/router/gateway retries remain within the same attempt/deadline/usage reservation.
 Quality/latency/cost thresholds require owner review of baseline measurements, not
 price-based model rankings. No provider router is chosen; defer live routing until M4
 budget/reservation and data-policy boundaries exist. M1 adds no routing code or API.
+
+## FRAMEWORK - Qualified language and runner profiles
+
+Deferred owner: CAP-FRAMEWORK; no new milestone implementation authorized. Profile
+design can be specified offline after a separately scoped request; safe collection/build/
+execution qualification depends on M3/M4/M5 plus CAP-EXT/POM/EVAL/LAB. Qualify the existing
+Playwright/TS/Playwright Test path first, then Playwright/Python/pytest,
+Selenium/Java/JUnit and Selenium/Python/pytest under their own profile decisions. API/
+non-browser work needs a justified use case and separate transport/permission semantics.
+No support claim exists for these future profiles today.
+
+Exit evidence is CAP-FRAMEWORK.A1..A4: versioned capability/dependency/runtime identity,
+maintainable generation, explicit collection/invocation/result identity and common
+authority/isolation checks. Compare small adapters with a universal IR before adding
+abstraction; default to adapters. Preserve exact V1 bytes and unknown-field rejection;
+bind future profiles/environment identities through an explicitly versioned contract.
+M2-R review does not certify a profile executable. All design/build/collection effects
+remain subject to execution policy. The architecture review owns detailed constraints.
 
 ## PORT - Tested deployment portability workstream
 
@@ -435,15 +459,20 @@ not dates, delivery commitments or passing gates.
 | M0 - COMPLETE offline | Versioned baselines and review records | Approved v2; AC-01..33 plus 15 focused regressions passed; see M0_VERIFICATION |
 | M1 - COMPLETE offline | [Authority-bound scenario plans](M1_AUTHORITY_BOUND_PLANS.md): read-only M0 adapter, stable scenarios and complete criterion disposition | All 30 M1 cases and 48 unchanged M0 tests passed; see M1_VERIFICATION; no plan/code/execution authority granted |
 | M2 - COMPLETE offline | [Immutable artifact packages and mappings](M2_ARTIFACT_PACKAGES.md), M2-SPEC-2026-10-25-v2; non-authorizing assessment | [M2 verification](M2_VERIFICATION.md): M2-AC-01..26 plus 12 boundary regressions and all 78 unchanged M0/M1 tests pass; closure unverified and execution always denied |
-| M2-R - PROPOSED follow-up | Durable plan/whole-bundle reviews, split from the earlier broad M2 | Separate specification: trusted reviewer, exact subject binding, stale sequence/revocation/idempotency/crash cases; required before M4 dispatch authority |
+| M2-R - NEXT SPECIFICATION RECOMMENDED | Offline durable plan/whole-package review; scope questions in DOMAIN_WORKFLOWS_REVIEW | Separate exact subject decisions, trusted single-operator commands, history/revocation/idempotency/crash/fresh-eligibility evidence; no execution, manual-case system or subset-readiness changes |
 | M3 - PROPOSED boundary | Complete offline result reconciliation, after M2 | Nested/retry/unknown/missing/duplicate/runner-error fixtures; exact planned set and truthful criterion accounting |
 | M4 - PROPOSED boundary | Deterministic lifecycle, finite budgets and durable effect reservations, using M2 identities, M2-R reviews and agreed M3 result vocabulary | Fake-dispatch transition/mode/budget tests; duplicate/crash/cancellation/uncertain-effect recovery; no actual runtime dispatch |
 | M5 - PROPOSED boundary | Worker isolation, actual closure/discovery/materialization validation and combined execution-readiness review | Independent secret/filesystem/egress/process denials, trusted evidence, crash/cancellation/cleanup and owned lab fixtures; separate execution approval |
+| MANUAL - DEFERRED independent specification | Criterion-linked case design/review/import/export, then manual evidence | CAP-MANUAL.A1..A3 and workflow A-F fixtures; usable design-only stop without authentication/worker dependency |
+| Selection/impact - DEFERRED contract extension | Versioned automation subset and incremental affected-set policy | CAP-MANUAL.A3 / WORKFLOW.A3; keep full baseline, distinguish unselected/unbuilt/unsupported, preserve M1/M2 V1 semantics |
+| AUTHENV - DEFERRED profile/identity contract | Named environment/role/tenant/session/challenge/discovery guarantees | CAP-AUTHENV.A1..A4 with fakes/owned lab; real integration waits for authorization/effects/isolation gates |
+| COVERAGE - DEFERRED policy/fixtures | ATS-COVERAGE-2026-10-25-v1 proposed domain measurement/design policy | CAP-COVERAGE.A1..A3; finite reviewed obligations, truthful full/selected denominators, manual/automated provenance; automated reconciliation still M3 |
 | Safe repair workstream | Oracle-preserving reviewed hypotheses and new artifact revisions, after controlled evidence | Real seeded defects remain detectable; uncertain causes abstain; no automatic oracle changes |
 | Controlled end-to-end slice | Owned lab, reviewed scenarios, generated tests, controlled execution and evidence | Known-good/defective-build discrimination and recovery evidence |
 | Maintainable POM generation | Multi-file components, fixtures and explicit assertions | Type/import checks, independent specs and shared-locator maintenance |
 | Private professional UI | Revision review, run/evidence explorer, repair comparison | Task-based usability, accessibility and authorization checks |
-| MODEL - Adaptive routing | CAP-MODEL with CAP-EXT/OBS/EVAL and M4 limits; deferred beyond M1 | CAP-MODEL.A1..A3; task-aware fixed-benchmark comparison, bounded escalation/abstention and full attempt accounting |
+| MODEL - Adaptive routing | CAP-MODEL with CAP-EXT/OBS/EVAL and M4 limits; deferred beyond M1 | CAP-MODEL.A1..A5; held-out task-policy comparison, deployment/capability qualification and bounded composed retries with full attempt accounting |
+| FRAMEWORK - DEFERRED profiles/adapters | Named language/library/runner profiles; preserve V1, qualify TS first then additional profiles | CAP-FRAMEWORK.A1..A4; explicit profile/collection/result IDs and isolated dependency/runner qualification; M3/M4/M5 dependencies |
 | PORT - Tested portability | CAP-PORT within deployment/operations; deferred beyond M1 | CAP-PORT.A1..A2; named-profile build/contract/security checks and identity-preserving migration/rollback |
 | SC-01 - Safe public showcase | Separate static case study and evidence explorer | SC-AC-01..06 above; preparation and public release tracked separately |
 | Production MVP | Access controls, operations, backups, retention, quotas and support scope | Operational drills and explicitly approved quality gates |
@@ -461,7 +490,7 @@ alternatives, modules, invariants, evidence and remaining unsafe behavior. M3 an
 be developed separately after their shared identity/outcome contracts are agreed; stage
 numbers do not require combining them or permitting effects. Worker/lab design can also
 be separately scoped. Full lifecycle enforcement is paired with durable reservations,
-not deferred until after real effects. The combined M2/M3/M4/M5 gate still precedes
+not deferred until after real effects. The combined M2/M2-R/M3/M4/M5 gate still precedes
 any separately authorized generated-code run.
 
 Professional UI, Controlled Test Lab, POM generation, observability/model telemetry,

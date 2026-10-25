@@ -1,5 +1,17 @@
 # ATS capability requirements register
 
+Architecture assurance update, 2026-10-25 (C21): **CAP-REG-2026-10-25-v3** adds
+CAP-FRAMEWORK and CAP-MODEL.A4/A5, preserving every V2 requirement/acceptance ID
+and SC-01. [Architecture assurance](ARCHITECTURE.md#consolidated-assurance-review---2026-10-25)
+owns source findings, alternatives and ATS-FIT-2026-10-25-v1. Profile/provider support
+remains deferred; no M0/M1/M2 contract or runtime behavior changes. The V2 notes below
+record the preceding domain review; the 116-test result remains historical.
+
+Domain review update, 2026-10-25: C20 authorizes documentation/research only. V2 adds
+CAP-AUTHENV/MANUAL/COVERAGE and domain acceptance under existing owners, based on
+[DOMAIN_WORKFLOWS_REVIEW](DOMAIN_WORKFLOWS_REVIEW.md). All new acceptance obligations
+are unimplemented/unexecuted; M0/M1/M2 remain unchanged and no full ADR is accepted.
+
 Current M2 evidence, 2026-10-25: the user approved the narrow v2 package/mapping
 slice and decoder correction. [M2 verification](M2_VERIFICATION.md) records 116 passing
 offline tests (78 unchanged M0/M1 plus 38 M2), no failures/errors/skips. Immutable byte
@@ -16,7 +28,7 @@ The specification maps every CAP ID to preserved contracts and intentional defer
 all acceptance obligations below remain unchanged. No deferred capability is implemented
 or approved by this refinement.
 
-Revision: **CAP-REG-2026-10-25-v1**. Status: **USER-REQUESTED PRODUCT REQUIREMENTS
+Revision: **CAP-REG-2026-10-25-v3**. Status: **USER-REQUESTED PRODUCT REQUIREMENTS
 RECORDED; DELIVERY DEFERRED UNLESS SEPARATELY AUTHORIZED**. Acceptance/evaluation
 criteria below are required future evidence, **not executed checks or benchmark results**.
 This is the single authoritative cross-cutting capability register. [ROADMAP](ROADMAP.md)
@@ -74,6 +86,10 @@ deferred model, source, UI, worker or cloud integrations in this register.
 | CAP-EXEC | Scattered security gates; no CAP owner | Legacy host execution unsafe; no approved isolation | M2/M4/M5 and explicit target authorization; ADR-04 |
 | CAP-RECOVERY | ADR-06, incomplete operational requirements | M0 review recovery verified; runtime effect recovery unverified | M4 reservations, M5 cancellation, operations |
 | CAP-DATA | Scattered privacy/operations requirements | Bounded M0 files; shared legacy stores; retention/access incomplete | Data governance and operations before hosted access |
+| CAP-AUTHENV | Partial auth/scope requirements; environment/role/session lifecycle incomplete | Form/token/API-key and single-context discovery plumbing; source-confirmed auth/access classification and execution mismatches | AUTHENV profile/identity/discovery requirements; CAP-EXEC/RECOVERY/DATA and controlled lab |
+| CAP-MANUAL | Manual case/review/import/selection lifecycle materially incomplete | M0 revisions, M1 scenario proposals and M2 mappings are reusable; no independent reviewed manual-case lifecycle | MANUAL design/review/export first; versioned selection/impact extension separately scoped |
+| CAP-COVERAGE | Negative/boundary evaluation goals existed; formal domain denominators/methods incomplete | M1/M2 structural counts verified; legacy percentage/result semantics defective | COVERAGE measurement/design policy; manual campaigns, M3 reconciliation, CAP-EVAL/LAB |
+| CAP-FRAMEWORK | Generic extension/POM requirements existed; named language/runner support and qualification gates missing | Legacy TS/Playwright Test only; Python Playwright discovery is not Python test generation; no Selenium runner adapters | FRAMEWORK profiles/adapters; M3 result vocabulary, M4 admission and M5 isolated qualification; CAP-EXT/POM/EVAL |
 
 ## CAP-MODEL - Adaptive model selection and routing
 
@@ -106,6 +122,34 @@ deferred model, source, UI, worker or cloud integrations in this register.
   report quality, latency, tokens, cost, sample size and uncertainty by task/provider.
   **CAP-MODEL.A3** every attempt, including rejected outputs and fallbacks, has policy/
   model/config provenance and known/unknown usage; promotion needs reviewed thresholds.
+
+### CAP-MODEL interoperability additions - C21
+
+These extend A1..A3 without introducing a competing routing specification. Managed
+APIs, local open-weight deployments, self-hosted inference and hosted open weights
+must distinguish model/weights/revision identity from deployment/operator/endpoint/
+server/API/region identity. Local does not imply zero cost or guaranteed privacy.
+Capabilities are versioned per deployment/model combination, including structured
+schema dialect, tools, streaming, effort, context/output limits and supported options.
+Catalogs/configuration never grant destination, data-disclosure or spending permission.
+The MODEL workstream owns implementation; CAP-EXT/OBS/EVAL and M4 reservations are
+dependencies. [Architecture assessment](ARCHITECTURE.md#model-and-provider-interoperability)
+records direct SDK vs compatible API vs optional gateway alternatives and current gaps.
+
+- **CAP-MODEL.A4:** offline fake deployment/catalog matrices cover all four deployment
+  classes, same model at different endpoints, changed weights/server/template revisions,
+  unsupported or silently ignored schema/tool/stream/effort settings, malformed/refused/
+  truncated text, partial streams and unknown actual-model/usage metadata. Required
+  incompatibilities cause zero dispatch; policy/privacy/override denial is explicit.
+  Validate outputs independently of transport success. Optional live support claims
+  require separately authorized qualification of exact pinned deployment combinations.
+- **CAP-MODEL.A5:** fake-clock/transport tests bound the composed SDK/router/gateway
+  retry/escalation envelope by total attempts, tokens/cost reservations and deadline;
+  preserve requested/actual model and deployment, policy/catalog/prompt versions,
+  provider vs quality failure, unknown usage, cancellation/lost acknowledgment and
+  every rejected/fallback attempt. No retry creates budget or crosses privacy policy.
+  Compare simple direct-adapter/task-policy baseline against any gateway or adaptive
+  selector under A2 held-out criteria; require measured benefit before adopting complexity.
 
 ## CAP-DIAG - Evidence-driven failure intelligence
 
@@ -193,7 +237,7 @@ deferred model, source, UI, worker or cloud integrations in this register.
   approval. Completion is not proof of requirement satisfaction. Stale feedback is rejected.
 - **Current evidence:** M0 explicit reviews are verified; legacy review defaults/feedback
   are unsafe (F04/F11); [professional UI](ROADMAP.md#professional-ui-and-ux) is proposed.
-- **Delivery/dependencies:** M2 plan/bundle review design and M4 durable state/recovery,
+- **Delivery/dependencies:** M2-R plan/bundle review design and M4 durable state/recovery,
   then private professional UI; M1 has a separate offline CLI and grants no plan approval.
 - **Decision/trade-off:** CLI/polling first vs streaming/full UI; adopt UI for demonstrated
   review tasks, defer unsupported backend controls, reject cosmetic status disconnected
@@ -308,6 +352,55 @@ deferred model, source, UI, worker or cloud integrations in this register.
   versions/capabilities, invalid config and failure translation without silent fallback.
   **CAP-EXT.A2** denied/unregistered adapters make zero calls; replacing a supported adapter
   retains domain decisions, identities and bounded errors with no leaked SDK/secrets.
+
+## CAP-FRAMEWORK - Versioned automation profiles and multi-language generation
+
+- **Problem/benefit:** use the appropriate supported automation library, language and
+  runner without losing approved expectations, exact artifacts or trustworthy results.
+- **Required behavior:** qualify Playwright/TypeScript/Playwright Test,
+  Playwright/Python/pytest, Selenium/Java/JUnit and Selenium/Python/pytest as separate
+  named, versioned profiles. Future API/non-browser profiles require a concrete use
+  case and their own transport/oracle/evidence policy. Distinguish engine/library,
+  language, runner and POM pattern. Support checks precede generation or dispatch.
+  Profiles identify toolchain/runtime/browser/driver/plugin/reporter versions,
+  dependencies/locks, configuration, sync/async mode where relevant, generation,
+  collection/discovery, invocation identity, evidence and result semantics. Small
+  profile-specific adapters retain common baseline/scenario/test/package identities.
+- **Invariants:** no unsupported-profile fallback or fabricated compatibility. POM
+  actions cannot hide criterion assertions. Tests/configuration/dependencies/profile
+  and worker environment must be bound to exact review/execution subjects before use.
+  Loading, compilation, installation and collection can execute code and require
+  approved isolation. Unsupported/unknown/missing/retry/skip/expected-failure outcomes
+  stay visible; matching names or JUnit-style XML alone is not trusted identity.
+- **Current evidence:** [M2 contracts](../app/artifact_contracts.py) allow generic byte
+  inventories but do not validate profiles/closure. Legacy [generator](../app/agents/codegen_agent.py)
+  and [evaluator](../app/core/evaluator_engine.py) assume inline TS/Playwright JSON.
+  Other test profiles and reliable safe execution are absent. See
+  [compatibility findings](ARCHITECTURE.md#framework-and-language-compatibility).
+- **Owner/dependencies:** deferred FRAMEWORK workstream, coordinated with CAP-EXT/POM,
+  M3 result vocabulary, M4 admission and M5 isolated qualification; AUTHENV for identity
+  context and CAP-EVAL/LAB for semantics. M2-R reviews exact inert subjects independently
+  of profile executability; this requirement does not expand its scope.
+- **Decision/trade-off:** begin with explicit curated profiles/adapters and qualify the
+  existing TS path first. A single framework is simpler initially but does not satisfy
+  all named support requirements. Defer other implementations, universal IR and dynamic
+  plugins until separately scoped; reconsider V1 envelopes only for demonstrated cases.
+- **Acceptance:** **CAP-FRAMEWORK.A1** fake support/version/capability matrix for all four
+  named combinations and a justified API profile rejects unsupported combinations/options
+  before calls. Exact profiles/manifests resolve toolchain/dependency/runtime identities
+  with explicit migration/version decisions and unchanged V1 golden contracts.
+  **CAP-FRAMEWORK.A2** each claimed profile passes generation/static/import/collection
+  and isolated-runner contract checks on owned fixtures; positive/negative/role/boundary
+  scenarios retain approved expected outcomes. POM profiles demonstrate independent
+  specs and shared-locator maintenance. These future checks need separate authorization.
+  **CAP-FRAMEWORK.A3** profile-specific report fixtures preserve ATS test/config/attempt
+  identity across nesting, parameterization/dynamic cases, retries, skips/xfails,
+  duplicate names, missing/foreign results and runner failures. M3's common vocabulary
+  reconciles exact planned sets without title inference or inflated criterion evidence.
+  **CAP-FRAMEWORK.A4** tampered config/lock/helper/profile, denied collection/build plugin,
+  secret/egress/host access and incompatible worker environment fail closed; all claimed
+  profiles pass the same authority/revocation/isolation suite. Publish supported versions,
+  limitations and evidence; API profiles do not inherit browser permission automatically.
 
 ## CAP-SHOWCASE - Public ATS showcase
 
@@ -442,6 +535,173 @@ effect recovery and data governance from disappearing between other workstreams.
   **CAP-DATA.A2** approved retention/deletion/restore/migration drills account for all data
   classes, retained-history constraints and inaccessible copies; publish limitations and
   tested recovery objectives instead of inventing availability/privacy guarantees.
+
+## CAP-AUTHENV - Authentication-aware discovery and environment identity
+
+- **Problem/benefit:** discover and test the intended application identity/environment
+  without mistaking navigation visibility, stale sessions or a different tenant for
+  valid access or a business failure.
+- **Required behavior:** versioned profiles for local development, shared development,
+  QA/testing, staging and separately authorized production. Bind exact application/IdP
+  destinations, build, issuer/audience/tenant, accounts/roles, secret/session references,
+  datasets/reset ownership, permitted mutations and budgets. Resolve actual auth setup;
+  neither equality nor difference between development/production is assumed. Keep
+  anonymous and role/tenant discovery observations distinct, with freshness and unknowns.
+  Verify intended identity before protected discovery; share that binding with later
+  execution. Scope session reuse, expiry, revocation and supported refresh; otherwise
+  block or request explicit human intervention. OTP/MFA/CAPTCHA use only authorized
+  provider test modes, dedicated least-privilege test identities or human checkpoints.
+- **Invariants:** a missing guest link does not prove protection; successful login does
+  not prove authorization. No silent guest fallback reported as authenticated success,
+  cross-role/tenant state reuse or secret/OTP/raw-session export. An auth test mode is
+  not production bypass permission. IdP redirects, HTTP/browser requests and refresh
+  must obey explicit destination/action/budget policy. Refresh does not authorize replay
+  of uncertain mutations. Browser contexts do not replace worker isolation.
+- **Current evidence:** [auth handler](../app/core/auth_handler.py#L21) and
+  [crawler](../app/core/route_crawler.py#L306) provide actual partial plumbing;
+  F02/F09/F10 remain open. [Domain review](DOMAIN_WORKFLOWS_REVIEW.md) classifies exact
+  implemented/defective/unverified guarantees and official research. This requirement
+  does not claim any live provider/auth/session test has passed.
+- **Delivery/dependencies:** AUTHENV contract/fake-fixture design before any protected
+  discovery/execution integration; identity/data/target permissions with CAP-EXEC/DATA,
+  finite effects with CAP-RECOVERY/M4 and real adapters inside the M5 boundary. No need
+  to implement it inside M2-R or make manual offline design depend on authentication.
+- **Decision/trade-off:** explicit local profile + small identity/session interfaces first;
+  compare per-case login, scoped reusable state and supported test-mode/API setup. Defer
+  a broker/vault/emulator integration until a named provider/profile justifies it.
+- **Acceptance:** **CAP-AUTHENV.A1** a synthetic five-environment/two-role/two-tenant
+  permission matrix denies mismatched destination/issuer/account/mutation/reset/budget
+  use, preserves full version/provenance, and never infers production authorization.
+  **CAP-AUTHENV.A2** owned fixtures distinguish public-unlinked, protected-linked,
+  HTTP-200 login pages, true denied access, expired state and role/tenant differences;
+  discovery observations cannot manufacture the reviewed access-control oracle.
+  **CAP-AUTHENV.A3** fake session reuse/expiry/logout/role-change/refresh and concurrent
+  account-data cases enforce identity/freshness isolation; secret sentinels never enter
+  plans/packages/graphs/reports/logs; discovery/execution bindings match. Actual profile
+  compatibility later requires separately authorized controlled evidence.
+  **CAP-AUTHENV.A4** test-mode and human-challenge cases bind project/run/attempt/identity,
+  reject stale/expired/replayed responses, expose waiting/blocked/cancelled states and
+  make no protected/model/target dispatch on timeout/denial; bounded audit/cleanup is
+  explicitly permitted. Redirect/subrequest/refresh destination cases obey
+  policy; test integrations cannot select production credentials or weaken its defenses.
+
+## CAP-MANUAL - Manual cases, incremental design and selective automation
+
+- **Problem/benefit:** support manual test design/review/export and optional automation
+  as distinct workflows, without manufacturing code or dropping project scope.
+- **Required behavior:** derive/import repeatable cases with setup/data, ordered actions,
+  observable expected checks, provenance, stable logical identity and immutable revisions.
+  Link exact baseline criteria and M1 scenarios where applicable; support manually
+  testable automation-unsupported criteria without altering M1's automation-only rules.
+  Keep case review distinct from baseline/plan/package authority. Export/import IDs,
+  revision/review state and unresolved gaps; retain external IDs in explicit namespaces.
+  Record manual executions and evidence with human attestation provenance. Support A-F
+  workflows in [the domain review](DOMAIN_WORKFLOWS_REVIEW.md): new design, case-first
+  automation, existing-case augmentation, incremental additions, selected suites and
+  revision/impact history. Use explicit frozen automation selection and exclusion reasons,
+  retaining the full project inventory and identifying uncertain impacts.
+- **Invariants:** importing a case/approval flag or changing a title cannot grant review
+  or erase distinct cases. Manual expected checks cannot replace an M0 business oracle.
+  No mandatory auth/crawl/provider/generated execution for manual design/export. Selection
+  is not automation-support status; unselected criteria remain visible. Existing M1/M2
+  blocked assessments cannot become ready through a new caller flag or review alone.
+- **Current evidence:** [legacy TestCase](../app/schemas.py#L150) is TypeScript-oriented;
+  M0/M1/M2 provide identities and revisions, not manual-case review/execution authority.
+  No reviewed manual import/export/impact pipeline is claimed implemented.
+- **Delivery/dependencies:** separately scoped MANUAL design/review/export specification,
+  then manual execution records and selection/impact policy as needed. It can precede
+  workers. M2-R remains plan/package review only; partial automation needs its own
+  compatibility/selection decision before generation integration, not an M2 readiness patch.
+- **Decision/trade-off:** export M1 prose as an explicitly unreviewed draft is simpler,
+  but does not meet full manual-case requirements. Prefer a small criterion-linked
+  immutable case lifecycle; reconsider a general scenario schema only for demonstrated
+  manual reuse needs. No new agent/framework is required.
+- **Acceptance:** **CAP-MANUAL.A1** synthetic imports/designs preserve IDs/provenance,
+  source negation/thresholds, multiple cases, expected checks and unsupported/manual-only
+  criteria; unknowns stay blocked. Same title never deduplicates a distinct case;
+  imported approval cannot approve a case or change the baseline oracle.
+  **CAP-MANUAL.A2** case review/revision/export/import and manual campaign fixtures retain
+  originals, record exact versions/attestations and pass/fail/blocked/not-run/unknown
+  outcomes; never claim automated evidence or approve on timeout. Design/export makes
+  no auth/crawl/provider/worker calls.
+  **CAP-MANUAL.A3** A-F incremental/selection fixtures retain the full baseline and all
+  not-selected/unbuilt/unsupported scope, propose explicit affected sets after criterion,
+  scenario, case or shared-file changes and require new effective reviews where needed.
+  Uncertain impacts abstain; historical evidence is never rebound to a new revision.
+
+## CAP-COVERAGE - Test-design methods and truthful coverage
+
+- **Problem/benefit:** show what is designed, selected, executed and supported by evidence
+  without treating test count or green tests as complete requirements satisfaction.
+- **Required behavior:** maintain a reviewed finite design-obligation inventory and
+  method/risk/applicability policy. Assess positive/negative, partitions, boundaries,
+  decision/state models, roles/tenants, risk, constrained combinatorial strength,
+  property/metamorphic invariants and concurrency/recovery/rare high-impact conditions
+  where relevant. Keep unknown business expectations visible. Proposed measurement
+  policy **ATS-COVERAGE-2026-10-25-v1**, with the exact definitions/denominators in
+  [DOMAIN_WORKFLOWS_REVIEW](DOMAIN_WORKFLOWS_REVIEW.md), distinguishes requirement
+  disposition, scenario design, manual execution, automation, execution completeness,
+  evidence-backed criterion coverage and defect detection effectiveness.
+- **Invariants:** no exhaustive-coverage promise; no percentage without frozen scope,
+  policy version and numerator/denominator ID sets. Unsupported/unresolved/not-selected/
+  excluded/blocked/missing remain explicit; full-project scope is not replaced by the
+  selected subset. Empty denominator is N/A. Duplicate titles/tests/retries/foreign IDs,
+  skipped or expected-failure runner success cannot inflate positive evidence. Manual
+  attestation and trusted automated evidence retain different provenance.
+- **Current evidence:** M1/M2 counts prove structural inventory/mapping, not semantic
+  coverage. [Legacy report](../app/core/evaluator_engine.py#L400) and F05 remain defective;
+  proposed M3 is not implemented. Product benchmarks have not been run.
+- **Delivery/dependencies:** COVERAGE policy/fixture specification before new reported
+  metrics; MANUAL for cases/campaigns, M3 for automated set reconciliation, CAP-EVAL/LAB
+  for adequacy/defect sensitivity. No new runtime parser or measurement code in this review.
+- **Decision/trade-off:** workload counts are simpler and useful when explicitly labeled;
+  they cannot substitute for evidence/coverage. Prefer exact sets and visible gaps to an
+  aggregate model-generated score; add weighted metrics only with retained raw measures.
+- **Acceptance:** **CAP-COVERAGE.A1** deterministic fixtures exercise every proposed measure,
+  zero denominators, no-criterion requirements, unsupported/unresolved scope and versioned
+  exclusions. Ten criteria with six supported by valid evidence yields full 6/10, while
+  an eligible-only 6/7 view is separately labeled; subset selection cannot make project
+  coverage 100%, and duplicate/foreign passes contribute nothing.
+  **CAP-COVERAGE.A2** reviewed design datasets include the named techniques with finite
+  obligations, feasible combinations, risk rationale and justified N/A cases; omitted
+  high-impact/negative/role/boundary/transition obligations remain visible. Pairwise or
+  property generation cannot claim unmodeled combinations/relations were covered.
+  **CAP-COVERAGE.A3** held-out paired good/seeded-defect evaluations report obligation
+  precision/omission, retained defect sensitivity, false alarms/causal attributions,
+  abstentions, invalid trials, per-risk sample sizes and uncertainty. Generator/retrieval
+  cannot access held-out labels. Release thresholds require owner-reviewed baseline evidence.
+
+## Domain-specific additions to existing capability owners
+
+These additions fill material gaps; original CAP obligations remain unchanged.
+No second model-routing, source-aware, observability, UI, lab or cloud specification
+is introduced. [The domain review](DOMAIN_WORKFLOWS_REVIEW.md) owns the decision
+rationale and example journeys; this register owns the required acceptance evidence.
+
+- **CAP-WORKFLOW.A3:** fake entry/stop/restart matrix supports manual-design/export,
+  case import/augmentation, incremental planning, selected automation and future execution
+  as independent requested outcomes. No mode triggers an unrequested auth/crawl/build/
+  provider/tool effect. Every normal terminal path reports completed/partial/blocked/
+  cancelled/failed truthfully; resume/revision cannot reuse stale eligibility.
+- **CAP-EFFICIENCY.A3:** context/cache/retrieval fixtures isolate project/environment/
+  tenant/role/build and exact baseline/plan/package/case/prompt/model/policy versions as
+  applicable. Missing/freshness-unknown keys deny reuse; compare saved work against
+  retained assertion fidelity and defect sensitivity, not reduced test inventory.
+- **CAP-HITL.A3:** representative manual editing/review/export, selection, environment/
+  role discovery, OTP checkpoint, stage/log/evidence/coverage and diagnosis/repair journeys
+  expose actual backend states/revisions/permissions and incomplete scope. Keyboard,
+  screen-reader, focus/contrast/reflow and accessible challenge tasks meet the existing
+  ROADMAP WCAG 2.2 AA target when implemented; report actual findings and unsupported
+  actions. No fabricated progress/ETA or secret-bearing general feedback channel.
+- **CAP-OBS.A3:** synthetic trajectories correlate environment/build/identity references,
+  manual-case/campaign/selection revisions and auth-challenge lifecycle with existing
+  artifact/model/tool/worker attempts. Missing or unknown usage/state is explicit; no
+  OTP/session/credential data in operational events, public evidence or model context.
+- **CAP-EVAL.A3:** extend the existing held-out corpus with manually adjudicated design
+  obligations, imported cases, incremental/selection changes, role/tenant/challenge and
+  rare high-impact examples. Preserve adjudicator disagreements/equivalent valid designs;
+  evaluate completeness and safe abstention separately from cost, runtime pass rate or
+  text similarity. CAP-LAB/DIAG already own reference builds and defect sensitivity.
 
 ## Approval boundary and open decisions
 
